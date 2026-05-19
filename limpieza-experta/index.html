@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Limpieza Experta — Servicios profesionales de limpieza fina y gruesa para oficinas, fábricas, naves industriales y haciendas. Pulido de pisos, lavado de alfombras y tapicería. Coaching especializado." />
+  <title>Limpieza Experta — Limpieza profesional para espacios que exigen excelencia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0E3A5F;
+      --primary-dark: #082742;
+      --accent: #2BB3C0;
+      --accent-dark: #1F8E99;
+      --green: #3FA66A;
+      --bg: #FFFFFF;
+      --bg-soft: #F4F7FA;
+      --bg-section: #EDF3F8;
+      --text: #0F1F2E;
+      --text-soft: #5A6B7B;
+      --border: #DCE5EE;
+      --shadow-sm: 0 2px 8px rgba(14, 58, 95, 0.06);
+      --shadow-md: 0 8px 24px rgba(14, 58, 95, 0.10);
+      --shadow-lg: 0 16px 40px rgba(14, 58, 95, 0.14);
+      --radius: 14px;
+      --radius-lg: 20px;
+      --maxw: 1200px;
+      --transition: 0.25s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--primary);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+    h3 { font-size: 1.25rem; }
+    p { color: var(--text-soft); }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+    .section--soft { background: var(--bg-soft); }
+    .section__head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+    .section__eyebrow {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 14px;
+    }
+    .section__title { margin-bottom: 16px; }
+    .section__lead {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn--primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn--accent {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn--accent:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn--ghost:hover { background: var(--primary); color: #fff; }
+    .btn--whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn--whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ============ NAV ============ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 24px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+    .brand__mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+    .brand__name { letter-spacing: -0.01em; }
+    .brand__name span { color: var(--accent-dark); }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+      position: relative;
+      padding: 6px 0;
+      transition: color var(--transition);
+    }
+    .nav__links a:hover { color: var(--accent-dark); }
+    .nav__links a.is-active {
+      color: var(--accent-dark);
+    }
+    .nav__links a.is-active::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -4px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .nav__cta { display: inline-flex; }
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--primary);
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      padding: 96px 0 80px;
+      background:
+        radial-gradient(1200px 600px at 100% -10%, rgba(43, 179, 192, 0.18), transparent 60%),
+        radial-gradient(900px 500px at -10% 100%, rgba(14, 58, 95, 0.10), transparent 60%),
+        linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+      overflow: hidden;
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(43, 179, 192, 0.12);
+      color: var(--accent-dark);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      margin-bottom: 22px;
+    }
+    .hero__eyebrow::before {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(63, 166, 106, 0.2);
+    }
+    .hero__title {
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent-dark), var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero__lead {
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin-bottom: 32px;
+    }
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 520px;
+    }
+    .stat__num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat__label {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    .hero__visual {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-width: 520px;
+      margin-left: auto;
+    }
+    .hero__visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 32px;
+      transform: rotate(-4deg);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero__visual-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-content: center;
+    }
+    .hero__tile {
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: var(--transition);
+    }
+    .hero__tile:hover { transform: translateY(-4px); background: #fff; box-shadow: var(--shadow-md); }
+    .hero__tile-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(43, 179, 192, 0.15), rgba(14, 58, 95, 0.08));
+      color: var(--accent-dark);
+    }
+    .hero__tile-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary);
+    }
+    .hero__tile-text { font-size: 0.82rem; color: var(--text-soft); line-height: 1.4; }
+
+    /* ============ SECTORES ============ */
+    .sectors__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .sector {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .sector:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+    .sector__icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(43, 179, 192, 0.12), rgba(14, 58, 95, 0.06));
+      display: grid; place-items: center;
+      color: var(--accent-dark);
+      margin: 0 auto 18px;
+    }
+    .sector__title { margin-bottom: 8px; font-size: 1.1rem; }
+    .sector__text { font-size: 0.9rem; }
+
+    /* ============ SERVICIOS ============ */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid transparent;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border);
+    }
+    .service:hover::before { transform: scaleX(1); }
+    .service__icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: grid; place-items: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .service__title { font-size: 1.2rem; margin-bottom: 10px; }
+    .service__text { font-size: 0.95rem; margin-bottom: 16px; }
+    .service__bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service__bullets li {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      padding-left: 22px;
+      position: relative;
+    }
+    .service__bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 8px;
+      width: 12px; height: 6px;
+      border-left: 2px solid var(--green);
+      border-bottom: 2px solid var(--green);
+      transform: rotate(-45deg);
+    }
+
+    /* ============ WHY US ============ */
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .why {
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .why__num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 3rem;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    .why__title { font-size: 1.05rem; margin-bottom: 8px; }
+    .why__text { font-size: 0.9rem; }
+
+    /* ============ PROCESO ============ */
+    .process__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .step {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+    .step__num {
+      position: absolute;
+      top: -18px;
+      left: 22px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      display: grid; place-items: center;
+      box-shadow: var(--shadow-md);
+    }
+    .step__title {
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .step__text { font-size: 0.9rem; }
+
+    /* ============ COACHING ============ */
+    .coaching {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 64px 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .coaching::before {
+      content: "";
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(43, 179, 192, 0.35), transparent 70%);
+    }
+    .coaching__eyebrow {
+      display: inline-block;
+      color: var(--accent);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .coaching h2 {
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .coaching p {
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 24px;
+      font-size: 1.02rem;
+    }
+    .coaching__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .coaching__list li {
+      color: rgba(255, 255, 255, 0.92);
+      padding-left: 28px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+    .coaching__list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0; top: 0;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: grid; place-items: center;
+    }
+    .coaching__card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 1;
+    }
+    .coaching__card h3 {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .coaching__card p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .coaching__btn {
+      background: var(--accent);
+      color: #fff;
+      width: 100%;
+    }
+    .coaching__btn:hover { background: var(--accent-dark); }
+
+    /* ============ CONTACT ============ */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .form {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    .form__row { margin-bottom: 18px; }
+    .form__row--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form label {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .form input,
+    .form select,
+    .form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #fff;
+      transition: border-color var(--transition);
+    }
+    .form input:focus,
+    .form select:focus,
+    .form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(43, 179, 192, 0.15);
+    }
+    .form textarea { resize: vertical; min-height: 110px; }
+    .form__error {
+      color: #C0273D;
+      font-size: 0.8rem;
+      margin-top: 6px;
+      display: none;
+    }
+    .form__row.has-error input,
+    .form__row.has-error select,
+    .form__row.has-error textarea { border-color: #C0273D; }
+    .form__row.has-error .form__error { display: block; }
+    .form__submit { width: 100%; padding: 16px; font-size: 1rem; margin-top: 6px; }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .info-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: var(--transition);
+    }
+    .info-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .info-card__icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(43, 179, 192, 0.15), rgba(14, 58, 95, 0.08));
+      display: grid; place-items: center;
+      color: var(--accent-dark);
+      flex-shrink: 0;
+    }
+    .info-card__label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+    .info-card__value {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.02rem;
+      word-break: break-word;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--primary-dark);
+      color: rgba(255, 255, 255, 0.78);
+      padding: 56px 0 28px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 36px;
+    }
+    .footer h4 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    .footer p { color: rgba(255, 255, 255, 0.68); font-size: 0.92rem; }
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__links a {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.92rem;
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--accent); }
+    .footer__brand .brand { color: #fff; margin-bottom: 14px; }
+    .footer__brand .brand__name span { color: var(--accent); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ============ WHATSAPP FLOAT ============ */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wa-float__tip {
+      background: #fff;
+      color: var(--primary);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-md);
+      white-space: nowrap;
+    }
+    .wa-float__btn {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: grid; place-items: center;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+      transition: var(--transition);
+      animation: pulse-wa 2.5s ease-in-out infinite;
+    }
+    .wa-float__btn:hover { transform: scale(1.08); }
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+      50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 0 0 14px rgba(37, 211, 102, 0); }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 960px) {
+      .nav__links {
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 0;
+        box-shadow: var(--shadow-md);
+        display: none;
+      }
+      .nav__links.is-open { display: flex; }
+      .nav__links li { border-top: 1px solid var(--border); }
+      .nav__links li:first-child { border-top: none; }
+      .nav__links a { display: block; padding: 14px 24px; }
+      .nav__links a.is-active::after { display: none; }
+      .nav__cta { display: none; }
+      .nav__toggle { display: inline-grid; place-items: center; }
+
+      .hero { padding: 64px 0 56px; }
+      .hero__grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero__visual { margin: 0 auto; max-width: 420px; }
+      .hero__stats { max-width: 100%; }
+
+      .sectors__grid { grid-template-columns: repeat(2, 1fr); }
+      .services__grid { grid-template-columns: repeat(2, 1fr); }
+      .why__grid { grid-template-columns: repeat(2, 1fr); }
+      .process__grid { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+      .coaching { grid-template-columns: 1fr; padding: 48px 32px; }
+      .contact__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 64px 0; }
+      .sectors__grid,
+      .services__grid,
+      .why__grid,
+      .process__grid { grid-template-columns: 1fr; }
+      .hero__stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .stat__num { font-size: 1.4rem; }
+      .form { padding: 28px 22px; }
+      .form__row--split { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .wa-float__tip { display: none; }
+      .coaching { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="nav__inner">
+      <a href="#inicio" class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c0 5 4 9 9 9s9-4 9-9c0-4-3-7-6-9-1 2-3 3-3 5 0 1 1 2 1 3s-1 2-2 2-2-1-2-2c0-2-1-3-3-3-1 2-3 2-3 4z"/></svg>
+        </span>
+        <span class="brand__name">Limpieza<span>Experta</span></span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#sectores">Sectores</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#coaching">Coaching</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a href="#contacto" class="btn btn--primary nav__cta">Cotizar</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="inicio">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <span class="hero__eyebrow">Servicio profesional B2B</span>
+          <h1 class="hero__title">Limpieza profesional para espacios que <em>exigen excelencia</em>.</h1>
+          <p class="hero__lead">
+            Limpieza fina y gruesa, pulido de pisos, lavado de alfombras y tapicería para oficinas, fábricas, naves industriales y haciendas. Personal capacitado, equipo profesional y resultados visibles desde el primer servicio.
+          </p>
+          <div class="hero__ctas">
+            <a href="https://wa.me/525620700986?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20de%20limpieza" class="btn btn--whatsapp" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.34 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+            <a href="#servicios" class="btn btn--ghost">Ver servicios</a>
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__num">+10</div>
+              <div class="stat__label">Años de experiencia</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">+200</div>
+              <div class="stat__label">Espacios atendidos</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">100%</div>
+              <div class="stat__label">Personal capacitado</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__visual-inner">
+            <div class="hero__tile">
+              <div class="hero__tile-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+              </div>
+              <div class="hero__tile-title">Oficinas</div>
+              <div class="hero__tile-text">Limpieza diaria y profunda con discreción.</div>
+            </div>
+            <div class="hero__tile">
+              <div class="hero__tile-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V8l5 3V8l5 3V8l5 3v9"/></svg>
+              </div>
+              <div class="hero__tile-title">Fábricas</div>
+              <div class="hero__tile-text">Protocolos para áreas productivas.</div>
+            </div>
+            <div class="hero__tile">
+              <div class="hero__tile-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
+              </div>
+              <div class="hero__tile-title">Haciendas</div>
+              <div class="hero__tile-text">Cuidado experto para fincas y espacios amplios.</div>
+            </div>
+            <div class="hero__tile">
+              <div class="hero__tile-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 010 18M3 12h18"/></svg>
+              </div>
+              <div class="hero__tile-title">Naves industriales</div>
+              <div class="hero__tile-text">Equipo y químicos de grado profesional.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ SECTORES ============ -->
+  <section class="section" id="sectores">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Sectores que atendemos</span>
+        <h2 class="section__title">Diseñado para espacios exigentes.</h2>
+        <p class="section__lead">Cada espacio tiene retos distintos. Adaptamos protocolos, productos y horarios al ritmo de tu operación.</p>
+      </div>
+      <div class="sectors__grid">
+        <div class="sector">
+          <div class="sector__icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="sector__title">Oficinas corporativas</h3>
+          <p class="sector__text">Mantenimiento diario, sanitización y profundización mensual sin interrumpir tu operación.</p>
+        </div>
+        <div class="sector">
+          <div class="sector__icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V8l5 3V8l5 3V8l5 3v9"/><path d="M9 14h.01M14 14h.01"/></svg>
+          </div>
+          <h3 class="sector__title">Fábricas</h3>
+          <p class="sector__text">Cumplimos con normas de seguridad e higiene de áreas productivas y de envasado.</p>
+        </div>
+        <div class="sector">
+          <div class="sector__icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <h3 class="sector__title">Naves industriales</h3>
+          <p class="sector__text">Limpieza de gran formato con maquinaria adecuada y personal entrenado en alturas.</p>
+        </div>
+        <div class="sector">
+          <div class="sector__icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11l9-7 9 7v10"/><path d="M3 21h18"/><path d="M10 21v-6h4v6"/><path d="M7 11v3M17 11v3"/></svg>
+          </div>
+          <h3 class="sector__title">Haciendas</h3>
+          <p class="sector__text">Trato cuidadoso para superficies nobles, mobiliario fino y áreas comunes amplias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="section section--soft" id="servicios">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Servicios</span>
+        <h2 class="section__title">Limpieza experta, fina y gruesa.</h2>
+        <p class="section__lead">Servicios integrales o por requerimiento puntual. Diagnóstico previo sin costo.</p>
+      </div>
+      <div class="services__grid">
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4 4 1-3 3 1 5-4-2-4 2 1-5-3-3 4-1z"/></svg>
+          </div>
+          <h3 class="service__title">Limpieza fina</h3>
+          <p class="service__text">Atención al detalle en superficies nobles, mobiliario, vidrios y acabados delicados.</p>
+          <ul class="service__bullets">
+            <li>Productos especializados</li>
+            <li>Microfibra y técnicas no abrasivas</li>
+            <li>Acabado profesional</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v6H3z"/><path d="M3 15h18v6H3z"/><path d="M6 9v6M18 9v6M12 9v6"/></svg>
+          </div>
+          <h3 class="service__title">Limpieza gruesa</h3>
+          <p class="service__text">Lavado profundo de áreas amplias, post-obra y mantenimientos mayores.</p>
+          <ul class="service__bullets">
+            <li>Post-construcción y remodelación</li>
+            <li>Áreas exteriores y bodegas</li>
+            <li>Equipo industrial</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="service__title">Pulido de pisos</h3>
+          <p class="service__text">Restauración y abrillantado de mármol, granito, porcelanato y concreto pulido.</p>
+          <ul class="service__bullets">
+            <li>Cristalizado y sellado</li>
+            <li>Eliminación de manchas y rayones</li>
+            <li>Acabado espejo</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M3 14h18"/></svg>
+          </div>
+          <h3 class="service__title">Lavado de alfombras</h3>
+          <p class="service__text">Inyección, extracción y desmanchado profundo en alfombras y tapetes.</p>
+          <ul class="service__bullets">
+            <li>Secado rápido</li>
+            <li>Productos hipoalergénicos</li>
+            <li>Eliminación de ácaros y olores</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18v-7a4 4 0 014-4h8a4 4 0 014 4v7"/><path d="M2 18h20v3H2z"/></svg>
+          </div>
+          <h3 class="service__title">Lavado de tapicería</h3>
+          <p class="service__text">Salas, sillones, sillas de oficina y tapicería automotriz como nuevos.</p>
+          <ul class="service__bullets">
+            <li>Diagnóstico por tipo de tela</li>
+            <li>Sin daño al material</li>
+            <li>Sanitización incluida</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <h3 class="service__title">Mantenimiento integral</h3>
+          <p class="service__text">Planes mensuales o por evento que combinan varios servicios a tarifa preferente.</p>
+          <ul class="service__bullets">
+            <li>Programación a tu medida</li>
+            <li>Supervisión continua</li>
+            <li>Reporte y bitácora</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="section" id="por-que">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Por qué elegirnos</span>
+        <h2 class="section__title">Resultados visibles, sin contratiempos.</h2>
+      </div>
+      <div class="why__grid">
+        <div class="why">
+          <div class="why__num">01</div>
+          <h3 class="why__title">Personal capacitado</h3>
+          <p class="why__text">Equipo formado en protocolos, manejo de químicos y trato con clientes corporativos.</p>
+        </div>
+        <div class="why">
+          <div class="why__num">02</div>
+          <h3 class="why__title">Equipo profesional</h3>
+          <p class="why__text">Maquinaria, accesorios y productos de grado industrial para cada superficie.</p>
+        </div>
+        <div class="why">
+          <div class="why__num">03</div>
+          <h3 class="why__title">Supervisión continua</h3>
+          <p class="why__text">Inspecciones, reportes y comunicación directa con la persona responsable.</p>
+        </div>
+        <div class="why">
+          <div class="why__num">04</div>
+          <h3 class="why__title">Experiencia comprobada</h3>
+          <p class="why__text">Más de una década atendiendo oficinas, fábricas, naves y haciendas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section class="section section--soft" id="proceso">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Cómo trabajamos</span>
+        <h2 class="section__title">Un proceso claro de inicio a fin.</h2>
+      </div>
+      <div class="process__grid">
+        <div class="step">
+          <div class="step__num">1</div>
+          <h3 class="step__title">Diagnóstico</h3>
+          <p class="step__text">Visita o videollamada para conocer tu espacio, necesidades y tiempos.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <h3 class="step__title">Cotización</h3>
+          <p class="step__text">Propuesta detallada con alcance, frecuencia, personal y precio cerrado.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <h3 class="step__title">Servicio</h3>
+          <p class="step__text">Ejecución con equipo identificado, supervisión y bitácora del trabajo.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <h3 class="step__title">Seguimiento</h3>
+          <p class="step__text">Revisión post-servicio y plan de mejora continua para tu espacio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COACHING ============ -->
+  <section class="section" id="coaching">
+    <div class="container">
+      <div class="coaching">
+        <div>
+          <span class="coaching__eyebrow">Coaching</span>
+          <h2>Compartimos lo que hemos aprendido.</h2>
+          <p>
+            Más allá del servicio operativo, ofrecemos programas de coaching para acompañar a equipos y líderes en la mejora de sus procesos, hábitos y resultados.
+            <!-- TODO: La clienta debe definir el enfoque exacto del coaching (capacitación de equipos / liderazgo / desarrollo personal) y reemplazar este copy. -->
+          </p>
+          <ul class="coaching__list">
+            <li>Sesiones personalizadas según objetivos</li>
+            <li>Acompañamiento práctico, no solo teoría</li>
+            <li>Mejora medible en hábitos y resultados</li>
+            <li>Disponible para personas y equipos</li>
+          </ul>
+          <a href="#contacto" class="btn coaching__btn" style="width:auto; padding: 14px 26px;">Quiero saber más</a>
+        </div>
+        <aside class="coaching__card">
+          <h3>¿Cómo funciona?</h3>
+          <p>Agendamos una primera conversación sin costo para entender lo que buscas. Desde ahí, diseñamos un plan a tu medida.</p>
+          <a href="https://wa.me/525620700986?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20coaching" class="btn coaching__btn" target="_blank" rel="noopener">Agendar conversación</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="section section--soft" id="contacto">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Contacto</span>
+        <h2 class="section__title">Solicita tu cotización.</h2>
+        <p class="section__lead">Cuéntanos sobre tu espacio y te respondemos en menos de 24 horas hábiles.</p>
+      </div>
+      <div class="contact__grid">
+        <form class="form" id="quoteForm" novalidate>
+          <div class="form__row">
+            <label for="name">Nombre completo</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            <div class="form__error">Por favor escribe tu nombre.</div>
+          </div>
+          <div class="form__row form__row--split">
+            <div>
+              <label for="company">Empresa</label>
+              <input type="text" id="company" name="company" placeholder="Nombre de tu empresa">
+            </div>
+            <div>
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" placeholder="55 0000 0000" required>
+              <div class="form__error">Necesitamos un teléfono de contacto.</div>
+            </div>
+          </div>
+          <div class="form__row">
+            <label for="service">Servicio de interés</label>
+            <select id="service" name="service" required>
+              <option value="">Selecciona una opción</option>
+              <option>Limpieza fina</option>
+              <option>Limpieza gruesa</option>
+              <option>Pulido de pisos</option>
+              <option>Lavado de alfombras</option>
+              <option>Lavado de tapicería</option>
+              <option>Mantenimiento integral</option>
+              <option>Coaching</option>
+            </select>
+            <div class="form__error">Selecciona un servicio.</div>
+          </div>
+          <div class="form__row">
+            <label for="message">Cuéntanos más</label>
+            <textarea id="message" name="message" placeholder="Tipo de espacio, metros cuadrados aproximados, frecuencia deseada..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--accent form__submit">Enviar y abrir WhatsApp</button>
+        </form>
+
+        <aside class="contact-info">
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.34 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+            </div>
+            <div>
+              <div class="info-card__label">WhatsApp</div>
+              <a class="info-card__value" href="https://wa.me/525620700986" target="_blank" rel="noopener">+52 56 2070 0986</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
+            </div>
+            <div>
+              <div class="info-card__label">Correo</div>
+              <a class="info-card__value" href="mailto:contacto@limpiezaexperta.mx">contacto@limpiezaexperta.mx</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div>
+              <div class="info-card__label">Cobertura</div>
+              <div class="info-card__value">CDMX y Área Metropolitana<br><span style="font-weight:500; color: var(--text-soft); font-size: 0.92rem;">Servicios foráneos previa cotización</span></div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div>
+              <div class="info-card__label">Horario</div>
+              <div class="info-card__value">Lun – Sáb · 8:00 – 19:00<br><span style="font-weight:500; color: var(--text-soft); font-size: 0.92rem;">Servicios nocturnos disponibles</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#inicio" class="brand">
+            <span class="brand__mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c0 5 4 9 9 9s9-4 9-9c0-4-3-7-6-9-1 2-3 3-3 5 0 1 1 2 1 3s-1 2-2 2-2-1-2-2c0-2-1-3-3-3-1 2-3 2-3 4z"/></svg>
+            </span>
+            <span class="brand__name">Limpieza<span>Experta</span></span>
+          </a>
+          <p>Limpieza profesional B2B para oficinas, fábricas, naves industriales y haciendas. Pulido, alfombras, tapicería y coaching.</p>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="#servicios">Limpieza fina</a></li>
+            <li><a href="#servicios">Limpieza gruesa</a></li>
+            <li><a href="#servicios">Pulido de pisos</a></li>
+            <li><a href="#servicios">Alfombras y tapicería</a></li>
+            <li><a href="#coaching">Coaching</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Empresa</h4>
+          <ul class="footer__links">
+            <li><a href="#sectores">Sectores</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#por-que">Por qué elegirnos</a></li>
+            <li><a href="#contacto">Cotizar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © <span id="year"></span> Limpieza Experta · Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOAT ============ -->
+  <a class="wa-float" href="https://wa.me/525620700986?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20de%20limpieza" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp">
+    <span class="wa-float__tip">Cotiza ahora</span>
+    <span class="wa-float__btn" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.34 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+    </span>
+  </a>
+
+  <script>
+    // ===== Año dinámico en footer =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Menú móvil =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ===== Highlight de link activo en nav =====
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const linksByHash = {};
+    navLinks.querySelectorAll('a').forEach(a => {
+      linksByHash[a.getAttribute('href')] = a;
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = '#' + entry.target.id;
+        const link = linksByHash[id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          Object.values(linksByHash).forEach(l => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // ===== Validación + envío del formulario por WhatsApp =====
+    const form = document.getElementById('quoteForm');
+    const WA_NUMBER = '525620700986'; // <-- Cambiar al número real de la clienta
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+      form.querySelectorAll('.form__row').forEach(row => row.classList.remove('has-error'));
+
+      const required = ['name', 'phone', 'service'];
+      required.forEach(field => {
+        const input = form.querySelector('[name="' + field + '"]');
+        if (!input.value.trim()) {
+          input.closest('.form__row').classList.add('has-error');
+          valid = false;
+        }
+      });
+      if (!valid) return;
+
+      const data = new FormData(form);
+      const msg =
+        'Hola, quiero cotizar un servicio de limpieza.%0A%0A' +
+        '*Nombre:* ' + encodeURIComponent(data.get('name')) + '%0A' +
+        (data.get('company') ? '*Empresa:* ' + encodeURIComponent(data.get('company')) + '%0A' : '') +
+        '*Teléfono:* ' + encodeURIComponent(data.get('phone')) + '%0A' +
+        '*Servicio:* ' + encodeURIComponent(data.get('service')) + '%0A' +
+        (data.get('message') ? '*Detalles:* ' + encodeURIComponent(data.get('message')) : '');
+
+      window.open('https://wa.me/' + WA_NUMBER + '?text=' + msg, '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
