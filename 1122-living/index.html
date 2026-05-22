@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1122 Living Inmobiliaria · Comercialización y Asesoría Premium</title>
+<meta name="description" content="¿Quieres vender o rentar tu propiedad de manera segura? 1122 Living Inmobiliaria te acompaña con experiencia, estrategia y resultados comprobados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --gold:       #A38A59;
+  --gold-lt:    #C8AA78;
+  --gold-dk:    #7A6540;
+  --carbon:     #1A1A1A;
+  --ink:        #2C2C2C;
+  --gray:       #6B6B6B;
+  --bone:       #FAFAFA;
+  --white:      #FFFFFF;
+  --hero-bg:    #0C0C0C;
+
+  --ff-serif:   'Playfair Display', Georgia, serif;
+  --ff-sans:    'Montserrat', system-ui, sans-serif;
+
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-circ:  cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ff-sans);
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { text-decoration: none; color: inherit; }
+button { border: none; cursor: pointer; font-family: inherit; background: none; }
+ul, ol { list-style: none; }
+input, select, textarea { font-family: inherit; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bone); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ============================================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================================ */
+[data-anim] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+[data-anim="left"]  { transform: translateX(-50px); }
+[data-anim="right"] { transform: translateX(50px); }
+[data-anim="scale"] { transform: scale(0.9); opacity: 0; }
+[data-anim].visible { opacity: 1; transform: none; }
+[data-delay="1"] { transition-delay: 0.10s; }
+[data-delay="2"] { transition-delay: 0.20s; }
+[data-delay="3"] { transition-delay: 0.30s; }
+[data-delay="4"] { transition-delay: 0.40s; }
+[data-delay="5"] { transition-delay: 0.50s; }
+[data-delay="6"] { transition-delay: 0.60s; }
+
+/* Hero entry animations */
+@keyframes hFade  { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+@keyframes hRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:none; } }
+@keyframes hScale { from { opacity:0; transform:scale(0.96);       } to { opacity:1; transform:none; } }
+.h-e1 { animation: hFade  1s var(--ease-out) 0.15s both; }
+.h-e2 { animation: hFade  1s var(--ease-out) 0.30s both; }
+.h-e3 { animation: hFade  1s var(--ease-out) 0.45s both; }
+.h-e4 { animation: hFade  1s var(--ease-out) 0.60s both; }
+.h-r1 { animation: hRight 1s var(--ease-out) 0.50s both; }
+.h-s1 { animation: hScale 1s var(--ease-out) 0.20s both; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.serif { font-family: var(--ff-serif); }
+
+.gold-grad {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 55%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.label-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.label-chip::before,
+.label-chip::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 36px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.label-chip.no-before::before { display: none; }
+.label-chip.no-after::after   { display: none; }
+
+.gold-bar { display: block; width: 100%; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4.5vw, 72px);
+}
+
+.section   { padding: clamp(80px, 10vw, 120px) 0; }
+.s-dark    { background: var(--carbon); }
+.s-bone    { background: var(--bone); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px 34px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--ff-sans);
+  white-space: nowrap;
+  transition: all 0.32s var(--ease-out);
+  border: none;
+}
+.btn-gold {
+  background: var(--gold);
+  color: #fff;
+}
+.btn-gold:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(163,138,89,.32);
+}
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.35);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.65);
+  transform: translateY(-2px);
+}
+.btn-grad {
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  color: #fff;
+}
+.btn-grad:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(163,138,89,.38);
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+#nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 200;
+  padding: 20px 0;
+  transition: background 0.45s ease, box-shadow 0.45s ease, padding 0.35s ease;
+}
+#nav.scrolled {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.07), 0 4px 28px rgba(0,0,0,.05);
+  padding: 12px 0;
+}
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,.82);
+  transition: color .22s ease;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+#nav.scrolled .nav-links a { color: var(--ink); }
+#nav.scrolled .nav-links a:hover { color: var(--gold); }
+.nav-cta.btn { padding: 10px 24px; font-size: 0.66rem; }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: rgba(255,255,255,.9);
+  transition: all .3s ease;
+  transform-origin: center;
+}
+#nav.scrolled .nav-burger span { background: var(--carbon); }
+.nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
+.nav-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: #fff;
+  padding: 22px 28px 30px;
+  border-top: 1px solid rgba(163,138,89,.12);
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  padding: 11px 0;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  transition: color .2s ease;
+}
+.nav-drawer a:hover { color: var(--gold); }
+.nav-drawer .btn { margin-top: 16px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--hero-bg);
+  overflow: hidden;
+}
+
+/* Full-bleed 3D canvas */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Vignette overlay: dark left + right, clear center */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,
+      rgba(0,0,0,.87) 0%,
+      rgba(0,0,0,.55) 25%,
+      rgba(0,0,0,.05) 48%,
+      rgba(0,0,0,.05) 52%,
+      rgba(0,0,0,.62) 72%,
+      rgba(0,0,0,.82) 100%),
+    linear-gradient(to top,
+      rgba(0,0,0,.55) 0%,
+      transparent 45%);
+  pointer-events: none;
+}
+
+/* Thin gold vertical rule */
+.hero-rule {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent 5%, var(--gold) 30%, var(--gold-lt) 70%, transparent 95%);
+  opacity: .75;
+  pointer-events: none;
+}
+
+/* Three-panel hero grid */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 0 80px;
+}
+
+/* ---- Hero Left: text ---- */
+.hero-left { color: #fff; padding-right: 40px; }
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.hero-eyebrow-line {
+  width: 42px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero-eyebrow-text {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+}
+
+.hero-h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.5rem, 4.5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: -.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.hero-h1 em { font-style: normal; color: var(--gold); }
+
+.hero-p {
+  font-size: .98rem;
+  color: rgba(255,255,255,.68);
+  line-height: 1.78;
+  max-width: 460px;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.hero-slogan {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--gold-lt);
+  margin-bottom: 38px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---- Hero Center: 3D spacer (building shows through canvas) ---- */
+.hero-center {
+  width: clamp(240px, 28vw, 380px);
+  height: calc(100vh - 200px);
+  min-height: 400px;
+  pointer-events: none;
+  /* Debug: border: 1px dashed rgba(163,138,89,.2); */
+}
+
+/* ---- Hero Right: quick form ---- */
+.hero-right { padding-left: 40px; }
+
+.hero-form-card {
+  padding: clamp(28px, 3.5vw, 44px);
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(163,138,89,.28);
+  max-width: 380px;
+}
+.hero-form-title {
+  font-family: var(--ff-serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.hero-form-sub {
+  font-size: .8rem;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 26px;
+}
+.hf-group {
+  margin-bottom: 14px;
+}
+.hf-label {
+  display: block;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+.hf-input {
+  width: 100%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
+  padding: 13px 16px;
+  font-size: .86rem;
+  outline: none;
+  font-family: var(--ff-sans);
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .25s ease, background .25s ease;
+}
+.hf-input::placeholder { color: rgba(255,255,255,.3); }
+.hf-input:focus { border-color: var(--gold); background: rgba(255,255,255,.12); }
+.hf-input option { background: #1a1a1a; color: #fff; }
+.hf-submit {
+  width: 100%;
+  padding: 16px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  border: none;
+  cursor: pointer;
+  font-family: var(--ff-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: filter .3s ease, transform .2s ease, box-shadow .3s ease;
+  margin-top: 8px;
+}
+.hf-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(163,138,89,.38);
+}
+.hf-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.hf-privacy {
+  text-align: center;
+  font-size: .68rem;
+  color: rgba(255,255,255,.28);
+  margin-top: 12px;
+}
+/* Hero form success */
+.hf-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 16px;
+  gap: 12px;
+}
+.hf-success.show { display: flex; }
+.hf-check {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(163,138,89,.15);
+  border: 1px solid rgba(163,138,89,.35);
+  display: flex; align-items: center; justify-content: center;
+  animation: sPop .5s var(--ease-out) both;
+}
+@keyframes sPop { from{transform:scale(.4);opacity:0} to{transform:scale(1);opacity:1} }
+.hf-success h4 { font-family: var(--ff-serif); font-size: 1.3rem; color: #fff; }
+.hf-success p  { font-size: .82rem; color: rgba(255,255,255,.5); }
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  z-index: 3;
+  cursor: pointer;
+  animation: scrollFloat 2.4s ease-in-out infinite;
+}
+.scroll-track {
+  width: 22px; height: 36px;
+  border: 1.5px solid rgba(255,255,255,.2);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+.scroll-dot {
+  width: 3px; height: 6px;
+  background: rgba(255,255,255,.45);
+  border-radius: 2px;
+  animation: dotDrop 2.4s ease-in-out infinite;
+}
+.scroll-text { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+@keyframes scrollFloat { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+@keyframes dotDrop     { 0%{opacity:1;transform:translateY(0)} 70%{opacity:0;transform:translateY(8px)} 100%{opacity:0;transform:translateY(0)} }
+
+/* ============================================================
+   STRIP BAR
+   ============================================================ */
+.strip {
+  background: var(--gold);
+  padding: 13px 0;
+  overflow: hidden;
+}
+.strip-track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  width: max-content;
+  animation: stripRun 30s linear infinite;
+}
+.strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 28px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.strip-item::after {
+  content: '';
+  display: block;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+}
+@keyframes stripRun { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.sec-head {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 72px;
+}
+.sec-head h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--carbon);
+  margin-bottom: 16px;
+}
+.sec-head p {
+  font-size: .92rem;
+  color: var(--gray);
+  line-height: 1.85;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   SERVICIOS
+   ============================================================ */
+#servicios { background: var(--white); }
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+
+.svc-card {
+  position: relative;
+  padding: 42px 34px 38px;
+  border: 1px solid rgba(0,0,0,.07);
+  background: #fff;
+  overflow: hidden;
+  transition: transform .4s var(--ease-out), box-shadow .4s ease, border-color .3s ease;
+  cursor: default;
+}
+.svc-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-lt));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--ease-out);
+}
+.svc-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 22px 60px rgba(163,138,89,.11), 0 3px 16px rgba(0,0,0,.06);
+  border-color: rgba(163,138,89,.22);
+}
+.svc-card:hover::after { transform: scaleX(1); }
+
+.svc-tag {
+  position: absolute;
+  top: -1px; right: 26px;
+  background: var(--gold);
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+}
+
+.svc-icon {
+  width: 58px; height: 58px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(163,138,89,.22);
+  background: rgba(163,138,89,.05);
+  margin-bottom: 26px;
+}
+
+.svc-card h3 {
+  font-family: var(--ff-serif);
+  font-size: 1.38rem;
+  font-weight: 600;
+  color: var(--carbon);
+  margin-bottom: 12px;
+  transition: color .2s ease;
+}
+.svc-card:hover h3 { color: var(--gold); }
+
+.svc-card p {
+  font-size: .86rem;
+  color: var(--gray);
+  line-height: 1.82;
+  margin-bottom: 22px;
+}
+
+.svc-feats {
+  padding-top: 20px;
+  border-top: 1px solid rgba(163,138,89,.14);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+.svc-feat {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: .8rem;
+  color: var(--ink);
+}
+.svc-feat-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.svc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  transition: gap .25s ease;
+}
+.svc-link:hover { gap: 12px; }
+
+/* ============================================================
+   CONFIANZA / NOSOTROS
+   ============================================================ */
+#nosotros { background: var(--bone); }
+
+.trust-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+  background: rgba(163,138,89,.1);
+}
+.trust-cell {
+  background: #fff;
+  padding: 40px 32px;
+  transition: background .28s ease;
+  cursor: default;
+}
+.trust-cell:hover { background: var(--bone); }
+
+.trust-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(163,138,89,.2);
+  background: rgba(163,138,89,.06);
+  margin-bottom: 20px;
+}
+.trust-cell h3 {
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--carbon);
+  margin-bottom: 9px;
+}
+.trust-cell p {
+  font-size: .83rem;
+  color: var(--gray);
+  line-height: 1.85;
+}
+
+/* ============================================================
+   INVESTMENT BANNER
+   ============================================================ */
+#inversion {
+  background: var(--carbon);
+  position: relative;
+  overflow: hidden;
+}
+#inversion::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(163,138,89,.04) 59px, rgba(163,138,89,.04) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(163,138,89,.04) 59px, rgba(163,138,89,.04) 60px);
+  pointer-events: none;
+}
+.invest-body {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(80px,10vw,120px) 0;
+}
+.invest-body h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem,4.5vw,3.8rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.invest-body > p {
+  font-size: 1rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.82;
+  max-width: 620px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+}
+.invest-nums {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(163,138,89,.2);
+  margin-bottom: 48px;
+}
+.invest-num {
+  flex: 1;
+  padding: 30px 24px;
+  border-right: 1px solid rgba(163,138,89,.14);
+  text-align: center;
+}
+.invest-num:last-child { border-right: none; }
+.invest-num strong {
+  display: block;
+  font-family: var(--ff-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.invest-num span {
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.invest-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 32px;
+  margin-bottom: 48px;
+}
+.invest-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: .8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.7);
+}
+.invest-pill-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CONTACTO FULL FORM
+   ============================================================ */
+#contacto {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+#contacto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A38A59' fill-opacity='0.035'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.contact-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,96px);
+  align-items: center;
+  padding: clamp(80px,10vw,120px) 0;
+}
+.contact-info { color: #fff; }
+.contact-info h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem,3.8vw,3.2rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.contact-info > p {
+  font-size: .92rem;
+  color: rgba(255,255,255,.5);
+  line-height: 1.85;
+  max-width: 400px;
+  margin-bottom: 42px;
+  font-weight: 300;
+}
+.cinfo-list { display: flex; flex-direction: column; gap: 20px; }
+.cinfo-row { display: flex; align-items: flex-start; gap: 14px; }
+.cinfo-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(163,138,89,.22);
+  background: rgba(163,138,89,.07);
+  flex-shrink: 0;
+}
+.cinfo-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+.cinfo-val { font-size: .86rem; color: rgba(255,255,255,.65); }
+
+/* Full form card */
+.contact-form-card {
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(163,138,89,.22);
+  padding: clamp(30px,3.5vw,50px);
+}
+.cf-title { font-family: var(--ff-serif); font-size: 1.65rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.cf-sub { font-size: .8rem; color: rgba(255,255,255,.42); margin-bottom: 30px; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cf-group { margin-bottom: 16px; }
+.cf-lbl { display: block; font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
+.cf-input {
+  width: 100%;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
+  padding: 13px 16px;
+  font-size: .87rem;
+  outline: none;
+  font-family: var(--ff-sans);
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .25s ease, background .25s ease;
+}
+.cf-input::placeholder { color: rgba(255,255,255,.28); }
+.cf-input:focus { border-color: var(--gold); background: rgba(255,255,255,.1); }
+.cf-input option { background: #1a1a1a; color: #fff; }
+.cf-submit {
+  width: 100%;
+  padding: 17px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  border: none;
+  cursor: pointer;
+  font-family: var(--ff-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: filter .3s ease, transform .2s ease, box-shadow .3s ease;
+  margin-top: 6px;
+}
+.cf-submit:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(163,138,89,.38); }
+.cf-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.cf-privacy { text-align: center; font-size: .7rem; color: rgba(255,255,255,.28); margin-top: 12px; }
+.spinner { width: 15px; height: 15px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.cf-success { display: none; flex-direction: column; align-items: center; text-align: center; padding: 56px 20px; gap: 14px; }
+.cf-success.show { display: flex; }
+.cf-check { width: 68px; height: 68px; border-radius: 50%; background: rgba(163,138,89,.12); border: 1px solid rgba(163,138,89,.32); display: flex; align-items: center; justify-content: center; animation: sPop .5s var(--ease-out) both; }
+.cf-success h3 { font-family: var(--ff-serif); font-size: 1.55rem; color: #fff; }
+.cf-success p  { font-size: .86rem; color: rgba(255,255,255,.48); max-width: 320px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer {
+  background: #080808;
+  border-top: 1px solid rgba(163,138,89,.1);
+  padding: 70px 0 0;
+}
+.footer-cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 44px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.footer-brand p {
+  font-size: .83rem;
+  color: rgba(255,255,255,.38);
+  line-height: 1.88;
+  max-width: 290px;
+  margin: 18px 0 24px;
+  font-weight: 300;
+}
+.footer-socials { display: flex; gap: 8px; }
+.fsoc {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s ease, color .2s ease;
+}
+.fsoc:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col h4 { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 11px; }
+.footer-col li a { font-size: .82rem; color: rgba(255,255,255,.38); transition: color .2s ease; }
+.footer-col li a:hover { color: var(--gold); }
+.footer-sched { font-size: .8rem; color: rgba(255,255,255,.38); line-height: 1.95; }
+.footer-sched strong { display: block; color: rgba(255,255,255,.62); font-weight: 500; margin-bottom: 1px; }
+.footer-contacts { margin-top: 18px; display: flex; flex-direction: column; gap: 7px; }
+.footer-contacts a { font-size: .8rem; color: rgba(255,255,255,.38); transition: color .2s ease; display: flex; align-items: center; gap: 7px; }
+.footer-contacts a:hover { color: var(--gold); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom p { font-size: .72rem; color: rgba(255,255,255,.22); }
+.footer-legal { display: flex; gap: 22px; }
+.footer-legal a { font-size: .72rem; color: rgba(255,255,255,.22); transition: color .2s ease; }
+.footer-legal a:hover { color: var(--gold); }
+
+/* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+#wa-fab {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  z-index: 300;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 26px rgba(37,211,102,.32);
+  cursor: pointer;
+  transition: transform .3s var(--ease-out), box-shadow .3s ease;
+  animation: fabIn .6s var(--ease-out) 3s both;
+}
+#wa-fab:hover { transform: scale(1.12); box-shadow: 0 16px 40px rgba(37,211,102,.44); }
+@keyframes fabIn { from{opacity:0;transform:scale(.3)} to{opacity:1;transform:scale(1)} }
+#wa-fab::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37,211,102,.35);
+  animation: fabRing 2.8s ease-in-out infinite;
+}
+@keyframes fabRing { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.16);opacity:0} }
+
+/* ============================================================
+   LUCIDE SVG ICON DEFAULTS
+   ============================================================ */
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.icon svg {
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1140px) {
+  .hero-center { width: clamp(180px, 20vw, 280px); }
+}
+@media (max-width: 1024px) {
+  .svc-grid    { grid-template-columns: 1fr 1fr; }
+  .trust-mosaic { grid-template-columns: 1fr 1fr; }
+  .footer-cols  { grid-template-columns: 1fr 1fr; }
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .hero-center { display: none; }
+  .hero-right  { padding-left: 20px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 110px 0 50px;
+    gap: 36px;
+  }
+  .hero-left  { padding-right: 0; }
+  .hero-right { padding-left: 0; }
+  .hero-form-card { max-width: 100%; }
+
+  .svc-grid   { grid-template-columns: 1fr; }
+  .trust-mosaic { grid-template-columns: 1fr; }
+  .invest-nums { flex-direction: column; }
+  .invest-num { border-right: none; border-bottom: 1px solid rgba(163,138,89,.12); }
+  .invest-num:last-child { border-bottom: none; }
+  .contact-wrap { grid-template-columns: 1fr; }
+  .cf-row { grid-template-columns: 1fr; }
+  .footer-cols { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; }
+  .invest-pillars { flex-direction: column; align-items: flex-start; padding-left: 20%; }
+}
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+<header id="nav">
+  <div class="container">
+    <div class="nav-row">
+
+      <!-- Logo -->
+      <a href="#hero" aria-label="1122 Living Inmobiliaria – inicio">
+        <svg viewBox="0 0 230 76" width="176" height="58" fill="none" xmlns="http://www.w3.org/2000/svg" id="nav-logo">
+          <!-- Buildings -->
+          <polyline points="78,54 78,22 88,22 88,54" stroke="#A38A59" stroke-width="1.8"/>
+          <polyline points="88,54 88,12 99,12 99,54" stroke="#A38A59" stroke-width="1.8"/>
+          <polyline points="99,54 99,28 110,28 110,54" stroke="#1A1A1A" stroke-width="1.8"/>
+          <!-- Numbers -->
+          <text x="8"   y="55" font-family="Playfair Display,serif" font-size="44" font-weight="700" fill="#A38A59">11</text>
+          <text x="104" y="55" font-family="Playfair Display,serif" font-size="44" font-weight="700" fill="#1A1A1A">22</text>
+          <!-- LIVING wordmark -->
+          <text x="114" y="70" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" fill="#333" letter-spacing="5">LIVING</text>
+          <!-- Inmobiliaria row -->
+          <line x1="12"  y1="73" x2="46"  y2="73" stroke="#A38A59" stroke-width=".9"/>
+          <text x="50"   y="75" font-family="Montserrat,sans-serif" font-size="7.5" fill="#A38A59" letter-spacing="2.5">INMOBILIARIA</text>
+          <line x1="162" y1="73" x2="220" y2="73" stroke="#A38A59" stroke-width=".9"/>
+        </svg>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#servicios">Venta</a></li>
+          <li><a href="#servicios">Renta</a></li>
+          <li><a href="#inversion">Inversión</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contacto" class="btn btn-gold nav-cta">Agendar Asesoría</a>
+
+      <!-- Hamburger -->
+      <button class="nav-burger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <nav id="nav-drawer" class="nav-drawer" aria-label="Menú móvil" aria-hidden="true">
+      <a href="#servicios" onclick="closeNav()">Venta</a>
+      <a href="#servicios" onclick="closeNav()">Renta</a>
+      <a href="#inversion" onclick="closeNav()">Inversión</a>
+      <a href="#nosotros"  onclick="closeNav()">Nosotros</a>
+      <a href="#contacto"  class="btn btn-gold" onclick="closeNav()">Agendar Asesoría</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+<section id="hero" aria-label="Portada principal">
+
+  <!-- Three.js 3D building scene -->
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- Directional vignette overlays -->
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="hero-rule" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- ── LEFT: Brand text ── -->
+      <div class="hero-left">
+
+        <div class="hero-eyebrow h-e1">
+          <span class="hero-eyebrow-line" aria-hidden="true"></span>
+          <span class="hero-eyebrow-text">Inmobiliaria Premium · México</span>
+        </div>
+
+        <h1 class="hero-h1 h-e2">
+          Comercialización<br>
+          y Asesoría<br>
+          <em>Inmobiliaria.</em>
+        </h1>
+
+        <p class="hero-p h-e3">
+          ¿Quieres <strong style="color:#fff;font-weight:600">vender o rentar tu propiedad</strong>
+          de manera segura? Nosotros te ayudamos con estrategia, legalidad y resultados comprobados.
+        </p>
+
+        <p class="hero-slogan h-e3">
+          <span class="icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#A38A59"/></svg>
+          </span>
+          Tu Patrimonio, Nuestra Prioridad.
+        </p>
+
+        <div class="hero-ctas h-e4">
+          <a href="#contacto" class="btn btn-gold">
+            Agendar Asesoría
+            <span class="icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+          <a href="#servicios" class="btn btn-ghost">Ver Servicios</a>
+        </div>
+      </div>
+
+      <!-- ── CENTER: 3D spacer (canvas shows through) ── -->
+      <div class="hero-center" aria-hidden="true"></div>
+
+      <!-- ── RIGHT: Quick contact form ── -->
+      <div class="hero-right h-r1">
+        <div class="hero-form-card" role="complementary" aria-label="Formulario de contacto rápido">
+
+          <!-- Form visible state -->
+          <div id="hf-wrap">
+            <p class="hero-form-title">Contacto Rápido</p>
+            <p class="hero-form-sub">Respuesta en menos de 24 horas.</p>
+
+            <form id="hero-form" novalidate>
+              <div class="hf-group">
+                <label class="hf-label" for="hf-nombre">Nombre *</label>
+                <input class="hf-input" type="text" id="hf-nombre" name="nombre" placeholder="Tu nombre completo" required>
+              </div>
+              <div class="hf-group">
+                <label class="hf-label" for="hf-tel">Teléfono *</label>
+                <input class="hf-input" type="tel" id="hf-tel" name="telefono" placeholder="+52 55 0000 0000" required>
+              </div>
+              <div class="hf-group">
+                <label class="hf-label" for="hf-interes">Tipo de Interés *</label>
+                <select class="hf-input" id="hf-interes" name="interes" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="venta">Venta — quiero vender mi propiedad</option>
+                  <option value="renta">Renta — quiero rentar mi propiedad</option>
+                  <option value="inversion">Inversión — busco invertir en bienes raíces</option>
+                  <option value="compra">Compra — busco adquirir una propiedad</option>
+                </select>
+              </div>
+              <button type="submit" class="hf-submit" id="hf-btn">
+                Solicitar Cotización
+                <span class="icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+              </button>
+              <p class="hf-privacy">
+                <span class="icon" style="display:inline-flex;vertical-align:middle" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" stroke="#A38A59"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                Información protegida · Sin spam
+              </p>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="hf-success" id="hf-success" aria-live="polite">
+            <div class="hf-check" aria-hidden="true">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="26" height="26" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </span>
+            </div>
+            <h4>¡Mensaje recibido!</h4>
+            <p>Un asesor de 1122 Living te contactará en menos de 24 horas.</p>
+          </div>
+        </div>
+      </div>
+      <!-- end hero-right -->
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})"
+       aria-label="Desplazarse hacia abajo">
+    <div class="scroll-track"><div class="scroll-dot"></div></div>
+    <span class="scroll-text">Descubrir</span>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     STRIP BAR
+     ===================================================== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <!-- items duplicated for seamless loop -->
+    <span class="strip-item">Venta de Propiedades</span>
+    <span class="strip-item">Renta Segura</span>
+    <span class="strip-item">Inversión Inmobiliaria</span>
+    <span class="strip-item">Seguridad Jurídica</span>
+    <span class="strip-item">Asesoría Personalizada</span>
+    <span class="strip-item">Gestión Patrimonial</span>
+    <span class="strip-item">Generación de Capital</span>
+    <span class="strip-item">Venta de Propiedades</span>
+    <span class="strip-item">Renta Segura</span>
+    <span class="strip-item">Inversión Inmobiliaria</span>
+    <span class="strip-item">Seguridad Jurídica</span>
+    <span class="strip-item">Asesoría Personalizada</span>
+    <span class="strip-item">Gestión Patrimonial</span>
+    <span class="strip-item">Generación de Capital</span>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     SERVICIOS
+     ===================================================== -->
+<section id="servicios" class="section" aria-labelledby="svc-h2">
+  <div class="container">
+
+    <header class="sec-head">
+      <div class="label-chip" data-anim aria-hidden="true">Nuestros Servicios</div>
+      <h2 id="svc-h2" data-anim>
+        Soluciones Inmobiliarias<br>
+        <span class="gold-grad">a tu Medida</span>
+      </h2>
+      <p data-anim>
+        Desde la venta de tu primera propiedad hasta la construcción de un portafolio de inversión,
+        estamos contigo con la estrategia correcta.
+      </p>
+    </header>
+
+    <div class="svc-grid">
+
+      <!-- Venta y Renta -->
+      <article class="svc-card" data-anim data-delay="1" role="listitem">
+        <span class="svc-tag">Más Solicitado</span>
+        <div class="svc-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="26" height="26" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </span>
+        </div>
+        <h3>Venta y Renta Segura</h3>
+        <p>Comercializamos tu propiedad con precisión y estrategia. Valuación exacta, marketing digital omnicanal y contratos auditados de inicio a fin.</p>
+        <ul class="svc-feats">
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Valuación gratuita sin compromiso</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Marketing 360° en portales premium</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Contratos y documentación legal</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Acompañamiento hasta el cierre</li>
+        </ul>
+        <a href="#contacto" class="svc-link">
+          Más información
+          <span class="icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      </article>
+
+      <!-- Inversión -->
+      <article class="svc-card" data-anim data-delay="2" role="listitem">
+        <span class="svc-tag">Recomendado</span>
+        <div class="svc-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="26" height="26" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </span>
+        </div>
+        <h3>Inversión en Patrimonio</h3>
+        <p>Te asesoramos en la adquisición de propiedades con alto potencial de plusvalía. Analizamos el mercado y elegimos la oportunidad correcta para tu perfil.</p>
+        <ul class="svc-feats">
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Análisis profundo de mercado</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>ROI y plusvalía proyectada</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Diversificación de portafolio</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Seguridad jurídica garantizada</li>
+        </ul>
+        <a href="#contacto" class="svc-link">
+          Más información
+          <span class="icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      </article>
+
+      <!-- Capital -->
+      <article class="svc-card" data-anim data-delay="3" role="listitem">
+        <span class="svc-tag">Para Inversores</span>
+        <div class="svc-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="26" height="26" viewBox="0 0 24 24">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </span>
+        </div>
+        <h3>Generación de Capital</h3>
+        <p>Convierte tus activos en ingresos pasivos constantes. Estrategias de renta, preventa y desarrollo para construir riqueza a largo plazo.</p>
+        <ul class="svc-feats">
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Flujo de ingresos pasivos</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Estrategia de optimización fiscal</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Acceso a preventa exclusiva</li>
+          <li class="svc-feat"><span class="svc-feat-dot"></span>Portafolio activo y rentable</li>
+        </ul>
+        <a href="#contacto" class="svc-link">
+          Más información
+          <span class="icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     CONFIANZA / NOSOTROS
+     ===================================================== -->
+<section id="nosotros" class="section s-bone" aria-labelledby="trust-h2">
+  <div class="container">
+
+    <header class="sec-head">
+      <div class="label-chip" data-anim>Por qué elegirnos</div>
+      <h2 id="trust-h2" data-anim>
+        Tu Patrimonio en Manos<br>
+        <span class="gold-grad">de Expertos</span>
+      </h2>
+      <p data-anim>
+        En 1122 Living combinamos tecnología, experiencia de mercado y un trato humano excepcional
+        para superar tus expectativas en cada operación.
+      </p>
+    </header>
+
+    <div class="trust-mosaic" role="list">
+
+      <div class="trust-cell" data-anim data-delay="1" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+        </div>
+        <h3>Seguridad Jurídica</h3>
+        <p>Cada transacción respaldada con contratos auditados, asesoría notarial y documentación legal completa. Tu inversión está protegida.</p>
+      </div>
+
+      <div class="trust-cell" data-anim data-delay="2" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </span>
+        </div>
+        <h3>Equipo Especializado</h3>
+        <p>Agentes certificados con amplio conocimiento del mercado local e internacional, siempre disponibles para orientarte con precisión.</p>
+      </div>
+
+      <div class="trust-cell" data-anim data-delay="3" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </span>
+        </div>
+        <h3>Trato Comercial Premium</h3>
+        <p>Negociamos las mejores condiciones en tu nombre. Tu propiedad merece una estrategia de primer nivel sin costos ocultos.</p>
+      </div>
+
+      <div class="trust-cell" data-anim data-delay="4" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+        </div>
+        <h3>Atención 6 días a la semana</h3>
+        <p>Lunes a Viernes de 9:00 am a 8:00 pm · Sábados de 10:00 am a 4:00 pm. Tu operación no puede esperar y nosotros tampoco.</p>
+      </div>
+
+      <div class="trust-cell" data-anim data-delay="5" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+        </div>
+        <h3>Cobertura Nacional</h3>
+        <p>Principales ciudades y destinos turísticos del país, con red de aliados estratégicos en todo el territorio mexicano.</p>
+      </div>
+
+      <div class="trust-cell" data-anim data-delay="6" role="listitem">
+        <div class="trust-icon" aria-hidden="true">
+          <span class="icon" style="color:var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </span>
+        </div>
+        <h3>Resultados Medibles</h3>
+        <p>Reportes de visibilidad, estadísticas de visitas y retroalimentación del mercado para que tomes decisiones con datos reales.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     INVESTMENT BANNER
+     ===================================================== -->
+<section id="inversion" class="section s-dark" aria-labelledby="invest-h2">
+  <div class="container">
+    <div class="invest-body">
+
+      <div class="label-chip" data-anim>Oportunidad de Inversión</div>
+
+      <h2 id="invest-h2" data-anim>
+        Haz que tu Dinero<br>
+        <span class="gold-grad">Trabaje por Ti</span>
+      </h2>
+
+      <p data-anim>
+        Los bienes raíces son la inversión más sólida y rentable del mercado. Con la asesoría correcta,
+        construirás un patrimonio que genera flujo constante y trasciende generaciones.
+      </p>
+
+      <div class="invest-nums" data-anim>
+        <div class="invest-num">
+          <strong>8–12%</strong>
+          <span>Rendimiento anual<br>promedio en renta</span>
+        </div>
+        <div class="invest-num">
+          <strong>+35%</strong>
+          <span>Plusvalía en zonas<br>de alto crecimiento</span>
+        </div>
+        <div class="invest-num">
+          <strong>100%</strong>
+          <span>Respaldo jurídico<br>en cada operación</span>
+        </div>
+      </div>
+
+      <div class="invest-pillars" data-anim>
+        <span class="invest-pill"><span class="invest-pill-dot"></span>Plusvalía Garantizada</span>
+        <span class="invest-pill"><span class="invest-pill-dot"></span>Flujo de Renta Mensual</span>
+        <span class="invest-pill"><span class="invest-pill-dot"></span>Resguardo de Capital</span>
+        <span class="invest-pill"><span class="invest-pill-dot"></span>Beneficios Fiscales</span>
+        <span class="invest-pill"><span class="invest-pill-dot"></span>Diversificación Real</span>
+      </div>
+
+      <a href="#contacto" class="btn btn-grad" data-anim>
+        Quiero Invertir
+        <span class="icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     CONTACTO / LEAD GEN
+     ===================================================== -->
+<section id="contacto" aria-labelledby="cf-h2">
+  <div class="container">
+    <div class="contact-wrap">
+
+      <!-- Left info -->
+      <div class="contact-info" data-anim="left">
+        <div class="label-chip no-before" style="margin-bottom:20px">Contáctanos</div>
+        <h2 id="cf-h2">
+          Da el Primer Paso<br>
+          <span class="gold-grad">hacia tu Meta</span><br>
+          Inmobiliaria
+        </h2>
+        <p>
+          Agenda una asesoría sin costo con nuestros expertos. En 30 minutos te diremos exactamente
+          cómo podemos ayudarte a alcanzar tus metas.
+        </p>
+
+        <ul class="cinfo-list">
+          <li class="cinfo-row">
+            <div class="cinfo-icon" aria-hidden="true">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.82a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.18 8a16 16 0 007.82 7.82l1.36-1.35a2 2 0 012.1-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </span>
+            </div>
+            <div>
+              <p class="cinfo-lbl">Teléfono</p>
+              <p class="cinfo-val">+52 (55) 1234-5678</p>
+            </div>
+          </li>
+          <li class="cinfo-row">
+            <div class="cinfo-icon" aria-hidden="true">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+            </div>
+            <div>
+              <p class="cinfo-lbl">Correo</p>
+              <p class="cinfo-val">contacto@1122living.com</p>
+            </div>
+          </li>
+          <li class="cinfo-row">
+            <div class="cinfo-icon" aria-hidden="true">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+            </div>
+            <div>
+              <p class="cinfo-lbl">Horario</p>
+              <p class="cinfo-val">Lun–Vie 9:00 am – 8:00 pm<br>Sábado 10:00 am – 4:00 pm</p>
+            </div>
+          </li>
+          <li class="cinfo-row">
+            <div class="cinfo-icon" aria-hidden="true">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+            </div>
+            <div>
+              <p class="cinfo-lbl">Cobertura</p>
+              <p class="cinfo-val">CDMX y Área Metropolitana<br>República Mexicana (red de aliados)</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right full form -->
+      <div data-anim="right" data-delay="2">
+        <div class="contact-form-card">
+
+          <div id="cf-wrap">
+            <p class="cf-title">Solicitar Asesoría</p>
+            <p class="cf-sub">Completa el formulario — un asesor te contacta hoy mismo.</p>
+
+            <form id="contact-form" novalidate>
+              <div class="cf-row">
+                <div class="cf-group">
+                  <label class="cf-lbl" for="cf-nombre">Nombre *</label>
+                  <input class="cf-input" type="text" id="cf-nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="cf-group">
+                  <label class="cf-lbl" for="cf-tel">Teléfono *</label>
+                  <input class="cf-input" type="tel" id="cf-tel" placeholder="+52 55 0000 0000" required>
+                </div>
+              </div>
+
+              <div class="cf-group">
+                <label class="cf-lbl" for="cf-email">Correo electrónico *</label>
+                <input class="cf-input" type="email" id="cf-email" placeholder="tu@correo.com" required>
+              </div>
+
+              <div class="cf-group">
+                <label class="cf-lbl" for="cf-interes">Me interesa...</label>
+                <select class="cf-input" id="cf-interes" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="vender">Vender mi propiedad</option>
+                  <option value="rentar">Rentar mi propiedad</option>
+                  <option value="comprar">Comprar una propiedad</option>
+                  <option value="invertir">Invertir en bienes raíces</option>
+                </select>
+              </div>
+
+              <div class="cf-group">
+                <label class="cf-lbl" for="cf-msg">Mensaje (opcional)</label>
+                <textarea class="cf-input" id="cf-msg" rows="3"
+                  placeholder="Cuéntanos sobre tu propiedad o necesidad..."
+                  style="resize:vertical;min-height:84px"></textarea>
+              </div>
+
+              <button type="submit" class="cf-submit" id="cf-btn">
+                Agendar Asesoría Gratuita
+              </button>
+              <p class="cf-privacy">
+                <span class="icon" style="display:inline-flex;vertical-align:middle" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" stroke="rgba(255,255,255,.28)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                Tu información es privada y nunca se comparte con terceros.
+              </p>
+            </form>
+          </div>
+
+          <div class="cf-success" id="cf-success" aria-live="polite">
+            <div class="cf-check">
+              <span class="icon" style="color:var(--gold)">
+                <svg width="28" height="28" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </span>
+            </div>
+            <h3>¡Mensaje Enviado!</h3>
+            <p>Un asesor de 1122 Living se pondrá en contacto en menos de 24 horas. ¡Gracias!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+<footer id="footer" aria-label="Pie de página">
+  <div class="container">
+    <div class="footer-cols">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <svg viewBox="0 0 230 76" width="160" height="53" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="1122 Living Inmobiliaria">
+          <polyline points="78,54 78,22 88,22 88,54" stroke="#A38A59" stroke-width="1.8"/>
+          <polyline points="88,54 88,12 99,12 99,54" stroke="#A38A59" stroke-width="1.8"/>
+          <polyline points="99,54 99,28 110,28 110,54" stroke="rgba(255,255,255,.5)" stroke-width="1.8"/>
+          <text x="8"   y="55" font-family="Playfair Display,serif" font-size="44" font-weight="700" fill="#A38A59">11</text>
+          <text x="104" y="55" font-family="Playfair Display,serif" font-size="44" font-weight="700" fill="rgba(255,255,255,.82)">22</text>
+          <text x="114" y="70" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)" letter-spacing="5">LIVING</text>
+          <line x1="12" y1="73" x2="46" y2="73" stroke="#A38A59" stroke-width=".9"/>
+          <text x="50" y="75" font-family="Montserrat,sans-serif" font-size="7.5" fill="#A38A59" letter-spacing="2.5">INMOBILIARIA</text>
+          <line x1="162" y1="73" x2="220" y2="73" stroke="#A38A59" stroke-width=".9"/>
+        </svg>
+        <p>Tu aliado estratégico en bienes raíces. Profesionalismo, confianza y resultados desde el primer día.</p>
+        <nav class="footer-socials" aria-label="Redes sociales">
+          <a href="#" class="fsoc" aria-label="Facebook" style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4)">F</a>
+          <a href="#" class="fsoc" aria-label="Instagram" style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4)">IG</a>
+          <a href="#" class="fsoc" aria-label="LinkedIn" style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4)">in</a>
+          <a href="#" class="fsoc" aria-label="WhatsApp" style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4)">WA</a>
+        </nav>
+      </div>
+
+      <!-- Servicios -->
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Venta de Propiedades</a></li>
+          <li><a href="#servicios">Renta Residencial</a></li>
+          <li><a href="#servicios">Asesoría de Inversión</a></li>
+          <li><a href="#servicios">Gestión Patrimonial</a></li>
+          <li><a href="#servicios">Avalúos y Valuaciones</a></li>
+        </ul>
+      </div>
+
+      <!-- Compañía -->
+      <div class="footer-col">
+        <h4>Compañía</h4>
+        <ul>
+          <li><a href="#nosotros">Quiénes Somos</a></li>
+          <li><a href="#nosotros">Nuestro Equipo</a></li>
+          <li><a href="#inversion">Oportunidades</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#">Blog Inmobiliario</a></li>
+        </ul>
+      </div>
+
+      <!-- Horario -->
+      <div class="footer-col">
+        <h4>Horario de Atención</h4>
+        <div class="footer-sched">
+          <strong>Lunes – Viernes</strong>9:00 am – 8:00 pm
+          <br><br>
+          <strong>Sábado</strong>10:00 am – 4:00 pm
+          <br><br>
+          <strong>Domingo</strong>Cerrado
+        </div>
+        <div class="footer-contacts">
+          <a href="tel:+525512345678">
+            <span class="icon" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.82a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.18 8a16 16 0 007.82 7.82l1.36-1.35a2 2 0 012.1-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></span>
+            +52 (55) 1234-5678
+          </a>
+          <a href="mailto:contacto@1122living.com">
+            <span class="icon" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            contacto@1122living.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 1122 Living Inmobiliaria. Todos los derechos reservados.</p>
+      <nav class="footer-legal">
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+
+<!-- WhatsApp FAB -->
+<a id="wa-fab" href="https://wa.me/521234567890" target="_blank" rel="noopener noreferrer"
+   aria-label="Contactar por WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+<!-- =====================================================
+     THREE.JS
+     ===================================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* ============================================================
+   THREE.JS — ARCHITECTURAL BUILDING MODEL
+   ============================================================ */
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  /* ---- Renderer ---- */
+  const W = canvas.offsetWidth  || window.innerWidth;
+  const H = canvas.offsetHeight || window.innerHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x000000, 0);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  /* ---- Scene ---- */
+  const scene = new THREE.Scene();
+
+  /* ---- Camera ---- */
+  const camera = new THREE.PerspectiveCamera(48, W / H, 0.1, 400);
+  camera.position.set(0, 14, 32);
+  camera.lookAt(0, 9, 0);
+
+  /* ---- Materials ---- */
+  const matGold = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0xA38A59),
+    specular: new THREE.Color(0xE8D5A8),
+    shininess: 85,
+    emissive: new THREE.Color(0x1A0E00),
+    emissiveIntensity: 0.18
+  });
+
+  const matGoldBright = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0xC8AA78),
+    specular: new THREE.Color(0xFFEECC),
+    shininess: 100,
+    emissive: new THREE.Color(0x201000),
+    emissiveIntensity: 0.22
+  });
+
+  const matDark = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0x111111),
+    specular: new THREE.Color(0x3A3A3A),
+    shininess: 200,
+    emissive: new THREE.Color(0x030303),
+    emissiveIntensity: 0.25
+  });
+
+  const matGlass = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0x7AAABB),
+    specular: new THREE.Color(0xFFFFFF),
+    shininess: 320,
+    transparent: true,
+    opacity: 0.28,
+    side: THREE.DoubleSide
+  });
+
+  const matGlassGold = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0xCCBB88),
+    specular: new THREE.Color(0xFFFFFF),
+    shininess: 300,
+    transparent: true,
+    opacity: 0.22,
+    side: THREE.DoubleSide
+  });
+
+  /* ---- Mesh helper ---- */
+  function box(w, h, d, mat, x, y, z) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y + h / 2, z);
+    m.castShadow = m.receiveShadow = true;
+    return m;
+  }
+
+  /* ============================================================
+     TOWER A — LEFT, gold-accented (shorter: ~18 floors)
+     References the "11" from the logo
+     ============================================================ */
+  const towerA = new THREE.Group();
+  towerA.position.x = -2.2;
+
+  // Podium
+  towerA.add(box(3.8, 1.5, 3.4, matDark, 0, 0, 0));
+
+  // Floor band definitions: [height, material]
+  const floorsA = [];
+  for (let i = 0; i < 18; i++) {
+    let mat;
+    if (i % 5 === 0)      mat = matGold;
+    else if (i % 3 === 0) mat = matGoldBright;
+    else if (i % 2 === 0) mat = matGlass;
+    else                   mat = matDark;
+    floorsA.push(mat);
+  }
+  floorsA.forEach((mat, i) => {
+    const taper = 1 - i * 0.012;
+    const fw = (2.8) * taper;
+    const fh = 0.68;
+    const fy = 1.5 + i * fh;
+    towerA.add(box(fw, fh - 0.04, fw - 0.1, mat, 0, fy, 0));
+  });
+
+  // Crown spire
+  const spireA = new THREE.Mesh(
+    new THREE.ConeGeometry(0.5, 2.2, 4),
+    matGold
+  );
+  spireA.position.set(0, 1.5 + 18 * 0.68 + 1.1, 0);
+  spireA.rotation.y = Math.PI / 4;
+  towerA.add(spireA);
+
+  scene.add(towerA);
+
+  /* ============================================================
+     TOWER B — RIGHT, dark-dominant (taller: ~24 floors)
+     References the "22" from the logo
+     ============================================================ */
+  const towerB = new THREE.Group();
+  towerB.position.x = 2.2;
+
+  // Podium
+  towerB.add(box(3.4, 1.8, 3.4, matDark, 0, 0, 0));
+
+  for (let i = 0; i < 24; i++) {
+    let mat;
+    if (i % 6 === 0)      mat = matGoldBright;
+    else if (i % 4 === 0) mat = matGold;
+    else if (i % 3 === 0) mat = matGlassGold;
+    else                   mat = matDark;
+    const taper = 1 - i * 0.008;
+    const fw = 2.6 * taper;
+    const fh = 0.7;
+    const fy = 1.8 + i * fh;
+    towerB.add(box(fw, fh - 0.04, fw - 0.08, mat, 0, fy, 0));
+  }
+
+  // Antenna
+  const antennaBase = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.06, 0.06, 3, 8),
+    matGold
+  );
+  antennaBase.position.set(0, 1.8 + 24 * 0.7 + 1.5, 0);
+  towerB.add(antennaBase);
+
+  const antennaBall = new THREE.Mesh(
+    new THREE.SphereGeometry(0.14, 12, 12),
+    matGoldBright
+  );
+  antennaBall.position.set(0, 1.8 + 24 * 0.7 + 3.1, 0);
+  towerB.add(antennaBall);
+
+  scene.add(towerB);
+
+  /* ============================================================
+     CONNECTING PODIUM base
+     ============================================================ */
+  const basePodium = new THREE.Mesh(
+    new THREE.BoxGeometry(8.5, 0.5, 4.2),
+    matDark
+  );
+  basePodium.position.set(0, 0.25, 0);
+  basePodium.receiveShadow = true;
+  scene.add(basePodium);
+
+  /* ============================================================
+     GROUND PLANE
+     ============================================================ */
+  const groundGeo = new THREE.PlaneGeometry(60, 60);
+  const groundMat = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(0x080808),
+    specular: new THREE.Color(0x222222),
+    shininess: 40
+  });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  /* ============================================================
+     GROUND GRID (subtle)
+     ============================================================ */
+  const gridHelper = new THREE.GridHelper(50, 28, 0xA38A59, 0x1A1A1A);
+  gridHelper.material.transparent = true;
+  gridHelper.material.opacity = 0.16;
+  gridHelper.position.y = 0.01;
+  scene.add(gridHelper);
+
+  /* ============================================================
+     FLOATING PARTICLES
+     ============================================================ */
+  const pCount = 100;
+  const pPos   = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount; i++) {
+    pPos[i * 3]     = (Math.random() - 0.5) * 50;
+    pPos[i * 3 + 1] = Math.random() * 28 + 2;
+    pPos[i * 3 + 2] = (Math.random() - 0.5) * 20 - 4;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
+    color: 0xA38A59,
+    size: 0.1,
+    transparent: true,
+    opacity: 0.45
+  }));
+  scene.add(particles);
+
+  /* ============================================================
+     LIGHTING
+     ============================================================ */
+  // Soft ambient
+  scene.add(new THREE.AmbientLight(0x1A1A2E, 1.2));
+
+  // Key light — warm gold from upper right
+  const keyLight = new THREE.DirectionalLight(0xFFEECC, 2.8);
+  keyLight.position.set(8, 22, 14);
+  keyLight.castShadow = true;
+  keyLight.shadow.mapSize.width  = 1024;
+  keyLight.shadow.mapSize.height = 1024;
+  keyLight.shadow.camera.near = 0.5;
+  keyLight.shadow.camera.far  = 80;
+  keyLight.shadow.camera.left = keyLight.shadow.camera.bottom = -20;
+  keyLight.shadow.camera.right = keyLight.shadow.camera.top  = 20;
+  scene.add(keyLight);
+
+  // Fill light — cool blue from left
+  const fillLight = new THREE.DirectionalLight(0x8899BB, 0.7);
+  fillLight.position.set(-10, 6, 8);
+  scene.add(fillLight);
+
+  // Gold accent point — low and front
+  const goldPt = new THREE.PointLight(0xA38A59, 3.5, 35);
+  goldPt.position.set(0, 6, 12);
+  scene.add(goldPt);
+
+  // Rim light — gold from behind
+  const rimLight = new THREE.DirectionalLight(0xA38A59, 0.8);
+  rimLight.position.set(0, 8, -18);
+  scene.add(rimLight);
+
+  // Tower A crown glow
+  const glowA = new THREE.PointLight(0xC8AA78, 2, 12);
+  glowA.position.set(-2.2, 15, 2);
+  scene.add(glowA);
+
+  // Tower B antenna glow
+  const glowB = new THREE.PointLight(0xA38A59, 2.5, 10);
+  glowB.position.set(2.2, 20, 2);
+  scene.add(glowB);
+
+  /* ============================================================
+     MOUSE INTERACTION
+     ============================================================ */
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+
+  window.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  /* ============================================================
+     ANIMATION LOOP
+     ============================================================ */
+  let raf;
+  let autoRotY = 0;
+
+  function animate() {
+    raf = requestAnimationFrame(animate);
+    const t = Date.now() * 0.00045;
+
+    /* Smooth mouse follow */
+    targetX += (mouseX - targetX) * 0.04;
+    targetY += (mouseY - targetY) * 0.04;
+
+    /* Auto-rotation */
+    autoRotY += 0.003;
+
+    /* Apply to building groups */
+    towerA.rotation.y = autoRotY * 0.6 + targetX * 0.18;
+    towerB.rotation.y = autoRotY * 0.6 + targetX * 0.18;
+    basePodium.rotation.y = autoRotY * 0.6 + targetX * 0.18;
+
+    /* Gentle float */
+    towerA.position.y = Math.sin(t * 0.7)     * 0.12;
+    towerB.position.y = Math.sin(t * 0.7 + 1) * 0.12;
+
+    /* Particle drift */
+    particles.rotation.y = t * 0.04;
+
+    /* Camera breathe */
+    camera.position.x = targetX * 2.5;
+    camera.position.y = 14 + targetY * -0.8;
+    camera.lookAt(0, 9, 0);
+
+    /* Animate gold point light */
+    goldPt.intensity = 3.5 + Math.sin(t * 1.5) * 0.4;
+    glowB.intensity  = 2.5 + Math.sin(t * 2.0) * 0.5;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  /* ---- Resize handler ---- */
+  window.addEventListener('resize', () => {
+    const nw = canvas.offsetWidth;
+    const nh = canvas.offsetHeight;
+    camera.aspect = nw / nh;
+    camera.updateProjectionMatrix();
+    renderer.setSize(nw, nh);
+  });
+})();
+
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+const nav      = document.getElementById('nav');
+const burger   = document.getElementById('hamburger');
+const drawer   = document.getElementById('nav-drawer');
+const navLogo  = document.getElementById('nav-logo');
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 55;
+  nav.classList.toggle('scrolled', scrolled);
+  /* Switch logo building-right stroke + "22" text when scrolled */
+  if (navLogo) {
+    const poly3 = navLogo.querySelectorAll('polyline')[2];
+    if (poly3) poly3.setAttribute('stroke', scrolled ? '#1A1A1A' : '#1A1A1A');
+  }
+}, { passive: true });
+
+burger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  drawer.setAttribute('aria-hidden', String(!open));
+});
+
+function closeNav() {
+  drawer.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  drawer.setAttribute('aria-hidden', 'true');
+}
+
+
+/* ============================================================
+   INTERSECTION OBSERVER — scroll animations
+   ============================================================ */
+const animObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      animObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '-30px 0px' });
+
+document.querySelectorAll('[data-anim]').forEach(el => animObs.observe(el));
+
+
+/* ============================================================
+   HERO FORM
+   ============================================================ */
+const heroForm    = document.getElementById('hero-form');
+const hfBtn       = document.getElementById('hf-btn');
+const hfWrap      = document.getElementById('hf-wrap');
+const hfSuccess   = document.getElementById('hf-success');
+
+heroForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const nombre  = document.getElementById('hf-nombre').value.trim();
+  const tel     = document.getElementById('hf-tel').value.trim();
+  const interes = document.getElementById('hf-interes').value;
+  if (!nombre || !tel || !interes) { shakeEl(heroForm); return; }
+  hfBtn.disabled = true;
+  hfBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+  await delay(1600);
+  hfWrap.style.display = 'none';
+  hfSuccess.classList.add('show');
+});
+
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+const cfForm    = document.getElementById('contact-form');
+const cfBtn     = document.getElementById('cf-btn');
+const cfWrap    = document.getElementById('cf-wrap');
+const cfSuccess = document.getElementById('cf-success');
+
+cfForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const nombre  = document.getElementById('cf-nombre').value.trim();
+  const tel     = document.getElementById('cf-tel').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const interes = document.getElementById('cf-interes').value;
+  if (!nombre || !tel || !email || !interes) { shakeEl(cfForm); return; }
+  cfBtn.disabled = true;
+  cfBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+  await delay(1800);
+  cfWrap.style.display = 'none';
+  cfSuccess.classList.add('show');
+});
+
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function shakeEl(el) {
+  el.style.animation = 'none';
+  el.getBoundingClientRect(); // reflow
+  el.style.animation = 'shake .42s ease';
+}
+
+/* Inject shake keyframe */
+const shakeCSS = document.createElement('style');
+shakeCSS.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}';
+document.head.appendChild(shakeCSS);
+</script>
+</body>
+</html>
