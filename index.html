@@ -1,860 +1,288 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maple Dental Centre · CDMX Zona Sur</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<style>
-:root {
-  --red:   #9B1C2E;
-  --red2:  #C0273D;
-  --red3:  #6B1020;
-  --gold:  #C8963E;
-  --gold2: #E5B86A;
-  --dark:  #0D0D0D;
-  --ink:   #1C1C1C;
-  --gray:  #5A5A5A;
-  --mist:  #E8E4DF;
-  --cream: #FAF7F2;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.65;
-  overflow-x: hidden;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMORA // MALAS NOTICIAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesque:wght@400;700&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-/* ── UTILITY ── */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-.kicker {
-  font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase;
-  color: var(--red); font-weight: 600; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 10px;
-}
-.kicker::before { content:''; display:block; width:22px; height:1px; background:var(--red); }
-.kicker.light { color: var(--gold); }
-.kicker.light::before { background: var(--gold); }
+    <style>
+        :root {
+            --bg-deep: #030914;
+            --bg-card: #0a1429;
+            --accent-primary: #0077b6;
+            --accent-glow: #00b4d8;
+            --text-main: #e0fbfc;
+            --text-muted: #7393b3;
+        }
 
-/* ── NAV ── */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 68px;
-  background: rgba(13,13,13,0.94);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.nav-brand {
-  display: flex; align-items: center; gap: 10px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 700; color: white; text-decoration: none;
-}
-.nav-leaf {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--red2);
-  display: flex; align-items: center; justify-content: center; font-size: 16px;
-}
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-.nav-links a {
-  font-size: 12px; font-weight: 500; letter-spacing: 0.3px;
-  color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
-}
-.nav-links a:hover { color: white; }
-.nav-cta {
-  padding: 9px 20px; background: var(--red); border-radius: 8px;
-  font-size: 12px; font-weight: 700; color: white; text-decoration: none;
-  transition: background 0.2s;
-}
-.nav-cta:hover { background: var(--red2); }
-.nav-toggle {
-  display: none; background: none; border: none; color: white;
-  font-size: 22px; cursor: pointer; padding: 4px;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  background: var(--dark);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content:''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 80% at 72% 50%, rgba(155,28,46,0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 8%  90%, rgba(107,16,32,0.15) 0%, transparent 60%);
-}
-.hero-text {
-  position: relative; z-index: 10;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 48px 80px 64px;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(200,150,62,0.12); border: 1px solid rgba(200,150,62,0.28);
-  border-radius: 100px; padding: 7px 16px; margin-bottom: 26px; width: fit-content;
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold2); font-weight: 600;
-}
-.hero-badge::before {
-  content:''; width:6px; height:6px; border-radius:50%;
-  background: var(--gold2); animation: blink 2s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
 
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 5.5vw, 72px);
-  font-weight: 700; line-height: 1.02; color: white; margin-bottom: 22px;
-}
-.hero-title em { color: var(--gold2); font-style: italic; }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(3, 9, 20, 0) 50%, rgba(0, 119, 182, 0.05) 50%);
+            background-size: 100% 4px;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.6;
+        }
 
-.hero-desc {
-  font-size: 15px; color: rgba(255,255,255,0.5);
-  max-width: 440px; line-height: 1.8; font-weight: 300; margin-bottom: 36px;
-}
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #0a1930 0%, var(--bg-deep) 70%);
+            position: relative;
+        }
 
-.btn-primary {
-  padding: 13px 24px; background: var(--red); border-radius: 10px;
-  font-size: 13px; font-weight: 700; color: white; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
-}
-.btn-primary:hover { background: var(--red2); transform: translateY(-2px); }
-.btn-ghost {
-  padding: 13px 24px; background: transparent;
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
-  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
-  text-decoration: none; transition: all 0.2s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: white; }
+        .hero-tag {
+            font-family: 'Space Grotesque', sans-serif;
+            font-size: 14px;
+            color: var(--accent-glow);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
-.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 380px; }
-.hs-num {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 30px; color: var(--gold2); line-height: 1;
-}
-.hs-label { font-size: 11px; color: rgba(255,255,255,0.32); margin-top: 4px; line-height: 1.3; }
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
 
-/* ── 3D CANVAS ── */
-.hero-model {
-  position: relative; z-index: 10;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-#toothCanvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  cursor: grab;
-}
-#toothCanvas:active { cursor: grabbing; }
-.model-hint {
-  position: absolute; bottom: 28px;
-  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.2); pointer-events: none;
-}
+        .hero h1 span { color: transparent; -webkit-text-stroke: 1px var(--text-main); }
 
-/* ── STRIP ── */
-.strip {
-  background: var(--red3);
-  display: flex; flex-wrap: wrap;
-}
-.strip-item {
-  padding: 14px 28px; font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7);
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
+        .play-prompt {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 180, 216, 0.05);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .play-prompt:hover {
+            background: rgba(0, 180, 216, 0.1);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+        }
+        .play-prompt i { color: var(--accent-glow); font-size: 20px; }
 
-/* ── SECTION HEADER ── */
-.sec { padding: 88px 0; }
-.sec-dark { background: var(--dark); }
-.sec-soft { background: #F5F1EC; }
+        .letter-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 5%;
+        }
 
-.sh { text-align: center; max-width: 680px; margin: 0 auto 56px; }
-.sh .kicker { justify-content: center; }
-.sh .kicker::before { display: none; }
-.sh h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.1;
-  color: var(--ink); margin-bottom: 14px;
-}
-.sh h2 em { color: var(--red); font-style: italic; }
-.sh h2.light { color: white; }
-.sh h2.light em { color: var(--gold2); }
-.sh p { font-size: 15px; color: var(--gray); line-height: 1.75; font-weight: 300; }
-.sh p.light { color: rgba(255,255,255,0.45); }
+        .letter-block {
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
 
-/* ── TREATMENTS ── */
-.tx-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-}
-.tx-card {
-  background: white; border-radius: 20px; padding: 32px 28px;
-  border: 1px solid var(--mist); box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.tx-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.10); }
-.tx-card.featured {
-  grid-column: span 2;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--red3) 100%);
-  border-color: var(--red2); color: white;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-}
-.tx-icon { font-size: 34px; margin-bottom: 14px; }
-.tx-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
-}
-.tx-card.featured .tx-name { color: white; }
-.tx-desc { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 14px; }
-.tx-card.featured .tx-desc { color: rgba(255,255,255,0.6); }
-.tx-price {
-  font-family: 'Bebas Neue', cursive; font-size: 22px; color: var(--red); margin-bottom: 4px;
-}
-.tx-card.featured .tx-price { color: var(--gold2); }
-.tx-msi { font-size: 11px; color: var(--gray); margin-bottom: 18px; }
-.tx-card.featured .tx-msi { color: rgba(255,255,255,0.4); }
-.tx-btn {
-  display: inline-block; padding: 10px 20px; border-radius: 8px;
-  font-size: 12px; font-weight: 700; text-decoration: none;
-  background: var(--red); color: white; transition: background 0.2s;
-}
-.tx-card.featured .tx-btn { background: var(--gold); }
-.tx-card.featured .tx-btn:hover { background: var(--gold2); }
-.tx-btn:hover { background: var(--red2); }
+        .letter-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.feat-stats { display: flex; flex-direction: column; gap: 14px; }
-.feat-stat {
-  background: rgba(255,255,255,0.06); border-radius: 12px; padding: 18px 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.feat-stat-n {
-  font-family: 'Bebas Neue', cursive; font-size: 32px; color: var(--gold2); line-height: 1;
-}
-.feat-stat-l { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+        .letter-block p {
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
 
-/* ── SERVICES ── */
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.svc-card {
-  background: white; border-radius: 16px; padding: 28px 24px;
-  border: 1px solid var(--mist); transition: all 0.2s;
-  position: relative; overflow: hidden;
-}
-.svc-card::after {
-  content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-}
-.svc-card:hover::after { transform: scaleX(1); }
-.svc-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-3px); }
-.svc-ico {
-  width: 50px; height: 50px; border-radius: 12px;
-  background: rgba(155,28,46,0.08);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 16px;
-}
-.svc-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
-}
-.svc-desc { font-size: 13px; color: var(--gray); line-height: 1.65; }
+        .letter-block p strong { color: var(--text-main); font-weight: 600; }
 
-/* ── WHY ── */
-.why-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  position: relative; z-index: 5;
-}
-.why-text h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
-  color: white; line-height: 1.1; margin-bottom: 20px;
-}
-.why-text h2 em { color: var(--gold2); font-style: italic; }
-.why-text p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 32px; }
-.why-list { display: flex; flex-direction: column; gap: 14px; }
-.why-item { display: flex; gap: 12px; align-items: flex-start; }
-.why-chk {
-  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-  background: var(--red); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; margin-top: 1px;
-}
-.why-item-t { font-size: 14px; color: rgba(255,255,255,0.68); line-height: 1.55; }
-.why-item-t strong { color: white; }
+        .block-number {
+            font-family: 'Space Grotesque', sans-serif;
+            color: var(--accent-primary);
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-.why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.why-stat {
-  background: rgba(255,255,255,0.05); border-radius: 16px; padding: 28px 22px;
-  border: 1px solid rgba(255,255,255,0.07); text-align: center;
-}
-.why-stat-n {
-  font-family: 'Bebas Neue', cursive; font-size: 52px;
-  color: var(--gold2); line-height: 1; margin-bottom: 8px;
-}
-.why-stat-l { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.4; }
+        .player-floating {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(3, 9, 20, 0.85);
+            border: 1px solid rgba(0, 119, 182, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0, 119, 182, 0.15);
+            width: 90%;
+            max-width: 400px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
 
-/* ── CONTACT ── */
-.ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.ct-info h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; font-weight: 700; color: var(--ink); margin-bottom: 30px;
-}
-.ct-info h2 em { color: var(--red); font-style: italic; }
-.ct-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
-.ct-ico {
-  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-  background: rgba(155,28,46,0.08);
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-}
-.ct-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 3px; }
-.ct-val { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.5; }
-.wa-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #25D366; color: white; padding: 14px 28px; border-radius: 12px;
-  font-size: 14px; font-weight: 700; text-decoration: none;
-  transition: all 0.2s; margin-top: 28px;
-}
-.wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
-.map-box {
-  height: 340px; border-radius: 20px; overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-  border: 1px solid var(--mist); color: rgba(255,255,255,0.25); font-size: 13px;
-}
-.map-box span { font-size: 42px; }
+        .player-floating.active { opacity: 1; pointer-events: all; }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--dark); padding: 56px 0 28px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.ft-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.ft-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 700; color: white; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.ft-desc { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 240px; }
-.ft-col-t { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.22); font-weight: 600; margin-bottom: 14px; }
-.ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.ft-links a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; transition: color 0.2s; }
-.ft-links a:hover { color: rgba(255,255,255,0.85); }
-.ft-bottom {
-  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px;
-  text-align: center; font-size: 11px; color: rgba(255,255,255,0.14);
-}
+        .player-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--text-main);
+            color: var(--bg-deep);
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-/* ── WHATSAPP FLOAT ── */
-.wa-float {
-  position: fixed; bottom: 24px; right: 24px; z-index: 300;
-  width: 58px; height: 58px; border-radius: 50%;
-  background: #25D366; color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
-  animation: wapulse 2.5s ease-in-out infinite;
-}
-@keyframes wapulse {
-  0%,100% { box-shadow: 0 8px 28px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5); }
-  50%      { box-shadow: 0 8px 28px rgba(37,211,102,0.45), 0 0 0 12px rgba(37,211,102,0); }
-}
+        .player-btn:hover { background: var(--accent-glow); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-model { height: 52vh; }
-  .hero-text { padding: 100px 28px 36px; }
-  .tx-grid { grid-template-columns: 1fr; }
-  .tx-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-  .svc-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-grid { grid-template-columns: 1fr; }
-  .ct-grid { grid-template-columns: 1fr; }
-  .ft-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .nav-links { display: none; }
-  .nav-toggle { display: block; }
-}
-@media (max-width: 560px) {
-  .svc-grid { grid-template-columns: 1fr; }
-  .why-stats { grid-template-columns: 1fr 1fr; }
-  .nav { padding: 0 20px; }
-  .strip-item { padding: 12px 18px; }
-}
-</style>
+        .track-info { flex-grow: 1; }
+        .track-title { font-family: 'Space Grotesque', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .track-artist { font-size: 12px; color: var(--text-muted); }
+
+        .progress-bg { width: 100%; height: 3px; background: rgba(224, 251, 252, 0.1); margin-top: 8px; border-radius: 2px; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); border-radius: 2px; }
+
+        footer {
+            text-align: center;
+            padding: 80px 5%;
+            border-top: 1px solid rgba(0, 119, 182, 0.2);
+            margin-top: 50px;
+            background: linear-gradient(to top, rgba(0, 119, 182, 0.05), transparent);
+        }
+        footer p {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            color: var(--text-main);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav class="nav" id="nav">
-  <a href="#inicio" class="nav-brand">
-    <div class="nav-leaf">🍁</div>
-    Maple Dental Centre
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#tratamientos">Tratamientos</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita+en+Maple+Dental+Centre" class="nav-cta" target="_blank" rel="noopener">Agendar cita</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
-</nav>
+    <audio id="mainAudio" loop>
+        <source src="Álvaro.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="inicio">
-  <div class="hero-text">
-    <div class="hero-badge">🍁 Miramontes · Zona Sur · CDMX</div>
-    <h1 class="hero-title">Tu sonrisa,<br><em>nuestro arte</em></h1>
-    <p class="hero-desc">Especialistas en implantes dentales, ortodoncia y diseño de sonrisa. Tecnología de punta y atención personalizada en la zona sur de la Ciudad de México.</p>
-    <div class="hero-ctas">
-      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="btn-primary" target="_blank" rel="noopener">
-        📲 Agendar cita gratis
-      </a>
-      <a href="#tratamientos" class="btn-ghost">Ver tratamientos</a>
+    <div class="player-floating" id="playerUI">
+        <div class="player-btn" id="playBtnUI">
+            <i class="fas fa-pause" id="playIconUI"></i>
+        </div>
+        <div class="track-info">
+            <div class="track-title">Malas Noticias</div>
+            <div class="track-artist">Álvaro Díaz</div>
+            <div class="progress-bg"><div class="progress-fill" id="progressBar"></div></div>
+        </div>
     </div>
-    <div class="hero-stats">
-      <div><div class="hs-num">15+</div><div class="hs-label">Años de experiencia</div></div>
-      <div><div class="hs-num">3K+</div><div class="hs-label">Pacientes atendidos</div></div>
-      <div><div class="hs-num">4.9⭐</div><div class="hs-label">Calificación Google</div></div>
-    </div>
-  </div>
-  <div class="hero-model">
-    <canvas id="toothCanvas"></canvas>
-    <div class="model-hint">Modelo 3D · Arrastra para girar</div>
-  </div>
-</section>
 
-<!-- ═══ STRIP ═══ -->
-<div class="strip">
-  <div class="strip-item">🦷 Implantes dentales</div>
-  <div class="strip-item">😁 Ortodoncia</div>
-  <div class="strip-item">✨ Diseño de sonrisa</div>
-  <div class="strip-item">⚡ Blanqueamiento</div>
-  <div class="strip-item">🔬 Diagnóstico digital</div>
-</div>
-
-<!-- ═══ TRATAMIENTOS ═══ -->
-<section class="sec" id="tratamientos">
-  <div class="container">
-    <div class="sh">
-      <div class="kicker">Tratamientos especializados</div>
-      <h2>Los tratamientos que <em>transforman</em> tu sonrisa</h2>
-      <p>Soluciones de alto nivel con tecnología de punta y facilidades de pago para que el tratamiento que necesitas sea accesible.</p>
-    </div>
-    <div class="tx-grid">
-
-      <!-- FEATURED: Implantes -->
-      <div class="tx-card featured">
-        <div>
-          <div class="tx-icon">🦷</div>
-          <div class="tx-name">Implantes Dentales</div>
-          <div class="tx-desc">La solución definitiva para dientes perdidos. Titanio de calidad médica, resultado completamente natural y durabilidad de décadas. Colocación guiada con tecnología digital 3D.</div>
-          <div class="tx-price">$18,000 – $28,000 MXN</div>
-          <div class="tx-msi">12 meses sin intereses · desde $1,500/mes</div>
-          <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+informaci%C3%B3n+sobre+implantes+dentales" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
+    <section class="hero">
+        <span class="hero-tag">Octavio // Para Ary</span>
+        <h1>MALAS <span>NOTICIAS</span></h1>
+        <div class="play-prompt" id="startBtn">
+            <i class="fas fa-play"></i>
+            <span>Reproducir para leer</span>
         </div>
-        <div class="feat-stats">
-          <div class="feat-stat">
-            <div class="feat-stat-n">30 min</div>
-            <div class="feat-stat-l">Procedimiento sin dolor</div>
-          </div>
-          <div class="feat-stat">
-            <div class="feat-stat-n">98%</div>
-            <div class="feat-stat-l">Tasa de éxito clínica</div>
-          </div>
-          <div class="feat-stat">
-            <div class="feat-stat-n">25 años</div>
-            <div class="feat-stat-l">Durabilidad promedio</div>
-          </div>
+    </section>
+
+    <section class="letter-section">
+
+        <div class="letter-block">
+            <span class="block-number">01 // EL TRAYECTO</span>
+            <p>Cuando salí corriendo a verte, sentí un fuego dentro de mí, me sentí excelente. No sabía la reacción que tendrías pero corrí con todas mis fuerzas, pisé todos los baches, me costaba respirar y aún así el solo hecho de verte me hacía sentirme satisfecho.</p>
+            <p>Cuando llegué a la reja me costaba ver bien, pero vi tu chamarra que me presumiste en el Vips cerrado. No llegué con una intención o algo que decirte, solo verte era lo que me pedía mi interior, incluso se me olvidó que llevaba algo.</p>
         </div>
-      </div>
 
-      <!-- Ortodoncia -->
-      <div class="tx-card">
-        <div class="tx-icon">😁</div>
-        <div class="tx-name">Ortodoncia</div>
-        <div class="tx-desc">Brackets metálicos, zafiro y alineadores invisibles. Corregimos tu mordida y alineamos tu sonrisa con el plan más adecuado para tu caso.</div>
-        <div class="tx-price">$25,000 – $45,000 MXN</div>
-        <div class="tx-msi">Hasta 18 meses sin intereses disponibles</div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+informaci%C3%B3n+sobre+ortodoncia" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
-      </div>
-
-      <!-- Diseño de sonrisa -->
-      <div class="tx-card">
-        <div class="tx-icon">✨</div>
-        <div class="tx-name">Diseño de Sonrisa</div>
-        <div class="tx-desc">Planificación digital de tu nueva sonrisa con carillas, coronas y blanqueamiento. Ves el resultado final antes de comenzar cualquier tratamiento.</div>
-        <div class="tx-price">$15,000 – $35,000 MXN</div>
-        <div class="tx-msi">12 meses sin intereses disponibles</div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+el+dise%C3%B1o+de+sonrisa" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SERVICIOS ═══ -->
-<section class="sec sec-soft" id="servicios">
-  <div class="container">
-    <div class="sh">
-      <div class="kicker">Servicios generales</div>
-      <h2>Atención completa para <em>toda la familia</em></h2>
-      <p>Además de los tratamientos especializados, cubrimos todas las necesidades de salud bucal de tu familia en un solo lugar.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc-card">
-        <div class="svc-ico">🦷</div>
-        <div class="svc-name">Limpiezas y Profilaxis</div>
-        <div class="svc-desc">Limpieza dental profunda, retiro de sarro y placa bacteriana. Recomendada cada 6 meses para mantener encías sanas y prevenir caries.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-ico">⚡</div>
-        <div class="svc-name">Blanqueamiento Dental</div>
-        <div class="svc-desc">Blanqueamiento profesional con luz LED. Hasta 8 tonos más blanco en una sola sesión. Resultados visibles desde el primer día.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-ico">🔬</div>
-        <div class="svc-name">Diagnóstico Digital 3D</div>
-        <div class="svc-desc">Radiografías digitales, fotografías intraorales y escaneo 3D para un diagnóstico preciso y un plan de tratamiento exacto.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-ico">👶</div>
-        <div class="svc-name">Odontopediatría</div>
-        <div class="svc-desc">Atención especializada para niños desde los 2 años. Ambiente amigable y técnicas sin dolor para crear hábitos desde pequeños.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-ico">🦿</div>
-        <div class="svc-name">Coronas y Carillas</div>
-        <div class="svc-desc">Restauraciones estéticas en porcelana y zirconia. Devolvemos la forma, función y apariencia natural a tus dientes dañados.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-ico">💊</div>
-        <div class="svc-name">Endodoncia sin Dolor</div>
-        <div class="svc-desc">Tratamiento de conducto con rotación mecánica y localizador de ápice. Salvamos tu diente evitando la extracción — sin dolor.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ POR QUÉ MAPLE (dark) ═══ -->
-<section class="sec sec-dark" id="nosotros" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;top:-120px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(155,28,46,0.10),transparent 70%);pointer-events:none;"></div>
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-text">
-        <div class="kicker light">Por qué elegir Maple</div>
-        <h2>La clínica de <em>referencia</em><br>en la zona sur</h2>
-        <p>En Maple Dental Centre combinamos equipamiento de última generación con especialistas comprometidos con tu bienestar y los resultados que mereces.</p>
-        <div class="why-list">
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Especialistas certificados</strong> en implantología, ortodoncia, endodoncia y estética dental.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Tecnología digital</strong>: escáner 3D, radiografías digitales y diagnóstico computarizado.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Facilidades de pago</strong>: hasta 18 meses sin intereses y planes personalizados.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Ubicación conveniente</strong> en Super Plaza Miramontes, con estacionamiento gratuito.</div>
-          </div>
+        <div class="letter-block">
+            <span class="block-number">02 // LA SINTONÍA</span>
+            <p>Al momento que me dijiste que tenías planes de cenar, me dio gusto porque ya puedes comer sólidos. Cuando te subiste mis dedos se empezaron a poner como madera, en ese momento iba pensando <em>"qué cenarás, espero no otra sopa con patas de insectos"</em> y me reí en ese momento antes de pasarme la calle.</p>
+            <p>Saqué mi teléfono y puse una de las Playlist que te había hecho y en el trayecto me fijé que no solo te amaba, te admiraba, te deseaba y el solo hecho de verte por esos segundos se sintió que valió la pena. En el trayecto se me olvidó que estaba mojado y adolorido.</p>
         </div>
-      </div>
-      <div class="why-stats">
-        <div class="why-stat">
-          <div class="why-stat-n">15+</div>
-          <div class="why-stat-l">Años al servicio de la zona sur</div>
+
+        <div class="letter-block">
+            <span class="block-number">03 // LA TRANSICIÓN</span>
+            <p>No solo recordaba el contundente no que me diste, recordaba cuando me dijiste lo amada que te sentías por mí y para mí fue tan especial eso que se quedó en mí.</p>
+            <p>Entiendo que no soy más tu novio y aún así te seguía amando tal vez de una manera distinta de cuando éramos pareja. No lo hago por un pasado, lo hago por un presente y por un futuro.</p>
+            <p>Además no lo hago esperando algo, <strong>yo no hago las cosas por amor, sino, con amor</strong> aunque suene como suene, lo hago porque me nace y me nace porque eres la mujer de la que yo, Octavio, me enamoré.</p>
         </div>
-        <div class="why-stat">
-          <div class="why-stat-n">3K+</div>
-          <div class="why-stat-l">Pacientes satisfechos</div>
+
+        <div class="letter-block">
+            <span class="block-number">04 // LA CONCLUSIÓN</span>
+            <p>Y mi determinación me llevó a esa conclusión, aún somos jóvenes y tenemos la vida por delante pero no creo haberme equivocado cuando te dije que eres el amor de mi vida.</p>
+            <p>Y te diré el porqué, solo dos meses fueron suficientes, solo dos para determinar esa base, no es solo porque te guste el trap, el rap, el rock, el indie, el pop, los corridos tumbados, el reggaeton o porque sepas manejar manual y que no tengas pena para expresarte y lo que más, que seas una mujer valiente.</p>
+            <p><strong>Eres el amor de mi vida por el sol que llevas contigo, tu alma es eso lo que me determina a decirlo.</strong></p>
         </div>
-        <div class="why-stat">
-          <div class="why-stat-n">8</div>
-          <div class="why-stat-l">Especialidades bajo un mismo techo</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-n">0%</div>
-          <div class="why-stat-l">Intereses hasta 18 meses</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ CONTACTO ═══ -->
-<section class="sec" id="contacto">
-  <div class="container">
-    <div class="ct-grid">
-      <div class="ct-info">
-        <div class="kicker">Visítanos</div>
-        <h2>Estamos en el <em>corazón</em><br>de Miramontes</h2>
-        <div class="ct-row">
-          <div class="ct-ico">📍</div>
-          <div>
-            <div class="ct-lbl">Dirección</div>
-            <div class="ct-val">Super Plaza Miramontes #2053, Local C-10<br>Pedregal de Carrasco, CDMX</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">📲</div>
-          <div>
-            <div class="ct-lbl">WhatsApp</div>
-            <div class="ct-val">56 4840 4854</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">📸</div>
-          <div>
-            <div class="ct-lbl">Instagram</div>
-            <div class="ct-val">@mapledcmx</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">🕐</div>
-          <div>
-            <div class="ct-lbl">Horario</div>
-            <div class="ct-val">Lunes a Viernes · 9:00 – 19:00<br>Sábados · 9:00 – 15:00</div>
-          </div>
-        </div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita+en+Maple+Dental+Centre" class="wa-btn" target="_blank" rel="noopener">
-          💬 Agendar cita por WhatsApp
-        </a>
-      </div>
-      <div class="map-box">
-        <span>🗺️</span>
-        <div>Super Plaza Miramontes #2053<br>Local C-10 · Pedregal de Carrasco, CDMX</div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div>
-        <div class="ft-name">🍁 Maple Dental Centre</div>
-        <div class="ft-desc">Especialistas en salud bucal en la zona sur de CDMX. Implantes, ortodoncia y diseño de sonrisa con tecnología de punta.</div>
-      </div>
-      <div>
-        <div class="ft-col-t">Tratamientos</div>
-        <ul class="ft-links">
-          <li><a href="#tratamientos">Implantes dentales</a></li>
-          <li><a href="#tratamientos">Ortodoncia</a></li>
-          <li><a href="#tratamientos">Diseño de sonrisa</a></li>
-          <li><a href="#servicios">Blanqueamiento</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="ft-col-t">Contacto</div>
-        <ul class="ft-links">
-          <li><a href="https://wa.me/5215648404854">📲 56 4840 4854</a></li>
-          <li><a href="https://instagram.com/mapledcmx" target="_blank" rel="noopener">📸 @mapledcmx</a></li>
-          <li><a href="#contacto">📍 Miramontes #2053, C-10</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      © 2026 Maple Dental Centre · Super Plaza Miramontes #2053, Local C-10 · Pedregal de Carrasco, CDMX
-    </div>
-  </div>
-</footer>
+    <footer>
+        <p>"Y los errores que lamento haber cometido no determinan la persona que soy y la disposición que estoy por ti. Gracias por leerme y gracias a Dios por haberme dado tanto sentir por ti."</p>
+    </footer>
 
-<!-- ═══ WA FLOAT ═══ -->
-<a class="wa-float" href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+    <script>
+        const audio = document.getElementById('mainAudio');
+        const startBtn = document.getElementById('startBtn');
+        const playerUI = document.getElementById('playerUI');
+        const playBtnUI = document.getElementById('playBtnUI');
+        const playIconUI = document.getElementById('playIconUI');
+        const progressBar = document.getElementById('progressBar');
+        const letterBlocks = document.querySelectorAll('.letter-block');
 
-<!-- ═══ THREE.JS ═══ -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+        startBtn.addEventListener('click', () => {
+            audio.play();
+            playerUI.classList.add('active');
+            window.scrollBy({ top: window.innerHeight - 100, behavior: 'smooth' });
+        });
 
-const canvas    = document.getElementById('toothCanvas');
-const container = canvas.parentElement;
+        playBtnUI.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIconUI.className = 'fas fa-pause';
+            } else {
+                audio.pause();
+                playIconUI.className = 'fas fa-play';
+            }
+        });
 
-// ── Renderer ──────────────────────────────────────────────────────────────
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
-renderer.toneMapping         = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.4;
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+        });
 
-// ── Scene ─────────────────────────────────────────────────────────────────
-const scene = new THREE.Scene();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
 
-const pmrem  = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-// ── Camera ────────────────────────────────────────────────────────────────
-const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-camera.position.set(0, 0.4, 5.5);
-
-// ── Controls ──────────────────────────────────────────────────────────────
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping   = true;
-controls.dampingFactor   = 0.07;
-controls.enableZoom      = false;
-controls.autoRotate      = true;
-controls.autoRotateSpeed = 1.0;
-controls.minPolarAngle   = Math.PI * 0.2;
-controls.maxPolarAngle   = Math.PI * 0.78;
-controls.target.set(0, 0.2, 0);
-
-// ── Tooth ─────────────────────────────────────────────────────────────────
-function buildTooth() {
-  const root = new THREE.Group();
-
-  // Crown + root profile (LatheGeometry rotates around Y axis)
-  // [radius, height] from crown tip → root tip
-  const profile = [
-    [0.00,  1.35],
-    [0.12,  1.22],
-    [0.32,  1.05],
-    [0.47,  0.78],
-    [0.54,  0.48],
-    [0.55,  0.15],
-    [0.48, -0.05],  // neck
-    [0.38, -0.15],
-    [0.28, -0.55],
-    [0.22, -1.05],
-    [0.14, -1.55],
-    [0.06, -1.85],
-    [0.00, -1.95],  // root apex
-  ].map(([r, y]) => new THREE.Vector2(r, y));
-
-  const bodyGeo = new THREE.LatheGeometry(profile, 64);
-
-  const enamelMat = new THREE.MeshPhysicalMaterial({
-    color:               new THREE.Color(0.97, 0.94, 0.90),
-    roughness:           0.07,
-    metalness:           0.0,
-    transmission:        0.10,
-    thickness:           0.8,
-    ior:                 1.55,
-    clearcoat:           1.0,
-    clearcoatRoughness:  0.04,
-    envMapIntensity:     1.0,
-  });
-
-  const body = new THREE.Mesh(bodyGeo, enamelMat);
-  body.castShadow = body.receiveShadow = true;
-  root.add(body);
-
-  // 4 molar cusps on top
-  const cuspMat = new THREE.MeshPhysicalMaterial({
-    color:              new THREE.Color(0.94, 0.91, 0.86),
-    roughness:          0.10,
-    metalness:          0.0,
-    clearcoat:          0.8,
-    clearcoatRoughness: 0.08,
-  });
-  for (const [x, y, z] of [
-    [ 0.21, 0.97,  0.17],
-    [-0.21, 0.97,  0.17],
-    [ 0.21, 0.97, -0.17],
-    [-0.21, 0.97, -0.17],
-  ]) {
-    const c = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 24), cuspMat);
-    c.position.set(x, y, z);
-    c.castShadow = true;
-    root.add(c);
-  }
-
-  // Gum ring at cervix
-  const gumMat = new THREE.MeshStandardMaterial({
-    color:    new THREE.Color(0.88, 0.52, 0.56),
-    roughness: 0.75,
-  });
-  const gum = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.25, 48), gumMat);
-  gum.position.y = -0.18;
-  gum.receiveShadow = true;
-  root.add(gum);
-
-  return root;
-}
-
-const tooth = buildTooth();
-scene.add(tooth);
-
-// ── Particles ─────────────────────────────────────────────────────────────
-const pGeo = new THREE.BufferGeometry();
-const pPos = new Float32Array(140 * 3);
-for (let i = 0; i < 140 * 3; i++) pPos[i] = (Math.random() - 0.5) * 9;
-pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-const particles = new THREE.Points(
-  pGeo,
-  new THREE.PointsMaterial({ color: 0xC8963E, size: 0.028, transparent: true, opacity: 0.45 })
-);
-scene.add(particles);
-
-// ── Lights ────────────────────────────────────────────────────────────────
-scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-
-const key = new THREE.DirectionalLight(0xffffff, 3.0);
-key.position.set(5, 10, 6);
-key.castShadow = true;
-key.shadow.mapSize.set(2048, 2048);
-scene.add(key);
-
-const rim = new THREE.DirectionalLight(0xC8963E, 1.5);
-rim.position.set(-6, 3, -4);
-scene.add(rim);
-
-const fill = new THREE.PointLight(0x9B1C2E, 0.7, 14);
-fill.position.set(3, -3, 5);
-scene.add(fill);
-
-// ── Resize ────────────────────────────────────────────────────────────────
-function onResize() {
-  const w = container.clientWidth;
-  const h = container.clientHeight;
-  renderer.setSize(w, h);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-window.addEventListener('resize', onResize);
-onResize();
-
-// ── Animate ───────────────────────────────────────────────────────────────
-const clock = new THREE.Clock();
-(function loop() {
-  requestAnimationFrame(loop);
-  const t = clock.getElapsedTime();
-  tooth.position.y  = Math.sin(t * 0.7) * 0.10;
-  particles.rotation.y = t * 0.04;
-  controls.update();
-  renderer.render(scene, camera);
-})();
-</script>
-
-<script>
-// Mobile nav toggle
-const toggle = document.getElementById('navToggle');
-const links  = document.getElementById('navLinks');
-toggle.addEventListener('click', () => {
-  const open = links.style.display === 'flex';
-  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#0d0d0d;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);';
-});
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.style.cssText = ''));
-</script>
+        letterBlocks.forEach(block => observer.observe(block));
+    </script>
 </body>
 </html>
