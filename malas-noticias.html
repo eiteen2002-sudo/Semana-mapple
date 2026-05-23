@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malas Noticias — Octavio para Ary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #FF1010;
+      --red-glow:  rgba(255, 16, 16, 0.55);
+      --bg-deep:   #070f14;
+      --bg-dark:   #0f2b35;
+      --bg-mid:    #1b4b5a;
+      --text-body: #b8d8e0;
+      --text-white:#e4f2f6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-body);
+      font-family: 'Oswald', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── OVERLAY ──────────────────────────────────────────── */
+    #overlay {
+      position: fixed; inset: 0; z-index: 900;
+      background: radial-gradient(ellipse at 40% 60%, #0d2633 0%, #040c11 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 1.4s ease, visibility 1.4s ease;
+    }
+    #overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    /* scanlines texture */
+    #overlay::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+    }
+
+    #ov-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+      letter-spacing: 0.5em;
+      color: var(--text-body);
+      opacity: 0.45;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative; z-index: 1;
+    }
+
+    #ov-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(3rem, 14vw, 10rem);
+      color: var(--red);
+      line-height: 0.92;
+      text-align: center;
+      text-shadow:
+        0 0 40px var(--red-glow),
+        0 0 110px rgba(255,16,16,0.22);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      position: relative; z-index: 1;
+    }
+
+    #ov-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+      letter-spacing: 0.42em;
+      color: var(--text-body);
+      opacity: 0.5;
+      text-transform: uppercase;
+      margin-bottom: 4.5rem;
+      position: relative; z-index: 1;
+    }
+
+    #start-btn {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      color: #060d11;
+      background: var(--red);
+      border: none;
+      cursor: pointer;
+      padding: 1.1rem 3.4rem;
+      letter-spacing: 0.09em;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      box-shadow: 0 0 28px var(--red-glow), 0 0 60px rgba(255,16,16,0.18);
+      animation: pulse-btn 2.4s ease-in-out infinite;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      position: relative; z-index: 1;
+    }
+    #start-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 55px var(--red-glow), 0 0 120px rgba(255,16,16,0.3);
+    }
+    @keyframes pulse-btn {
+      0%, 100% { box-shadow: 0 0 28px var(--red-glow), 0 0 60px rgba(255,16,16,0.18); }
+      50%       { box-shadow: 0 0 55px rgba(255,16,16,0.85), 0 0 110px rgba(255,16,16,0.35); }
+    }
+
+    /* ─── PARALLAX BACKGROUND ─────────────────────────────── */
+    #parallax-bg {
+      position: fixed; inset: -30% -5%;
+      width: 110%; height: 160%;
+      background:
+        radial-gradient(ellipse at 18% 82%, rgba(255,100,30,0.065) 0%, transparent 42%),
+        radial-gradient(ellipse at 82% 18%, rgba(18,95,135,0.16) 0%, transparent 48%),
+        radial-gradient(ellipse at 50% 55%, rgba(27,75,90,0.32) 0%, transparent 62%),
+        linear-gradient(180deg, #070f14 0%, #0f2b35 22%, #1b4b5a 48%, #163d4a 72%, #080f14 100%);
+      z-index: 0;
+      will-change: transform;
+    }
+
+    /* water shimmer */
+    #parallax-bg::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 38%;
+      background: repeating-linear-gradient(
+        90deg, transparent 0, rgba(255,255,255,0.01) 1px,
+        transparent 2px, transparent 24px
+      );
+      animation: water 10s ease-in-out infinite;
+    }
+    @keyframes water {
+      0%, 100% { opacity: 0.35; transform: translateX(0); }
+      50%       { opacity: 0.65; transform: translateX(4px); }
+    }
+
+    /* ─── STICKY GHOST TITLE ──────────────────────────────── */
+    #sticky-title {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(3.5rem, 17vw, 16rem);
+      color: var(--red);
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 90px rgba(255,16,16,0.28);
+      will-change: transform, opacity;
+    }
+
+    /* ─── PROGRESS BAR ────────────────────────────────────── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, #900, var(--red), #f66);
+      box-shadow: 0 0 10px var(--red-glow);
+      z-index: 500;
+      transition: width 0.07s linear;
+    }
+
+    /* ─── AUDIO PLAYER ────────────────────────────────────── */
+    #audio-player {
+      position: fixed; bottom: 1.3rem; right: 1.3rem;
+      z-index: 200;
+      display: flex; align-items: center; gap: 0.55rem;
+      background: rgba(7,18,24,0.9);
+      border: 1px solid rgba(255,16,16,0.25);
+      padding: 0.5rem 0.85rem;
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+    #audio-player.show { opacity: 1; }
+
+    #pp-btn {
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--red);
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform 0.15s ease;
+    }
+    #pp-btn:hover { transform: scale(1.3); }
+
+    .bars {
+      display: flex; align-items: center; gap: 2px; height: 13px;
+    }
+    .bars span {
+      width: 3px; background: var(--red);
+      border-radius: 2px;
+      animation: bar 0.9s ease-in-out infinite;
+    }
+    .bars span:nth-child(2) { animation-delay: 0.18s; }
+    .bars span:nth-child(3) { animation-delay: 0.36s; }
+    .bars span:nth-child(4) { animation-delay: 0.18s; }
+    @keyframes bar {
+      0%, 100% { height: 3px; }
+      50%       { height: 12px; }
+    }
+    #audio-player.paused .bars span {
+      animation-play-state: paused;
+      height: 5px;
+    }
+
+    #aud-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      opacity: 0.58;
+    }
+
+    /* ─── NOISE GRAIN ─────────────────────────────────────── */
+    #noise {
+      position: fixed; inset: 0; z-index: 2;
+      pointer-events: none; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ─── MAIN CONTENT ────────────────────────────────────── */
+    #main-content { position: relative; z-index: 10; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2.8rem, 15vw, 13rem);
+      color: var(--red);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-shadow:
+        5px 5px 0 rgba(0,0,0,0.5),
+        0 0 65px var(--red-glow),
+        0 0 140px rgba(255,16,16,0.18);
+      animation: hero-flicker 7s ease-in-out infinite;
+    }
+    @keyframes hero-flicker {
+      0%, 87%, 91%, 95%, 100% { opacity: 1; }
+      89% { opacity: 0.8; }
+      93% { opacity: 0.92; }
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.8rem, 2.5vw, 1.25rem);
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: var(--text-body);
+      opacity: 0.7;
+    }
+    .hero-sub em { color: var(--red); font-style: normal; }
+
+    .scroll-cue {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+      opacity: 0.38;
+      animation: cue 2.4s ease-in-out infinite;
+    }
+    .scroll-cue span {
+      font-size: 0.6rem; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--text-body);
+    }
+    .scroll-cue::after {
+      content: '';
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--text-body), transparent);
+    }
+    @keyframes cue {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ─── REVEAL ANIMATION ───────────────────────────────── */
+    /* Base: invisible + shifted down */
+    .reveal {
+      opacity: 0;
+      transform: translateY(55px);
+      transition:
+        opacity  1s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger delays inside .stagger containers */
+    .stagger .reveal:nth-child(1) { transition-delay: 0s; }
+    .stagger .reveal:nth-child(2) { transition-delay: 0.18s; }
+    .stagger .reveal:nth-child(3) { transition-delay: 0.36s; }
+
+    /* ─── LETTER SECTION ─────────────────────────────────── */
+    .letter-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 7rem 2rem;
+    }
+
+    .divider {
+      width: 68px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      margin: 0 auto 3.5rem;
+    }
+
+    .letter-body {
+      font-size: clamp(1.05rem, 2.5vw, 1.44rem);
+      line-height: 1.95;
+      font-weight: 300;
+      color: var(--text-white);
+    }
+    .letter-body p { margin-bottom: 1.4em; }
+    .letter-body p:last-child { margin-bottom: 0; }
+
+    /* keyword highlight */
+    .kw { color: var(--red); font-weight: 600; }
+
+    /* ─── HIGHLIGHT QUOTE (Sección 4) ───────────────────── */
+    .quote-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .highlight-quote {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(1.25rem, 3.8vw, 2.25rem);
+      color: var(--red);
+      line-height: 1.55;
+      text-align: center;
+      padding: 3rem 2.5rem;
+      border-top: 2px solid rgba(255,16,16,0.28);
+      border-bottom: 2px solid rgba(255,16,16,0.28);
+      position: relative;
+    }
+    .highlight-quote.in {
+      animation: q-glow 5s 1.5s ease-in-out infinite;
+    }
+    @keyframes q-glow {
+      0%, 80%, 84%, 100% {
+        text-shadow: 0 0 24px var(--red-glow), 0 0 55px rgba(255,16,16,0.25);
+        color: var(--red);
+      }
+      82% { text-shadow: none; color: #bb0000; }
+    }
+    .highlight-quote::before {
+      content: '"';
+      position: absolute;
+      top: -2rem; left: 0.7rem;
+      font-family: Georgia, serif;
+      font-size: 6.5rem;
+      color: rgba(255,16,16,0.15);
+      line-height: 1;
+    }
+
+    /* ─── SECTION DECO ──────────────────────────────────── */
+    .deco {
+      text-align: center; padding: 1rem 0;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.2rem;
+      color: rgba(255,16,16,0.2);
+      letter-spacing: 0.7em;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem 9rem;
+      text-align: center;
+    }
+
+    .footer-body {
+      font-size: clamp(1rem, 2.3vw, 1.3rem);
+      line-height: 2.05;
+      font-weight: 300;
+      color: var(--text-body);
+    }
+    .footer-body em { color: var(--text-white); font-style: italic; opacity: 0.9; }
+
+    .footer-sig {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2rem, 6.5vw, 5rem);
+      color: var(--red);
+      margin-top: 3rem;
+      text-shadow: 0 0 40px rgba(255,16,16,0.38);
+    }
+
+    .footer-end {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,16,16,0.15);
+      font-size: 0.65rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      /* overriding .reveal default to a lower final opacity */
+    }
+    .footer-end.in { opacity: 0.35 !important; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .letter-section { padding: 5rem 1.4rem; }
+      .quote-wrap    { padding: 4rem 1.4rem; }
+      .footer-section{ padding: 4rem 1.4rem 7rem; }
+      .highlight-quote { font-size: 1.15rem; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Grain noise -->
+<div id="noise"></div>
+
+<!-- Reading progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Parallax background -->
+<div id="parallax-bg"></div>
+
+<!-- Fixed ghost title (opacity driven by JS) -->
+<div id="sticky-title">MALAS NOTICIAS</div>
+
+<!-- Audio element -->
+<audio id="bg-audio" src="Álvaro.mp3" preload="auto"></audio>
+
+<!-- Minimal audio player (appears after overlay) -->
+<div id="audio-player" class="paused">
+  <button id="pp-btn" title="Play / Pause">▶</button>
+  <div class="bars"><span></span><span></span><span></span><span></span></div>
+  <span id="aud-label">Álvaro Díaz</span>
+</div>
+
+<!-- ═══════════════ OVERLAY ═══════════════ -->
+<div id="overlay">
+  <p id="ov-eyebrow">Una carta digital</p>
+  <h1 id="ov-title">MALAS NOTICIAS</h1>
+  <p id="ov-sub">Octavio &nbsp;·&nbsp; Para Ary</p>
+  <button id="start-btn">▶ &nbsp;REPRODUCIR PARA LEER</button>
+</div>
+
+<!-- ═══════════════ CONTENT ═══════════════ -->
+<div id="main-content">
+
+  <!-- ─ SECCIÓN 1: HERO ─ -->
+  <section class="hero">
+    <h1 class="hero-title">MALAS NOTICIAS</h1>
+    <p class="hero-sub"><em>Octavio</em> &nbsp;//&nbsp; Para <em>Ary</em></p>
+    <div class="scroll-cue"><span>Scroll</span></div>
+  </section>
+
+  <!-- ─ SECCIÓN 2 ─ -->
+  <section class="letter-section stagger">
+    <div class="divider reveal"></div>
+    <div class="letter-body reveal">
+      <p>Cuando salí corriendo a verte, sentí un <span class="kw">fuego</span> dentro de mí, me sentí excelente. No sabía la reacción que tendrías pero corrí con <span class="kw">todas mis fuerzas</span>, pisé todos los baches, me costaba respirar y aún así el solo hecho de verte me hacía sentirme satisfecho.</p>
+      <p>Cuando llegué a la reja me costaba ver bien, pero vi tu chamarra que me presumiste en el Vips cerrado. No llegué con una intención o algo que decirte, <span class="kw">solo verte</span> era lo que me pedía mi interior, incluso se me olvidó que llevaba algo.</p>
+    </div>
+  </section>
+
+  <div class="deco reveal">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ─ SECCIÓN 3 ─ -->
+  <section class="letter-section stagger">
+    <div class="letter-body reveal">
+      <p>Al momento que me dijiste que tenías planes de cenar, me dio gusto porque ya puedes comer sólidos. Cuando te subiste mis dedos se empezaron a poner como madera, en ese momento iba pensando <span class="kw">"¿qué cenarás?"</span>, espero no otra sopa con patas de insectos, y me reí en ese momento antes de pasarme la calle.</p>
+      <p>Saqué mi teléfono y puse una de las Playlist que te había hecho y en el trayecto me fijé que no solo te amaba, <span class="kw">te admiraba, te deseaba</span> — y el solo hecho de verte por esos segundos se sintió que valió la pena. En el trayecto se me olvidó que estaba mojado y adolorido.</p>
+    </div>
+  </section>
+
+  <!-- ─ SECCIÓN 4: Quote destacado ─ -->
+  <div class="quote-wrap">
+    <blockquote class="highlight-quote reveal">
+      No solo recordaba el contundente <span class="kw">no</span> que me diste, recordaba cuando me dijiste lo <u>amada que te sentías por mí</u> y para mí fue tan especial eso que se quedó en mí.
+    </blockquote>
+  </div>
+
+  <div class="deco reveal">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ─ SECCIÓN 5 ─ -->
+  <section class="letter-section stagger">
+    <div class="letter-body reveal">
+      <p>Entiendo que no soy más tu novio y aún así te seguía amando tal vez de una manera distinta de cuando éramos pareja. No lo hago por un pasado, lo hago por un <span class="kw">presente</span> y por un <span class="kw">futuro</span>.</p>
+      <p>Además no lo hago esperando algo — yo no hago las cosas <em style="font-style:italic;color:var(--text-body)">por</em> amor, sino <span class="kw">con amor</span>. Aunque suene como suene, lo hago porque me nace y me nace porque eres la mujer de la que yo, <span class="kw">Octavio</span>, me enamoré.</p>
+    </div>
+  </section>
+
+  <!-- ─ SECCIÓN 6 ─ -->
+  <section class="letter-section stagger">
+    <div class="letter-body reveal">
+      <p>Y mi determinación me llevó a esa conclusión — aún somos jóvenes y tenemos la vida por delante, pero no creo haberme equivocado cuando te dije que eres el <span class="kw">amor de mi vida</span>.</p>
+      <p>Y te diré el porqué: solo dos meses fueron suficientes, solo <span class="kw">dos</span> para determinar esa base. No es solo porque te guste el trap, el rap, el rock, el indie, el pop, los corridos tumbados, el reggaetón, o porque sepas manejar manual y que no tengas pena para expresarte — y lo que más, que seas una <span class="kw">mujer valiente</span>.</p>
+      <p>Eres el amor de mi vida por el <span class="kw">sol que llevas contigo</span>. Tu alma es eso lo que me determina a decirlo.</p>
+    </div>
+  </section>
+
+  <!-- ─ FOOTER ─ -->
+  <footer class="footer-section stagger">
+    <div class="divider reveal"></div>
+    <p class="footer-body reveal">
+      Y los errores que lamento haber cometido no determinan la persona que soy<br>
+      y la disposición que estoy por ti.<br><br>
+      <em>Gracias por leerme y gracias a Dios<br>por haberme dado tanto sentir por ti.</em>
+    </p>
+    <div class="footer-sig reveal">— Octavio</div>
+    <div class="footer-end reveal">
+      MALAS NOTICIAS &nbsp;·&nbsp; UNA CARTA &nbsp;·&nbsp; OCTAVIO PARA ARY
+    </div>
+  </footer>
+
+</div><!-- /#main-content -->
+
+<script>
+(function () {
+  'use strict';
+
+  // ── refs ──────────────────────────────────────────────────
+  var overlay     = document.getElementById('overlay');
+  var startBtn    = document.getElementById('start-btn');
+  var audio       = document.getElementById('bg-audio');
+  var audioPlayer = document.getElementById('audio-player');
+  var ppBtn       = document.getElementById('pp-btn');
+  var stickyTitle = document.getElementById('sticky-title');
+  var parallaxBg  = document.getElementById('parallax-bg');
+  var progressBar = document.getElementById('progress-bar');
+
+  // ── overlay click → start experience ─────────────────────
+  startBtn.addEventListener('click', function () {
+    overlay.classList.add('hidden');
+    audio.play().catch(function () {});
+    audioPlayer.classList.add('show');
+    audioPlayer.classList.remove('paused');
+    ppBtn.textContent = '⏸';
+  });
+
+  // ── audio play / pause toggle ─────────────────────────────
+  ppBtn.addEventListener('click', function () {
+    if (audio.paused) {
+      audio.play();
+      ppBtn.textContent = '⏸';
+      audioPlayer.classList.remove('paused');
+    } else {
+      audio.pause();
+      ppBtn.textContent = '▶';
+      audioPlayer.classList.add('paused');
+    }
+  });
+
+  // ── IntersectionObserver — Fade-Up on scroll ──────────────
+  var revealEls = document.querySelectorAll('.reveal');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -48px 0px'
+  });
+
+  revealEls.forEach(function (el) { io.observe(el); });
+
+  // ── rAF-throttled scroll handler ──────────────────────────
+  var ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  function update() {
+    var scrollY  = window.scrollY;
+    var docH     = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docH > 0 ? scrollY / docH : 0;
+
+    // reading progress bar
+    progressBar.style.width = (progress * 100) + '%';
+
+    // parallax background (moves at ~28% scroll speed)
+    parallaxBg.style.transform = 'translateY(' + (scrollY * 0.28) + 'px)';
+
+    // ghost sticky title:
+    //   - fades in  from  5% → 40% scroll  (opacity 0 → max)
+    //   - fades out from 80% → 95% scroll  (max → 0)
+    var fadeIn  = Math.min(Math.max((progress - 0.05) / 0.35, 0), 1);
+    var fadeOut = Math.min(Math.max((0.92 - progress) / 0.12, 0), 1);
+    var opacity = fadeIn * fadeOut * 0.072;
+    var scale   = 1 + progress * 0.13;
+
+    stickyTitle.style.opacity   = opacity;
+    stickyTitle.style.transform =
+      'translate(-50%, -50%) scale(' + scale + ')';
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  update();
+
+})();
+</script>
+
+</body>
+</html>
