@@ -92,6 +92,17 @@ body {
 .nav-links { display: none; list-style: none; }
 .nav-cta-desktop { display: none; }
 
+/* Selector de idioma (header escritorio): oculto en el header móvil — no hay
+   espacio junto a logo + hamburguesa; en móvil su gemelo vive en el menú overlay. */
+.lang-switch { display: none; align-items: center; gap: 6px; }
+.lang-btn {
+  background: none; border: none; cursor: pointer; padding: 4px 2px;
+  font-family: var(--font-head); font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.4); transition: color .2s, font-weight .2s;
+}
+.lang-btn[aria-pressed="true"] { color: var(--teal-400); font-weight: 700; }
+.lang-sep { color: rgba(255,255,255,0.2); font-size: 12px; }
+
 /* Botón hamburguesa: 44×44px de área táctil real, aunque el ícono visual sea más pequeño */
 .nav-burger {
   width: var(--tap-min); height: var(--tap-min);
@@ -114,6 +125,7 @@ body {
     font-size: 12px; font-weight: 700; color: #fff; text-decoration: none; transition: background .2s;
   }
   .nav-cta-desktop:hover { background: var(--orange-600); }
+  .lang-switch { display: flex; margin-right: 22px; }
 }
 
 /* ── MENÚ MÓVIL — overlay de pantalla completa, no un dropdown que tape el hero ── */
@@ -139,6 +151,15 @@ body {
   background: var(--orange); color: #fff; border-radius: 14px;
   font-weight: 700; font-size: 15px; text-decoration: none; border: none;
 }
+/* Gemelo móvil del selector de idioma: a diferencia de la versión compacta
+   del header, cada botón cumple el mínimo táctil de 44×44px (--tap-min). */
+.lang-switch--mobile { margin-top: 28px; gap: 8px; }
+.lang-btn--mobile {
+  min-width: var(--tap-min); min-height: var(--tap-min);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; border-radius: 10px;
+}
+.lang-btn--mobile[aria-pressed="true"] { background: rgba(45,212,191,0.12); }
 @media (min-width: 900px) { .mobile-menu { display: none; } }
 
 /* ── HERO (mobile-first: una columna, visual debajo del texto) ── */
@@ -439,12 +460,19 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
     <span class="nav-name">Maple Dental Center</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#implantologia">Implantología</a></li>
-    <li><a href="#servicios">Atención Integral</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#implantologia" data-i18n="nav.implantologia">Implantología</a></li>
+    <li><a href="#servicios" data-i18n="nav.atencionIntegral">Atención Integral</a></li>
+    <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
+    <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="nav-cta-desktop" target="_blank" rel="noopener">Agendar cita</a>
+  <!-- Selector de idioma (escritorio): mismo componente conceptual que el del
+       menú móvil, solo cambia el tamaño del área táctil entre breakpoints. -->
+  <div class="lang-switch" role="group" aria-label="Selector de idioma">
+    <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+    <span class="lang-sep">|</span>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="nav-cta-desktop" target="_blank" rel="noopener" data-i18n="nav.agendarCita">Agendar cita</a>
   <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
     <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
   </button>
@@ -452,27 +480,34 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 
 <!-- ═══ MENÚ MÓVIL ═══ -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a href="#implantologia">Implantología</a>
-  <a href="#servicios">Atención Integral</a>
-  <a href="#nosotros">Nosotros</a>
-  <a href="#contacto">Contacto</a>
-  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="mm-cta" target="_blank" rel="noopener">📲 Agendar cita</a>
+  <a href="#implantologia" data-i18n="nav.implantologia">Implantología</a>
+  <a href="#servicios" data-i18n="nav.atencionIntegral">Atención Integral</a>
+  <a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a>
+  <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+  <!-- Gemelo móvil del selector de idioma: cada botón cumple el mínimo táctil
+       de 44×44px (.lang-btn--mobile), a diferencia de la versión compacta del header. -->
+  <div class="lang-switch lang-switch--mobile" role="group" aria-label="Selector de idioma">
+    <button type="button" class="lang-btn lang-btn--mobile" data-lang="es" aria-pressed="true">ES</button>
+    <span class="lang-sep">|</span>
+    <button type="button" class="lang-btn lang-btn--mobile" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="mm-cta" target="_blank" rel="noopener">📲 <span data-i18n="nav.agendarCita">Agendar cita</span></a>
 </div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="inicio">
   <div class="hero-content">
-    <div class="hero-badge">🦷 Implantología Avanzada · CDMX</div>
-    <h1 class="hero-title">Tecnología dental<br><em>que se siente natural</em></h1>
-    <p class="hero-desc">Implantología guiada por computadora, diagnóstico 3D y atención integral para toda la familia. Precisión clínica con la calidez de un equipo que conoce tu nombre.</p>
+    <div class="hero-badge" data-i18n="hero.badge">🦷 Implantología Avanzada · CDMX</div>
+    <h1 class="hero-title" data-i18n-html="hero.titleHtml">Tecnología dental<br><em>que se siente natural</em></h1>
+    <p class="hero-desc" data-i18n="hero.desc">Implantología guiada por computadora, diagnóstico 3D y atención integral para toda la familia. Precisión clínica con la calidez de un equipo que conoce tu nombre.</p>
     <div class="hero-ctas">
-      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="btn-primary" target="_blank" rel="noopener">Agendar consulta →</a>
-      <a href="#implantologia" class="btn-ghost">Conocer la tecnología</a>
+      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="btn-primary" target="_blank" rel="noopener" data-i18n="hero.ctaPrimary">Agendar consulta →</a>
+      <a href="#implantologia" class="btn-ghost" data-i18n="hero.ctaGhost">Conocer la tecnología</a>
     </div>
     <div class="hero-stats">
-      <div><span class="hs-num">15+</span><span class="hs-label">Años de experiencia</span></div>
-      <div><span class="hs-num">3K+</span><span class="hs-label">Pacientes atendidos</span></div>
-      <div><span class="hs-num">98%</span><span class="hs-label">Éxito en implantes</span></div>
+      <div><span class="hs-num">15+</span><span class="hs-label" data-i18n="hero.stats.years">Años de experiencia</span></div>
+      <div><span class="hs-num">3K+</span><span class="hs-label" data-i18n="hero.stats.patients">Pacientes atendidos</span></div>
+      <div><span class="hs-num">98%</span><span class="hs-label" data-i18n="hero.stats.success">Éxito en implantes</span></div>
     </div>
   </div>
 
@@ -493,20 +528,20 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 
 <!-- ═══ STRIP ═══ -->
 <div class="strip">
-  <div class="strip-item">🦷 Implantología avanzada</div>
-  <div class="strip-item">🩺 Atención integral</div>
-  <div class="strip-item">😁 Ortodoncia</div>
-  <div class="strip-item">✨ Diseño de sonrisa</div>
-  <div class="strip-item">🔬 Diagnóstico 3D</div>
+  <div class="strip-item" data-i18n="strip.implant">🦷 Implantología avanzada</div>
+  <div class="strip-item" data-i18n="strip.integral">🩺 Atención integral</div>
+  <div class="strip-item" data-i18n="strip.ortho">😁 Ortodoncia</div>
+  <div class="strip-item" data-i18n="strip.smile">✨ Diseño de sonrisa</div>
+  <div class="strip-item" data-i18n="strip.diagnosis">🔬 Diagnóstico 3D</div>
 </div>
 
 <!-- ═══ IMPLANTOLOGÍA — servicio estrella ═══ -->
 <section class="sec" id="implantologia">
   <div class="container">
     <div class="sh">
-      <div class="kicker">Servicio insignia</div>
-      <h2>Implantología guiada por <em>precisión digital</em></h2>
-      <p>Sustituye piezas perdidas con un proceso planificado al milímetro: del diagnóstico 3D a la colocación, todo calculado antes de tocar tu boca.</p>
+      <div class="kicker" data-i18n="implant.kicker">Servicio insignia</div>
+      <h2 data-i18n-html="implant.titleHtml">Implantología guiada por <em>precisión digital</em></h2>
+      <p data-i18n="implant.lead">Sustituye piezas perdidas con un proceso planificado al milímetro: del diagnóstico 3D a la colocación, todo calculado antes de tocar tu boca.</p>
     </div>
 
     <div class="implant-card">
@@ -514,32 +549,32 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
         <div class="implant-steps">
           <div class="implant-step">
             <div class="implant-step-num">1</div>
-            <div><strong>Escaneo y diagnóstico 3D</strong><p>Mapeamos hueso y tejido con tomografía digital antes de cualquier intervención.</p></div>
+            <div><strong data-i18n="implant.steps.0.title">Escaneo y diagnóstico 3D</strong><p data-i18n="implant.steps.0.desc">Mapeamos hueso y tejido con tomografía digital antes de cualquier intervención.</p></div>
           </div>
           <div class="implant-step">
             <div class="implant-step-num">2</div>
-            <div><strong>Planeación computarizada</strong><p>Diseñamos la posición exacta del implante en software especializado.</p></div>
+            <div><strong data-i18n="implant.steps.1.title">Planeación computarizada</strong><p data-i18n="implant.steps.1.desc">Diseñamos la posición exacta del implante en software especializado.</p></div>
           </div>
           <div class="implant-step">
             <div class="implant-step-num">3</div>
-            <div><strong>Colocación guiada</strong><p>Cirugía mínimamente invasiva con guía quirúrgica de precisión milimétrica.</p></div>
+            <div><strong data-i18n="implant.steps.2.title">Colocación guiada</strong><p data-i18n="implant.steps.2.desc">Cirugía mínimamente invasiva con guía quirúrgica de precisión milimétrica.</p></div>
           </div>
           <div class="implant-step">
             <div class="implant-step-num">4</div>
-            <div><strong>Seguimiento y garantía</strong><p>Acompañamiento clínico y garantía extendida sobre el resultado.</p></div>
+            <div><strong data-i18n="implant.steps.3.title">Seguimiento y garantía</strong><p data-i18n="implant.steps.3.desc">Acompañamiento clínico y garantía extendida sobre el resultado.</p></div>
           </div>
         </div>
       </div>
 
       <div>
         <div class="implant-features">
-          <div class="implant-feature-item">🦷 Titanio grado médico</div>
-          <div class="implant-feature-item">🛡️ Garantía extendida</div>
-          <div class="implant-feature-item">🔬 Guía quirúrgica digital</div>
-          <div class="implant-feature-item">✨ Resultado natural</div>
+          <div class="implant-feature-item" data-i18n="implant.features.0">🦷 Titanio grado médico</div>
+          <div class="implant-feature-item" data-i18n="implant.features.1">🛡️ Garantía extendida</div>
+          <div class="implant-feature-item" data-i18n="implant.features.2">🔬 Guía quirúrgica digital</div>
+          <div class="implant-feature-item" data-i18n="implant.features.3">✨ Resultado natural</div>
         </div>
-        <p class="implant-finance">Planes de financiamiento flexibles para que la calidad nunca sea un obstáculo — sin recurrir a descuentos que comprometan el resultado.</p>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+una+valoraci%C3%B3n+de+implantes" class="implant-cta" target="_blank" rel="noopener">Agendar valoración →</a>
+        <p class="implant-finance" data-i18n="implant.finance">Planes de financiamiento flexibles para que la calidad nunca sea un obstáculo — sin recurrir a descuentos que comprometan el resultado.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+una+valoraci%C3%B3n+de+implantes" class="implant-cta" target="_blank" rel="noopener" data-i18n="implant.cta">Agendar valoración →</a>
       </div>
     </div>
 
@@ -547,15 +582,15 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
     <div class="more-treatments">
       <div class="mt-card">
         <div class="mt-icon">😁</div>
-        <div class="mt-name">Ortodoncia</div>
-        <p>Brackets metálicos, zafiro y alineadores invisibles para corregir mordida y alineación.</p>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+la+ortodoncia" target="_blank" rel="noopener">Más información →</a>
+        <div class="mt-name" data-i18n="implant.more.ortho.name">Ortodoncia</div>
+        <p data-i18n="implant.more.ortho.desc">Brackets metálicos, zafiro y alineadores invisibles para corregir mordida y alineación.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+la+ortodoncia" target="_blank" rel="noopener" data-i18n="implant.more.ortho.link">Más información →</a>
       </div>
       <div class="mt-card">
         <div class="mt-icon">✨</div>
-        <div class="mt-name">Diseño de Sonrisa</div>
-        <p>Planeación digital con carillas, coronas y blanqueamiento profesional.</p>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+el+dise%C3%B1o+de+sonrisa" target="_blank" rel="noopener">Más información →</a>
+        <div class="mt-name" data-i18n="implant.more.smile.name">Diseño de Sonrisa</div>
+        <p data-i18n="implant.more.smile.desc">Planeación digital con carillas, coronas y blanqueamiento profesional.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+el+dise%C3%B1o+de+sonrisa" target="_blank" rel="noopener" data-i18n="implant.more.smile.link">Más información →</a>
       </div>
     </div>
   </div>
@@ -565,40 +600,43 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 <section class="sec sec-soft" id="servicios">
   <div class="container">
     <div class="sh">
-      <div class="kicker">Segundo pilar · Atención integral</div>
-      <h2>Cuidado completo para <em>toda la familia</em></h2>
-      <p>Más allá del servicio estrella, cubrimos cada necesidad de salud bucal bajo el mismo estándar de calidad y tecnología.</p>
+      <div class="kicker" data-i18n="atencionIntegral.kicker">Segundo pilar · Atención integral</div>
+      <h2 data-i18n-html="atencionIntegral.titleHtml">Cuidado completo para <em>toda la familia</em></h2>
+      <p data-i18n="atencionIntegral.lead">Más allá del servicio estrella, cubrimos cada necesidad de salud bucal bajo el mismo estándar de calidad y tecnología.</p>
     </div>
     <div class="svc-grid">
+      <!-- Tarjeta de ejemplo: equivalente vanilla de aplicar useTranslation() en
+           una service card. En React sería {t('atencionIntegral.services.0.name')};
+           aquí, data-i18n + el recorrido del DOM en applyTranslations() hace lo mismo. -->
       <div class="svc-card">
         <div class="svc-ico">🦷</div>
-        <div class="svc-name">Limpiezas y Profilaxis</div>
-        <div class="svc-desc">Limpieza dental profunda y retiro de placa bacteriana cada 6 meses para mantener encías sanas.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.0.name">Limpiezas y Profilaxis</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.0.desc">Limpieza dental profunda y retiro de placa bacteriana cada 6 meses para mantener encías sanas.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">⚡</div>
-        <div class="svc-name">Blanqueamiento Dental</div>
-        <div class="svc-desc">Blanqueamiento profesional con luz LED. Resultados visibles desde la primera sesión.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.1.name">Blanqueamiento Dental</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.1.desc">Blanqueamiento profesional con luz LED. Resultados visibles desde la primera sesión.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">🔬</div>
-        <div class="svc-name">Diagnóstico Digital 3D</div>
-        <div class="svc-desc">Radiografías digitales y escaneo 3D para un plan de tratamiento exacto.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.2.name">Diagnóstico Digital 3D</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.2.desc">Radiografías digitales y escaneo 3D para un plan de tratamiento exacto.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">👶</div>
-        <div class="svc-name">Odontopediatría</div>
-        <div class="svc-desc">Atención especializada para niños desde los 2 años, en un ambiente amigable.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.3.name">Odontopediatría</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.3.desc">Atención especializada para niños desde los 2 años, en un ambiente amigable.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">🦿</div>
-        <div class="svc-name">Coronas y Carillas</div>
-        <div class="svc-desc">Restauraciones estéticas en porcelana y zirconia con apariencia natural.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.4.name">Coronas y Carillas</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.4.desc">Restauraciones estéticas en porcelana y zirconia con apariencia natural.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">💊</div>
-        <div class="svc-name">Endodoncia sin Dolor</div>
-        <div class="svc-desc">Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor.</div>
+        <div class="svc-name" data-i18n="atencionIntegral.services.5.name">Endodoncia sin Dolor</div>
+        <div class="svc-desc" data-i18n="atencionIntegral.services.5.desc">Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor.</div>
       </div>
     </div>
   </div>
@@ -699,6 +737,163 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 </div>
 
 <script>
+// ════════════════════════════════════════════════════════════════════════
+// I18N — equivalente vanilla de Context API + hook useTranslation.
+// Sin build step ni dependencias: estado global de idioma + función t() que
+// resuelve claves "punto.punto" contra un diccionario, más applyTranslations()
+// que recorre el DOM una vez por cambio de idioma (el "re-render" que React
+// haría solo). Los mismos diccionarios viven también como es.json / en.json
+// en la raíz del repo, para que un copywriter pueda editarlos sin tocar código.
+// ════════════════════════════════════════════════════════════════════════
+const DICTIONARIES = {
+  es: {
+    nav: {
+      implantologia: "Implantología",
+      atencionIntegral: "Atención Integral",
+      nosotros: "Nosotros",
+      contacto: "Contacto",
+      agendarCita: "Agendar cita",
+    },
+    hero: {
+      badge: "🦷 Implantología Avanzada · CDMX",
+      titleHtml: "Tecnología dental<br><em>que se siente natural</em>",
+      desc: "Implantología guiada por computadora, diagnóstico 3D y atención integral para toda la familia. Precisión clínica con la calidez de un equipo que conoce tu nombre.",
+      ctaPrimary: "Agendar consulta →",
+      ctaGhost: "Conocer la tecnología",
+      stats: { years: "Años de experiencia", patients: "Pacientes atendidos", success: "Éxito en implantes" },
+    },
+    strip: {
+      implant: "🦷 Implantología avanzada",
+      integral: "🩺 Atención integral",
+      ortho: "😁 Ortodoncia",
+      smile: "✨ Diseño de sonrisa",
+      diagnosis: "🔬 Diagnóstico 3D",
+    },
+    implant: {
+      kicker: "Servicio insignia",
+      titleHtml: "Implantología guiada por <em>precisión digital</em>",
+      lead: "Sustituye piezas perdidas con un proceso planificado al milímetro: del diagnóstico 3D a la colocación, todo calculado antes de tocar tu boca.",
+      steps: [
+        { title: "Escaneo y diagnóstico 3D", desc: "Mapeamos hueso y tejido con tomografía digital antes de cualquier intervención." },
+        { title: "Planeación computarizada", desc: "Diseñamos la posición exacta del implante en software especializado." },
+        { title: "Colocación guiada", desc: "Cirugía mínimamente invasiva con guía quirúrgica de precisión milimétrica." },
+        { title: "Seguimiento y garantía", desc: "Acompañamiento clínico y garantía extendida sobre el resultado." },
+      ],
+      features: ["🦷 Titanio grado médico", "🛡️ Garantía extendida", "🔬 Guía quirúrgica digital", "✨ Resultado natural"],
+      finance: "Planes de financiamiento flexibles para que la calidad nunca sea un obstáculo — sin recurrir a descuentos que comprometan el resultado.",
+      cta: "Agendar valoración →",
+      more: {
+        ortho: { name: "Ortodoncia", desc: "Brackets metálicos, zafiro y alineadores invisibles para corregir mordida y alineación.", link: "Más información →" },
+        smile: { name: "Diseño de Sonrisa", desc: "Planeación digital con carillas, coronas y blanqueamiento profesional.", link: "Más información →" },
+      },
+    },
+    atencionIntegral: {
+      kicker: "Segundo pilar · Atención integral",
+      titleHtml: "Cuidado completo para <em>toda la familia</em>",
+      lead: "Más allá del servicio estrella, cubrimos cada necesidad de salud bucal bajo el mismo estándar de calidad y tecnología.",
+      services: [
+        { name: "Limpiezas y Profilaxis", desc: "Limpieza dental profunda y retiro de placa bacteriana cada 6 meses para mantener encías sanas." },
+        { name: "Blanqueamiento Dental", desc: "Blanqueamiento profesional con luz LED. Resultados visibles desde la primera sesión." },
+        { name: "Diagnóstico Digital 3D", desc: "Radiografías digitales y escaneo 3D para un plan de tratamiento exacto." },
+        { name: "Odontopediatría", desc: "Atención especializada para niños desde los 2 años, en un ambiente amigable." },
+        { name: "Coronas y Carillas", desc: "Restauraciones estéticas en porcelana y zirconia con apariencia natural." },
+        { name: "Endodoncia sin Dolor", desc: "Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor." },
+      ],
+    },
+  },
+  en: {
+    nav: {
+      implantologia: "Implants",
+      atencionIntegral: "Comprehensive Care",
+      nosotros: "About Us",
+      contacto: "Contact",
+      agendarCita: "Book appointment",
+    },
+    hero: {
+      badge: "🦷 Advanced Implantology · Mexico City",
+      titleHtml: "Dental technology<br><em>that feels natural</em>",
+      desc: "Computer-guided implantology, 3D diagnostics, and comprehensive care for the whole family. Clinical precision with the warmth of a team that knows your name.",
+      ctaPrimary: "Book a consultation →",
+      ctaGhost: "Discover the technology",
+      stats: { years: "Years of experience", patients: "Patients treated", success: "Implant success rate" },
+    },
+    strip: {
+      implant: "🦷 Advanced implantology",
+      integral: "🩺 Comprehensive care",
+      ortho: "😁 Orthodontics",
+      smile: "✨ Smile design",
+      diagnosis: "🔬 3D diagnostics",
+    },
+    implant: {
+      kicker: "Signature service",
+      titleHtml: "Implantology guided by <em>digital precision</em>",
+      lead: "Replace missing teeth with a millimeter-planned process: from 3D diagnosis to placement, everything is calculated before we ever touch your mouth.",
+      steps: [
+        { title: "3D scanning and diagnosis", desc: "We map bone and tissue with digital tomography before any procedure." },
+        { title: "Computerized planning", desc: "We design the exact implant position using specialized software." },
+        { title: "Guided placement", desc: "Minimally invasive surgery with a millimeter-precision surgical guide." },
+        { title: "Follow-up and warranty", desc: "Clinical follow-up and extended warranty on the result." },
+      ],
+      features: ["🦷 Medical-grade titanium", "🛡️ Extended warranty", "🔬 Digital surgical guide", "✨ Natural-looking result"],
+      finance: "Flexible financing plans so quality is never the obstacle — without resorting to discounts that compromise the result.",
+      cta: "Book an implant assessment →",
+      more: {
+        ortho: { name: "Orthodontics", desc: "Metal, sapphire, and clear aligners to correct bite and alignment.", link: "Learn more →" },
+        smile: { name: "Smile Design", desc: "Digital planning with veneers, crowns, and professional whitening.", link: "Learn more →" },
+      },
+    },
+    atencionIntegral: {
+      kicker: "Second pillar · Comprehensive care",
+      titleHtml: "Complete care for <em>the whole family</em>",
+      lead: "Beyond our signature service, we cover every oral health need under the same standard of quality and technology.",
+      services: [
+        { name: "Cleanings & Prophylaxis", desc: "Deep dental cleaning and plaque removal every 6 months to keep gums healthy." },
+        { name: "Teeth Whitening", desc: "Professional LED whitening. Visible results from the very first session." },
+        { name: "Digital 3D Diagnostics", desc: "Digital X-rays and 3D scanning for an exact treatment plan." },
+        { name: "Pediatric Dentistry", desc: "Specialized care for children from age 2, in a friendly environment." },
+        { name: "Crowns & Veneers", desc: "Aesthetic restorations in porcelain and zirconia with a natural look." },
+        { name: "Pain-Free Root Canals", desc: "Root canal treatment with cutting-edge technology — we save your tooth, pain-free." },
+      ],
+    },
+  },
+};
+
+const i18n = (() => {
+  // localStorage persiste la elección del usuario entre visitas; si nunca eligió,
+  // se infiere del idioma del navegador — igual que haría un LanguageDetector de i18next.
+  let lang = localStorage.getItem('maple-lang') || (navigator.language.toLowerCase().startsWith('en') ? 'en' : 'es');
+
+  function t(key) {
+    const value = key.split('.').reduce((node, part) => node?.[part], DICTIONARIES[lang]);
+    return value ?? key;
+  }
+
+  function applyTranslations() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
+    // data-i18n-html: para claves cuyo valor incluye markup propio (<br>, <em>) —
+    // contenido editorial fijo nuestro, no input de usuario, así que innerHTML es seguro aquí.
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.setAttribute('aria-pressed', btn.dataset.lang === lang));
+  }
+
+  function setLang(next) {
+    if (next === lang) return;
+    lang = next;
+    localStorage.setItem('maple-lang', lang);
+    applyTranslations();
+  }
+
+  return { t, setLang, applyTranslations, getLang: () => lang };
+})();
+
+// Un solo listener delegado cubre los botones ES|EN del header Y los del menú móvil.
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => i18n.setLang(btn.dataset.lang));
+});
+
+i18n.applyTranslations();
+
 // ── Menú móvil: overlay de pantalla completa, bloquea el scroll del body
 // mientras está abierto y se cierra con Escape o al tocar un link ──
 const burger = document.getElementById('navBurger');

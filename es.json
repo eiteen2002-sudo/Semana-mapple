@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "implantologia": "Implantología",
+    "atencionIntegral": "Atención Integral",
+    "nosotros": "Nosotros",
+    "contacto": "Contacto",
+    "agendarCita": "Agendar cita"
+  },
+  "hero": {
+    "badge": "🦷 Implantología Avanzada · CDMX",
+    "titleHtml": "Tecnología dental<br><em>que se siente natural</em>",
+    "desc": "Implantología guiada por computadora, diagnóstico 3D y atención integral para toda la familia. Precisión clínica con la calidez de un equipo que conoce tu nombre.",
+    "ctaPrimary": "Agendar consulta →",
+    "ctaGhost": "Conocer la tecnología",
+    "stats": {
+      "years": "Años de experiencia",
+      "patients": "Pacientes atendidos",
+      "success": "Éxito en implantes"
+    }
+  },
+  "strip": {
+    "implant": "🦷 Implantología avanzada",
+    "integral": "🩺 Atención integral",
+    "ortho": "😁 Ortodoncia",
+    "smile": "✨ Diseño de sonrisa",
+    "diagnosis": "🔬 Diagnóstico 3D"
+  },
+  "implant": {
+    "kicker": "Servicio insignia",
+    "titleHtml": "Implantología guiada por <em>precisión digital</em>",
+    "lead": "Sustituye piezas perdidas con un proceso planificado al milímetro: del diagnóstico 3D a la colocación, todo calculado antes de tocar tu boca.",
+    "steps": [
+      { "title": "Escaneo y diagnóstico 3D", "desc": "Mapeamos hueso y tejido con tomografía digital antes de cualquier intervención." },
+      { "title": "Planeación computarizada", "desc": "Diseñamos la posición exacta del implante en software especializado." },
+      { "title": "Colocación guiada", "desc": "Cirugía mínimamente invasiva con guía quirúrgica de precisión milimétrica." },
+      { "title": "Seguimiento y garantía", "desc": "Acompañamiento clínico y garantía extendida sobre el resultado." }
+    ],
+    "features": [
+      "🦷 Titanio grado médico",
+      "🛡️ Garantía extendida",
+      "🔬 Guía quirúrgica digital",
+      "✨ Resultado natural"
+    ],
+    "finance": "Planes de financiamiento flexibles para que la calidad nunca sea un obstáculo — sin recurrir a descuentos que comprometan el resultado.",
+    "cta": "Agendar valoración →",
+    "more": {
+      "ortho": { "name": "Ortodoncia", "desc": "Brackets metálicos, zafiro y alineadores invisibles para corregir mordida y alineación.", "link": "Más información →" },
+      "smile": { "name": "Diseño de Sonrisa", "desc": "Planeación digital con carillas, coronas y blanqueamiento profesional.", "link": "Más información →" }
+    }
+  },
+  "atencionIntegral": {
+    "kicker": "Segundo pilar · Atención integral",
+    "titleHtml": "Cuidado completo para <em>toda la familia</em>",
+    "lead": "Más allá del servicio estrella, cubrimos cada necesidad de salud bucal bajo el mismo estándar de calidad y tecnología.",
+    "services": [
+      { "name": "Limpiezas y Profilaxis", "desc": "Limpieza dental profunda y retiro de placa bacteriana cada 6 meses para mantener encías sanas." },
+      { "name": "Blanqueamiento Dental", "desc": "Blanqueamiento profesional con luz LED. Resultados visibles desde la primera sesión." },
+      { "name": "Diagnóstico Digital 3D", "desc": "Radiografías digitales y escaneo 3D para un plan de tratamiento exacto." },
+      { "name": "Odontopediatría", "desc": "Atención especializada para niños desde los 2 años, en un ambiente amigable." },
+      { "name": "Coronas y Carillas", "desc": "Restauraciones estéticas en porcelana y zirconia con apariencia natural." },
+      { "name": "Endodoncia sin Dolor", "desc": "Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor." }
+    ]
+  }
+}

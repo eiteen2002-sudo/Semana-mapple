@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "implantologia": "Implants",
+    "atencionIntegral": "Comprehensive Care",
+    "nosotros": "About Us",
+    "contacto": "Contact",
+    "agendarCita": "Book appointment"
+  },
+  "hero": {
+    "badge": "🦷 Advanced Implantology · Mexico City",
+    "titleHtml": "Dental technology<br><em>that feels natural</em>",
+    "desc": "Computer-guided implantology, 3D diagnostics, and comprehensive care for the whole family. Clinical precision with the warmth of a team that knows your name.",
+    "ctaPrimary": "Book a consultation →",
+    "ctaGhost": "Discover the technology",
+    "stats": {
+      "years": "Years of experience",
+      "patients": "Patients treated",
+      "success": "Implant success rate"
+    }
+  },
+  "strip": {
+    "implant": "🦷 Advanced implantology",
+    "integral": "🩺 Comprehensive care",
+    "ortho": "😁 Orthodontics",
+    "smile": "✨ Smile design",
+    "diagnosis": "🔬 3D diagnostics"
+  },
+  "implant": {
+    "kicker": "Signature service",
+    "titleHtml": "Implantology guided by <em>digital precision</em>",
+    "lead": "Replace missing teeth with a millimeter-planned process: from 3D diagnosis to placement, everything is calculated before we ever touch your mouth.",
+    "steps": [
+      { "title": "3D scanning and diagnosis", "desc": "We map bone and tissue with digital tomography before any procedure." },
+      { "title": "Computerized planning", "desc": "We design the exact implant position using specialized software." },
+      { "title": "Guided placement", "desc": "Minimally invasive surgery with a millimeter-precision surgical guide." },
+      { "title": "Follow-up and warranty", "desc": "Clinical follow-up and extended warranty on the result." }
+    ],
+    "features": [
+      "🦷 Medical-grade titanium",
+      "🛡️ Extended warranty",
+      "🔬 Digital surgical guide",
+      "✨ Natural-looking result"
+    ],
+    "finance": "Flexible financing plans so quality is never the obstacle — without resorting to discounts that compromise the result.",
+    "cta": "Book an implant assessment →",
+    "more": {
+      "ortho": { "name": "Orthodontics", "desc": "Metal, sapphire, and clear aligners to correct bite and alignment.", "link": "Learn more →" },
+      "smile": { "name": "Smile Design", "desc": "Digital planning with veneers, crowns, and professional whitening.", "link": "Learn more →" }
+    }
+  },
+  "atencionIntegral": {
+    "kicker": "Second pillar · Comprehensive care",
+    "titleHtml": "Complete care for <em>the whole family</em>",
+    "lead": "Beyond our signature service, we cover every oral health need under the same standard of quality and technology.",
+    "services": [
+      { "name": "Cleanings & Prophylaxis", "desc": "Deep dental cleaning and plaque removal every 6 months to keep gums healthy." },
+      { "name": "Teeth Whitening", "desc": "Professional LED whitening. Visible results from the very first session." },
+      { "name": "Digital 3D Diagnostics", "desc": "Digital X-rays and 3D scanning for an exact treatment plan." },
+      { "name": "Pediatric Dentistry", "desc": "Specialized care for children from age 2, in a friendly environment." },
+      { "name": "Crowns & Veneers", "desc": "Aesthetic restorations in porcelain and zirconia with a natural look." },
+      { "name": "Pain-Free Root Canals", "desc": "Root canal treatment with cutting-edge technology — we save your tooth, pain-free." }
+    ]
+  }
+}
