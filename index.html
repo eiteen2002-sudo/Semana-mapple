@@ -2,638 +2,662 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maple Dental Centre · CDMX Zona Sur</title>
+<!-- viewport-fit=cover habilita env(safe-area-inset-*) para el CTA sticky en iPhones con notch -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07181A">
+<meta name="description" content="Maple Dental Center · Clínica dental premium especializada en implantología guiada por tecnología 3D y atención integral en la zona sur de CDMX.">
+<title>Maple Dental Center · Implantología Avanzada · CDMX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ════════════════════════════════════════════════════════════════════════
+   SISTEMA DE DISEÑO — Teal + Naranja
+   Reemplaza la antigua paleta roja/dorada (modelo "promoción/descuento")
+   por una identidad premium-tecnológica: teal = confianza clínica/precisión,
+   naranja = acción/calidez humana. Tipografía Space Grotesk (titulares,
+   carácter técnico-geométrico) + Plus Jakarta Sans (cuerpo, alta legibilidad
+   en pantallas pequeñas).
+   ════════════════════════════════════════════════════════════════════════ */
 :root {
-  --red:   #9B1C2E;
-  --red2:  #C0273D;
-  --red3:  #6B1020;
-  --gold:  #C8963E;
-  --gold2: #E5B86A;
-  --dark:  #0D0D0D;
-  --ink:   #1C1C1C;
-  --gray:  #5A5A5A;
-  --mist:  #E8E4DF;
-  --cream: #FAF7F2;
+  --teal-900: #06302E;
+  --teal-800: #0A4341;
+  --teal-700: #0E5E5A;
+  --teal:     #0F9C8F;
+  --teal-400: #2DD4BF;
+  --teal-100: #E3F8F4;
+
+  --orange:     #FF7A33;
+  --orange-600: #E8601C;
+  --orange-100: #FFE8D8;
+
+  --ink:   #0B1A19;
+  --gray:  #5C6E6C;
+  --mist:  #DEEAE8;
+  --cream: #F7FBFA;
+  --dark:  #07181A;
+  --white: #FFFFFF;
+
+  --font-head: 'Space Grotesk', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* Mínimo recomendado por Apple/Google HIG para objetivos táctiles */
+  --tap-min: 44px;
 }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   background: var(--cream);
   color: var(--ink);
-  line-height: 1.65;
+  /* Tipografía base ligeramente fluida: nunca obliga a hacer zoom en pantallas chicas */
+  font-size: clamp(15px, 0.5vw + 14px, 16px);
+  line-height: 1.6;
   overflow-x: hidden;
+  /* Reserva el espacio del CTA sticky en móvil para que no tape contenido */
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
+@media (min-width: 900px) { body { padding-bottom: 0; } }
 
-/* ── UTILITY ── */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 760px) { .container { padding: 0 32px; } }
+
 .kicker {
-  font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase;
-  color: var(--red); font-weight: 600; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--teal); font-weight: 700; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
 }
-.kicker::before { content:''; display:block; width:22px; height:1px; background:var(--red); }
-.kicker.light { color: var(--gold); }
-.kicker.light::before { background: var(--gold); }
+.kicker::before { content:''; width: 18px; height: 2px; background: var(--orange); border-radius: 2px; }
+.kicker.light { color: var(--teal-400); }
+.kicker.light::before { background: var(--orange); }
 
-/* ── NAV ── */
+/* ── NAV (mobile-first: solo logo + botón hamburguesa de 44×44) ── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 68px;
-  background: rgba(13,13,13,0.94);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  height: 60px; padding: 0 16px;
+  background: rgba(7,24,26,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
-.nav-brand {
-  display: flex; align-items: center; gap: 10px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 700; color: white; text-decoration: none;
+.nav-brand { display: flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; }
+.nav-mark {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-400));
+  display: flex; align-items: center; justify-content: center; font-size: 15px;
 }
-.nav-leaf {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--red2);
-  display: flex; align-items: center; justify-content: center; font-size: 16px;
+.nav-name { font-family: var(--font-head); font-weight: 700; font-size: 14.5px; }
+
+.nav-links { display: none; list-style: none; }
+.nav-cta-desktop { display: none; }
+
+/* Botón hamburguesa: 44×44px de área táctil real, aunque el ícono visual sea más pequeño */
+.nav-burger {
+  width: var(--tap-min); height: var(--tap-min);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 0;
 }
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-.nav-links a {
-  font-size: 12px; font-weight: 500; letter-spacing: 0.3px;
-  color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
-}
-.nav-links a:hover { color: white; }
-.nav-cta {
-  padding: 9px 20px; background: var(--red); border-radius: 8px;
-  font-size: 12px; font-weight: 700; color: white; text-decoration: none;
-  transition: background 0.2s;
-}
-.nav-cta:hover { background: var(--red2); }
-.nav-toggle {
-  display: none; background: none; border: none; color: white;
-  font-size: 22px; cursor: pointer; padding: 4px;
+.burger-line { width: 21px; height: 2px; background: #fff; border-radius: 2px; transition: transform .25s, opacity .25s; }
+.nav-burger.is-active .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.is-active .burger-line:nth-child(2) { opacity: 0; }
+.nav-burger.is-active .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (min-width: 900px) {
+  .nav { padding: 0 40px; }
+  .nav-burger { display: none; }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { font-size: 12px; font-weight: 600; letter-spacing: 0.3px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta-desktop {
+    display: inline-flex; padding: 9px 18px; background: var(--orange); border-radius: 9px;
+    font-size: 12px; font-weight: 700; color: #fff; text-decoration: none; transition: background .2s;
+  }
+  .nav-cta-desktop:hover { background: var(--orange-600); }
 }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
+/* ── MENÚ MÓVIL — overlay de pantalla completa, no un dropdown que tape el hero ── */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 600;
   background: var(--dark);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex; flex-direction: column;
+  padding: 88px 24px 32px;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+}
+.mobile-menu.is-open { transform: translateX(0); }
+.mobile-menu a {
+  display: flex; align-items: center;
+  min-height: 56px; /* objetivo táctil generoso, fácil de leer y presionar de un vistazo */
+  font-family: var(--font-head); font-size: 21px; font-weight: 600;
+  color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mm-cta {
+  margin-top: 24px; min-height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--orange); color: #fff; border-radius: 14px;
+  font-weight: 700; font-size: 15px; text-decoration: none; border: none;
+}
+@media (min-width: 900px) { .mobile-menu { display: none; } }
+
+/* ── HERO (mobile-first: una columna, visual debajo del texto) ── */
+.hero {
+  background: var(--dark);
+  padding: 88px 20px 40px;
   position: relative; overflow: hidden;
 }
 .hero::before {
-  content:''; position: absolute; inset: 0; pointer-events: none;
+  content: ''; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 80% at 72% 50%, rgba(155,28,46,0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 8%  90%, rgba(107,16,32,0.15) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 60% at 80% 10%, rgba(15,156,143,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 5% 95%, rgba(255,122,51,0.10) 0%, transparent 60%);
 }
-.hero-text {
-  position: relative; z-index: 10;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 48px 80px 64px;
-}
+.hero-content { position: relative; z-index: 5; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(200,150,62,0.12); border: 1px solid rgba(200,150,62,0.28);
-  border-radius: 100px; padding: 7px 16px; margin-bottom: 26px; width: fit-content;
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold2); font-weight: 600;
+  background: rgba(45,212,191,0.12); border: 1px solid rgba(45,212,191,0.28);
+  border-radius: 100px; padding: 6px 14px; margin-bottom: 22px;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--teal-400); font-weight: 700;
 }
-.hero-badge::before {
-  content:''; width:6px; height:6px; border-radius:50%;
-  background: var(--gold2); animation: blink 2s infinite;
-}
+.hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background: var(--orange); animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
 
+/* clamp() = tipografía fluida: el titular escala suavemente entre 32px (320px de ancho)
+   y 64px (escritorio) sin saltos brutales ni necesidad de zoom del usuario */
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 5.5vw, 72px);
-  font-weight: 700; line-height: 1.02; color: white; margin-bottom: 22px;
+  font-family: var(--font-head);
+  font-size: clamp(32px, 8vw, 64px);
+  font-weight: 700; line-height: 1.05; color: #fff; margin-bottom: 16px;
 }
-.hero-title em { color: var(--gold2); font-style: italic; }
-
+.hero-title em { color: var(--teal-400); font-style: normal; }
 .hero-desc {
-  font-size: 15px; color: rgba(255,255,255,0.5);
-  max-width: 440px; line-height: 1.8; font-weight: 300; margin-bottom: 36px;
+  font-size: clamp(14.5px, 3.4vw, 17px);
+  color: rgba(255,255,255,0.58); max-width: 540px; line-height: 1.7; margin-bottom: 28px;
 }
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
 
+.hero-ctas { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
 .btn-primary {
-  padding: 13px 24px; background: var(--red); border-radius: 10px;
-  font-size: 13px; font-weight: 700; color: white; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+  min-height: 52px; padding: 0 22px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--orange); border-radius: 14px;
+  font-size: 15px; font-weight: 700; color: #fff; text-decoration: none;
+  transition: background .2s;
 }
-.btn-primary:hover { background: var(--red2); transform: translateY(-2px); }
+.btn-primary:hover { background: var(--orange-600); }
 .btn-ghost {
-  padding: 13px 24px; background: transparent;
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
-  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
-  text-decoration: none; transition: all 0.2s;
+  min-height: 52px; padding: 0 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1.5px solid rgba(255,255,255,0.22); border-radius: 14px;
+  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); text-decoration: none;
+  transition: all .2s;
 }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: white; }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
 
-.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 380px; }
-.hs-num {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 30px; color: var(--gold2); line-height: 1;
-}
-.hs-label { font-size: 11px; color: rgba(255,255,255,0.32); margin-top: 4px; line-height: 1.3; }
+.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 380px; }
+.hs-num { display: block; font-family: var(--font-head); font-size: 24px; font-weight: 700; color: var(--teal-400); line-height: 1; }
+.hs-label { display: block; font-size: 10.5px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.3; }
 
-/* ── 3D CANVAS ── */
-.hero-model {
-  position: relative; z-index: 10;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+/* Visual del hero: caja cuadrada centrada en móvil; el fallback CSS se pinta
+   instantáneamente (sin esperar red ni WebGL), clave para "carga muy rápida" */
+.hero-visual { position: relative; margin-top: 32px; aspect-ratio: 1/1; max-width: 280px; margin-inline: auto; z-index: 5; }
+.hero-fallback {
+  position: absolute; inset: 0; border-radius: 26px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
-#toothCanvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  cursor: grab;
+.hf-glow { position: absolute; width: 150px; height: 150px; border-radius: 50%; filter: blur(14px); opacity: .55; animation: hfFloat 6s ease-in-out infinite; }
+.hf-glow.teal { background: var(--teal-400); top: -40px; left: -30px; }
+.hf-glow.orange { background: var(--orange); bottom: -40px; right: -30px; animation-delay: -3s; }
+@keyframes hfFloat { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-14px); } }
+.hf-icon { font-size: 58px; position: relative; z-index: 2; filter: drop-shadow(0 8px 22px rgba(0,0,0,.45)); }
+.hf-badge {
+  position: absolute; font-size: 10.5px; font-weight: 700; z-index: 3;
+  background: rgba(7,24,26,0.88); color: #fff; padding: 6px 11px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.14); white-space: nowrap;
 }
-#toothCanvas:active { cursor: grabbing; }
+.hf-badge.b1 { top: 12px; right: 10px; }
+.hf-badge.b2 { bottom: 12px; left: 10px; }
+
+.hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 26px; cursor: grab; }
+.hero-canvas[hidden] { display: none; }
 .model-hint {
-  position: absolute; bottom: 28px;
-  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.2); pointer-events: none;
+  position: absolute; bottom: -26px; left: 0; right: 0; text-align: center;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.22);
 }
 
-/* ── STRIP ── */
+@media (min-width: 900px) {
+  .hero { padding: 0; min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; }
+  .hero-content { padding: 120px 0 60px 64px; }
+  .hero-ctas { flex-direction: row; flex-wrap: wrap; }
+  .btn-primary, .btn-ghost { min-height: 50px; }
+  .hero-visual { margin-top: 0; max-width: none; aspect-ratio: auto; height: 100%; }
+}
+
+/* ── STRIP — tira horizontal con scroll-snap en móvil: evita que 5 chips se
+   amontonen en varias líneas y empujen el contenido hacia abajo ── */
 .strip {
-  background: var(--red3);
-  display: flex; flex-wrap: wrap;
+  background: var(--teal-900);
+  display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
 }
+.strip::-webkit-scrollbar { display: none; }
 .strip-item {
-  padding: 14px 28px; font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7);
-  border-right: 1px solid rgba(255,255,255,0.1);
+  flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap;
+  padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.72); border-right: 1px solid rgba(255,255,255,0.08);
 }
+@media (min-width: 900px) { .strip { overflow: visible; justify-content: center; flex-wrap: wrap; } }
 
-/* ── SECTION HEADER ── */
-.sec { padding: 88px 0; }
-.sec-dark { background: var(--dark); }
-.sec-soft { background: #F5F1EC; }
+/* ── SECCIONES ── */
+.sec { padding: 56px 0; }
+.sec-soft { background: #F1F8F7; }
+.sec-dark { background: var(--dark); position: relative; overflow: hidden; }
+@media (min-width: 900px) { .sec { padding: 92px 0; } }
 
-.sh { text-align: center; max-width: 680px; margin: 0 auto 56px; }
-.sh .kicker { justify-content: center; }
-.sh .kicker::before { display: none; }
+.sh { max-width: 640px; margin-bottom: 30px; }
 .sh h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.1;
-  color: var(--ink); margin-bottom: 14px;
+  font-family: var(--font-head);
+  font-size: clamp(26px, 6.5vw, 44px); font-weight: 700; line-height: 1.1;
+  color: var(--ink); margin-bottom: 12px;
 }
-.sh h2 em { color: var(--red); font-style: italic; }
-.sh h2.light { color: white; }
-.sh h2.light em { color: var(--gold2); }
-.sh p { font-size: 15px; color: var(--gray); line-height: 1.75; font-weight: 300; }
+.sh h2 em { color: var(--teal); font-style: normal; }
+.sh h2.light { color: #fff; }
+.sh h2.light em { color: var(--teal-400); }
+.sh p { font-size: clamp(13.5px, 2.6vw, 15px); color: var(--gray); line-height: 1.7; }
 .sh p.light { color: rgba(255,255,255,0.45); }
+@media (min-width: 900px) { .sh { margin: 0 auto 48px; text-align: center; } .sh .kicker { justify-content: center; } .sh .kicker::before { display: none; } }
 
-/* ── TREATMENTS ── */
-.tx-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+/* ── IMPLANTOLOGÍA AVANZADA — servicio estrella ──
+   Tarjeta oscura sobre fondo claro de la sección: el contraste de valor
+   hace que el ojo aterrice aquí primero, reforzando que este es EL servicio
+   insignia de la clínica (no una promoción más entre varias). */
+.implant-card {
+  background: linear-gradient(160deg, var(--teal-900), var(--teal-800));
+  border-radius: 24px; padding: 30px 20px; color: #fff;
+  position: relative; overflow: hidden; margin-top: 8px;
+  display: flex; flex-direction: column; gap: 26px;
 }
-.tx-card {
-  background: white; border-radius: 20px; padding: 32px 28px;
-  border: 1px solid var(--mist); box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+.implant-card::before {
+  content: ''; position: absolute; top: -100px; right: -80px; width: 260px; height: 260px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(255,122,51,0.22), transparent 70%); pointer-events: none;
 }
-.tx-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.10); }
-.tx-card.featured {
-  grid-column: span 2;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--red3) 100%);
-  border-color: var(--red2); color: white;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+.implant-steps { display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 1; }
+.implant-step { display: flex; gap: 14px; }
+.implant-step-num {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: var(--teal-400); color: var(--teal-900);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 700; font-size: 13px;
 }
-.tx-icon { font-size: 34px; margin-bottom: 14px; }
-.tx-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
-}
-.tx-card.featured .tx-name { color: white; }
-.tx-desc { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 14px; }
-.tx-card.featured .tx-desc { color: rgba(255,255,255,0.6); }
-.tx-price {
-  font-family: 'Bebas Neue', cursive; font-size: 22px; color: var(--red); margin-bottom: 4px;
-}
-.tx-card.featured .tx-price { color: var(--gold2); }
-.tx-msi { font-size: 11px; color: var(--gray); margin-bottom: 18px; }
-.tx-card.featured .tx-msi { color: rgba(255,255,255,0.4); }
-.tx-btn {
-  display: inline-block; padding: 10px 20px; border-radius: 8px;
-  font-size: 12px; font-weight: 700; text-decoration: none;
-  background: var(--red); color: white; transition: background 0.2s;
-}
-.tx-card.featured .tx-btn { background: var(--gold); }
-.tx-card.featured .tx-btn:hover { background: var(--gold2); }
-.tx-btn:hover { background: var(--red2); }
+.implant-step strong { display: block; font-size: 14.5px; margin-bottom: 3px; }
+.implant-step p { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.55; }
 
-.feat-stats { display: flex; flex-direction: column; gap: 14px; }
-.feat-stat {
-  background: rgba(255,255,255,0.06); border-radius: 12px; padding: 18px 20px;
-  border: 1px solid rgba(255,255,255,0.08);
+.implant-features { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 18px; position: relative; z-index: 1; }
+.implant-feature-item {
+  display: flex; gap: 7px; align-items: flex-start; font-size: 12px; color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.06); border-radius: 10px; padding: 10px 11px; line-height: 1.4;
 }
-.feat-stat-n {
-  font-family: 'Bebas Neue', cursive; font-size: 32px; color: var(--gold2); line-height: 1;
-}
-.feat-stat-l { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+.implant-finance { font-size: 12.5px; color: rgba(255,255,255,0.48); margin-bottom: 18px; line-height: 1.6; position: relative; z-index: 1; }
 
-/* ── SERVICES ── */
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+/* CTA ancho completo en móvil: el pulgar no falla, no hay que apuntar */
+.implant-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 52px; width: 100%; background: var(--orange); color: #fff;
+  border-radius: 13px; font-weight: 700; font-size: 14px; text-decoration: none;
+  position: relative; z-index: 1; transition: background .2s;
+}
+.implant-cta:hover { background: var(--orange-600); }
+
+@media (min-width: 900px) {
+  .implant-card { flex-direction: row; padding: 48px; gap: 48px; align-items: center; }
+  .implant-card > div { flex: 1; }
+  .implant-cta { width: auto; padding: 0 30px; }
+}
+
+.more-treatments { margin-top: 18px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+.mt-card { background: #fff; border: 1px solid var(--mist); border-radius: 16px; padding: 22px; }
+.mt-icon { font-size: 24px; margin-bottom: 8px; }
+.mt-name { font-family: var(--font-head); font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 6px; }
+.mt-card p { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 10px; }
+.mt-card a { font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; }
+@media (min-width: 760px) { .more-treatments { grid-template-columns: 1fr 1fr; } }
+
+/* ── SERVICIOS GENERALES — segundo pilar de marca: "atención integral" ── */
+.svc-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
 .svc-card {
-  background: white; border-radius: 16px; padding: 28px 24px;
-  border: 1px solid var(--mist); transition: all 0.2s;
-  position: relative; overflow: hidden;
+  background: #fff; border-radius: 16px; padding: 22px 20px;
+  border: 1px solid var(--mist); position: relative; overflow: hidden;
 }
 .svc-card::after {
-  content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--orange));
+  transform: scaleX(0); transform-origin: left; transition: transform .3s;
 }
 .svc-card:hover::after { transform: scaleX(1); }
-.svc-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-3px); }
 .svc-ico {
-  width: 50px; height: 50px; border-radius: 12px;
-  background: rgba(155,28,46,0.08);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 16px;
+  width: 46px; height: 46px; border-radius: 11px; background: var(--teal-100);
+  display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px;
 }
-.svc-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
-}
-.svc-desc { font-size: 13px; color: var(--gray); line-height: 1.65; }
+.svc-name { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.svc-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+@media (min-width: 760px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* ── WHY ── */
-.why-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  position: relative; z-index: 5;
+/* ── POR QUÉ MAPLE (dark) ── */
+.sec-dark::before {
+  content: ''; position: absolute; top: -120px; right: -100px; width: 480px; height: 480px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(255,122,51,0.09), transparent 70%); pointer-events: none;
 }
-.why-text h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
-  color: white; line-height: 1.1; margin-bottom: 20px;
-}
-.why-text h2 em { color: var(--gold2); font-style: italic; }
-.why-text p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 32px; }
-.why-list { display: flex; flex-direction: column; gap: 14px; }
+.why-grid { display: grid; grid-template-columns: 1fr; gap: 36px; position: relative; z-index: 5; }
+.why-list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
 .why-item { display: flex; gap: 12px; align-items: flex-start; }
 .why-chk {
-  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-  background: var(--red); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; margin-top: 1px;
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+  background: var(--orange); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
 }
-.why-item-t { font-size: 14px; color: rgba(255,255,255,0.68); line-height: 1.55; }
-.why-item-t strong { color: white; }
+.why-item-t { font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.55; }
+.why-item-t strong { color: #fff; }
 
-.why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.why-stat {
-  background: rgba(255,255,255,0.05); border-radius: 16px; padding: 28px 22px;
-  border: 1px solid rgba(255,255,255,0.07); text-align: center;
-}
-.why-stat-n {
-  font-family: 'Bebas Neue', cursive; font-size: 52px;
-  color: var(--gold2); line-height: 1; margin-bottom: 8px;
-}
-.why-stat-l { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.4; }
+.why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.why-stat { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px 18px; border: 1px solid rgba(255,255,255,0.07); text-align: center; }
+.why-stat-n { font-family: var(--font-head); font-size: 38px; font-weight: 700; color: var(--teal-400); line-height: 1; margin-bottom: 6px; }
+.why-stat-l { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.4; }
 
-/* ── CONTACT ── */
-.ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.ct-info h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; font-weight: 700; color: var(--ink); margin-bottom: 30px;
+@media (min-width: 900px) {
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 }
-.ct-info h2 em { color: var(--red); font-style: italic; }
-.ct-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
-.ct-ico {
-  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-  background: rgba(155,28,46,0.08);
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
+
+/* ── CONTACTO / AGENDAR CITA ── */
+.contact-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+/* Cada tarjeta es un único <a> de alto completo: el usuario puede tocar
+   cualquier parte de la fila (ícono, texto) — no hace falta apuntar a un link pequeño */
+.contact-card {
+  display: flex; align-items: center; gap: 14px;
+  min-height: 64px; padding: 14px 16px;
+  background: #fff; border: 1px solid var(--mist); border-radius: 16px;
+  text-decoration: none; color: var(--ink);
 }
-.ct-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 3px; }
-.ct-val { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.5; }
-.wa-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #25D366; color: white; padding: 14px 28px; border-radius: 12px;
-  font-size: 14px; font-weight: 700; text-decoration: none;
-  transition: all 0.2s; margin-top: 28px;
+.cc-icon { width: 44px; height: 44px; border-radius: 11px; background: var(--teal-100); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.cc-label { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 2px; }
+.cc-value { font-size: 13.5px; font-weight: 600; line-height: 1.4; }
+
+.contact-book-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; width: 100%; background: var(--orange); color: #fff;
+  border-radius: 14px; font-size: 15px; font-weight: 700; text-decoration: none;
+  transition: background .2s;
 }
-.wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
-.map-box {
-  height: 340px; border-radius: 20px; overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-  border: 1px solid var(--mist); color: rgba(255,255,255,0.25); font-size: 13px;
+.contact-book-btn:hover { background: var(--orange-600); }
+
+@media (min-width: 900px) {
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact-book-btn { width: auto; padding: 0 32px; }
 }
-.map-box span { font-size: 42px; }
 
 /* ── FOOTER ── */
-footer {
-  background: var(--dark); padding: 56px 0 28px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.ft-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.ft-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 700; color: white; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.ft-desc { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 240px; }
-.ft-col-t { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.22); font-weight: 600; margin-bottom: 14px; }
+footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,0.06); }
+.ft-grid { display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 32px; }
+.ft-name { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.ft-desc { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 280px; }
+.ft-col-t { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.22); font-weight: 700; margin-bottom: 12px; }
 .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.ft-links a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; transition: color 0.2s; }
-.ft-links a:hover { color: rgba(255,255,255,0.85); }
-.ft-bottom {
-  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px;
-  text-align: center; font-size: 11px; color: rgba(255,255,255,0.14);
-}
+.ft-links a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; }
+.ft-links a:hover { color: var(--teal-400); }
+.ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.14); }
+@media (min-width: 760px) { .ft-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
 
-/* ── WHATSAPP FLOAT ── */
-.wa-float {
-  position: fixed; bottom: 24px; right: 24px; z-index: 300;
-  width: 58px; height: 58px; border-radius: 50%;
-  background: #25D366; color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
-  animation: wapulse 2.5s ease-in-out infinite;
+/* ── CTA STICKY (solo móvil) ──
+   Requisito explícito de UX: una acción de conversión siempre visible y
+   alcanzable con el pulgar, sin tener que volver a scrollear hasta el header
+   o el footer. Se oculta por completo en escritorio, donde el nav-cta basta. */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  display: flex; gap: 10px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(7,24,26,0.97); backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
-@keyframes wapulse {
-  0%,100% { box-shadow: 0 8px 28px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5); }
-  50%      { box-shadow: 0 8px 28px rgba(37,211,102,0.45), 0 0 0 12px rgba(37,211,102,0); }
+.sticky-cta a {
+  min-height: 48px; /* > 44px mínimo táctil */
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  border-radius: 12px; font-weight: 700; font-size: 13.5px; text-decoration: none;
 }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-model { height: 52vh; }
-  .hero-text { padding: 100px 28px 36px; }
-  .tx-grid { grid-template-columns: 1fr; }
-  .tx-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-  .svc-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-grid { grid-template-columns: 1fr; }
-  .ct-grid { grid-template-columns: 1fr; }
-  .ft-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .nav-links { display: none; }
-  .nav-toggle { display: block; }
-}
-@media (max-width: 560px) {
-  .svc-grid { grid-template-columns: 1fr; }
-  .why-stats { grid-template-columns: 1fr 1fr; }
-  .nav { padding: 0 20px; }
-  .strip-item { padding: 12px 18px; }
-}
+.sc-wa { flex: 0 0 48px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+.sc-book { flex: 1; background: var(--orange); color: #fff; }
+@media (min-width: 900px) { .sticky-cta { display: none; } }
 </style>
 </head>
 <body>
 
 <!-- ═══ NAV ═══ -->
-<nav class="nav" id="nav">
+<nav class="nav">
   <a href="#inicio" class="nav-brand">
-    <div class="nav-leaf">🍁</div>
-    Maple Dental Centre
+    <div class="nav-mark">🍁</div>
+    <span class="nav-name">Maple Dental Center</span>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#tratamientos">Tratamientos</a></li>
-    <li><a href="#servicios">Servicios</a></li>
+  <ul class="nav-links">
+    <li><a href="#implantologia">Implantología</a></li>
+    <li><a href="#servicios">Atención Integral</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita+en+Maple+Dental+Centre" class="nav-cta" target="_blank" rel="noopener">Agendar cita</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
+  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="nav-cta-desktop" target="_blank" rel="noopener">Agendar cita</a>
+  <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+    <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
+  </button>
 </nav>
+
+<!-- ═══ MENÚ MÓVIL ═══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#implantologia">Implantología</a>
+  <a href="#servicios">Atención Integral</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="mm-cta" target="_blank" rel="noopener">📲 Agendar cita</a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="inicio">
-  <div class="hero-text">
-    <div class="hero-badge">🍁 Miramontes · Zona Sur · CDMX</div>
-    <h1 class="hero-title">Tu sonrisa,<br><em>nuestro arte</em></h1>
-    <p class="hero-desc">Especialistas en implantes dentales, ortodoncia y diseño de sonrisa. Tecnología de punta y atención personalizada en la zona sur de la Ciudad de México.</p>
+  <div class="hero-content">
+    <div class="hero-badge">🦷 Implantología Avanzada · CDMX</div>
+    <h1 class="hero-title">Tecnología dental<br><em>que se siente natural</em></h1>
+    <p class="hero-desc">Implantología guiada por computadora, diagnóstico 3D y atención integral para toda la familia. Precisión clínica con la calidez de un equipo que conoce tu nombre.</p>
     <div class="hero-ctas">
-      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="btn-primary" target="_blank" rel="noopener">
-        📲 Agendar cita gratis
-      </a>
-      <a href="#tratamientos" class="btn-ghost">Ver tratamientos</a>
+      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="btn-primary" target="_blank" rel="noopener">Agendar consulta →</a>
+      <a href="#implantologia" class="btn-ghost">Conocer la tecnología</a>
     </div>
     <div class="hero-stats">
-      <div><div class="hs-num">15+</div><div class="hs-label">Años de experiencia</div></div>
-      <div><div class="hs-num">3K+</div><div class="hs-label">Pacientes atendidos</div></div>
-      <div><div class="hs-num">4.9⭐</div><div class="hs-label">Calificación Google</div></div>
+      <div><span class="hs-num">15+</span><span class="hs-label">Años de experiencia</span></div>
+      <div><span class="hs-num">3K+</span><span class="hs-label">Pacientes atendidos</span></div>
+      <div><span class="hs-num">98%</span><span class="hs-label">Éxito en implantes</span></div>
     </div>
   </div>
-  <div class="hero-model">
-    <canvas id="toothCanvas"></canvas>
-    <div class="model-hint">Modelo 3D · Arrastra para girar</div>
+
+  <div class="hero-visual" id="heroVisual">
+    <!-- Fallback CSS: se pinta de inmediato, sin esperar red ni WebGL.
+         En móvil esto ES el visual definitivo — nunca se intenta cargar Three.js. -->
+    <div class="hero-fallback" id="heroFallback">
+      <div class="hf-glow teal"></div>
+      <div class="hf-glow orange"></div>
+      <div class="hf-icon">🦷</div>
+      <div class="hf-badge b1">✓ Escaneo 3D</div>
+      <div class="hf-badge b2">✓ Garantía extendida</div>
+    </div>
+    <canvas id="toothCanvas" class="hero-canvas" hidden></canvas>
+    <div class="model-hint" id="modelHint" hidden>Modelo 3D · Arrastra para girar</div>
   </div>
 </section>
 
 <!-- ═══ STRIP ═══ -->
 <div class="strip">
-  <div class="strip-item">🦷 Implantes dentales</div>
+  <div class="strip-item">🦷 Implantología avanzada</div>
+  <div class="strip-item">🩺 Atención integral</div>
   <div class="strip-item">😁 Ortodoncia</div>
   <div class="strip-item">✨ Diseño de sonrisa</div>
-  <div class="strip-item">⚡ Blanqueamiento</div>
-  <div class="strip-item">🔬 Diagnóstico digital</div>
+  <div class="strip-item">🔬 Diagnóstico 3D</div>
 </div>
 
-<!-- ═══ TRATAMIENTOS ═══ -->
-<section class="sec" id="tratamientos">
+<!-- ═══ IMPLANTOLOGÍA — servicio estrella ═══ -->
+<section class="sec" id="implantologia">
   <div class="container">
     <div class="sh">
-      <div class="kicker">Tratamientos especializados</div>
-      <h2>Los tratamientos que <em>transforman</em> tu sonrisa</h2>
-      <p>Soluciones de alto nivel con tecnología de punta y facilidades de pago para que el tratamiento que necesitas sea accesible.</p>
+      <div class="kicker">Servicio insignia</div>
+      <h2>Implantología guiada por <em>precisión digital</em></h2>
+      <p>Sustituye piezas perdidas con un proceso planificado al milímetro: del diagnóstico 3D a la colocación, todo calculado antes de tocar tu boca.</p>
     </div>
-    <div class="tx-grid">
 
-      <!-- FEATURED: Implantes -->
-      <div class="tx-card featured">
-        <div>
-          <div class="tx-icon">🦷</div>
-          <div class="tx-name">Implantes Dentales</div>
-          <div class="tx-desc">La solución definitiva para dientes perdidos. Titanio de calidad médica, resultado completamente natural y durabilidad de décadas. Colocación guiada con tecnología digital 3D.</div>
-          <div class="tx-price">$18,000 – $28,000 MXN</div>
-          <div class="tx-msi">12 meses sin intereses · desde $1,500/mes</div>
-          <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+informaci%C3%B3n+sobre+implantes+dentales" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
-        </div>
-        <div class="feat-stats">
-          <div class="feat-stat">
-            <div class="feat-stat-n">30 min</div>
-            <div class="feat-stat-l">Procedimiento sin dolor</div>
+    <div class="implant-card">
+      <div>
+        <div class="implant-steps">
+          <div class="implant-step">
+            <div class="implant-step-num">1</div>
+            <div><strong>Escaneo y diagnóstico 3D</strong><p>Mapeamos hueso y tejido con tomografía digital antes de cualquier intervención.</p></div>
           </div>
-          <div class="feat-stat">
-            <div class="feat-stat-n">98%</div>
-            <div class="feat-stat-l">Tasa de éxito clínica</div>
+          <div class="implant-step">
+            <div class="implant-step-num">2</div>
+            <div><strong>Planeación computarizada</strong><p>Diseñamos la posición exacta del implante en software especializado.</p></div>
           </div>
-          <div class="feat-stat">
-            <div class="feat-stat-n">25 años</div>
-            <div class="feat-stat-l">Durabilidad promedio</div>
+          <div class="implant-step">
+            <div class="implant-step-num">3</div>
+            <div><strong>Colocación guiada</strong><p>Cirugía mínimamente invasiva con guía quirúrgica de precisión milimétrica.</p></div>
+          </div>
+          <div class="implant-step">
+            <div class="implant-step-num">4</div>
+            <div><strong>Seguimiento y garantía</strong><p>Acompañamiento clínico y garantía extendida sobre el resultado.</p></div>
           </div>
         </div>
       </div>
 
-      <!-- Ortodoncia -->
-      <div class="tx-card">
-        <div class="tx-icon">😁</div>
-        <div class="tx-name">Ortodoncia</div>
-        <div class="tx-desc">Brackets metálicos, zafiro y alineadores invisibles. Corregimos tu mordida y alineamos tu sonrisa con el plan más adecuado para tu caso.</div>
-        <div class="tx-price">$25,000 – $45,000 MXN</div>
-        <div class="tx-msi">Hasta 18 meses sin intereses disponibles</div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+informaci%C3%B3n+sobre+ortodoncia" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
+      <div>
+        <div class="implant-features">
+          <div class="implant-feature-item">🦷 Titanio grado médico</div>
+          <div class="implant-feature-item">🛡️ Garantía extendida</div>
+          <div class="implant-feature-item">🔬 Guía quirúrgica digital</div>
+          <div class="implant-feature-item">✨ Resultado natural</div>
+        </div>
+        <p class="implant-finance">Planes de financiamiento flexibles para que la calidad nunca sea un obstáculo — sin recurrir a descuentos que comprometan el resultado.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+una+valoraci%C3%B3n+de+implantes" class="implant-cta" target="_blank" rel="noopener">Agendar valoración →</a>
       </div>
+    </div>
 
-      <!-- Diseño de sonrisa -->
-      <div class="tx-card">
-        <div class="tx-icon">✨</div>
-        <div class="tx-name">Diseño de Sonrisa</div>
-        <div class="tx-desc">Planificación digital de tu nueva sonrisa con carillas, coronas y blanqueamiento. Ves el resultado final antes de comenzar cualquier tratamiento.</div>
-        <div class="tx-price">$15,000 – $35,000 MXN</div>
-        <div class="tx-msi">12 meses sin intereses disponibles</div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+el+dise%C3%B1o+de+sonrisa" class="tx-btn" target="_blank" rel="noopener">Consultar →</a>
+    <!-- Tratamientos complementarios: visibles, pero sin competir con el servicio estrella -->
+    <div class="more-treatments">
+      <div class="mt-card">
+        <div class="mt-icon">😁</div>
+        <div class="mt-name">Ortodoncia</div>
+        <p>Brackets metálicos, zafiro y alineadores invisibles para corregir mordida y alineación.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+la+ortodoncia" target="_blank" rel="noopener">Más información →</a>
       </div>
-
+      <div class="mt-card">
+        <div class="mt-icon">✨</div>
+        <div class="mt-name">Diseño de Sonrisa</div>
+        <p>Planeación digital con carillas, coronas y blanqueamiento profesional.</p>
+        <a href="https://wa.me/5215648404854?text=Hola%2C+me+interesa+el+dise%C3%B1o+de+sonrisa" target="_blank" rel="noopener">Más información →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ SERVICIOS ═══ -->
+<!-- ═══ ATENCIÓN INTEGRAL — segundo pilar ═══ -->
 <section class="sec sec-soft" id="servicios">
   <div class="container">
     <div class="sh">
-      <div class="kicker">Servicios generales</div>
-      <h2>Atención completa para <em>toda la familia</em></h2>
-      <p>Además de los tratamientos especializados, cubrimos todas las necesidades de salud bucal de tu familia en un solo lugar.</p>
+      <div class="kicker">Segundo pilar · Atención integral</div>
+      <h2>Cuidado completo para <em>toda la familia</em></h2>
+      <p>Más allá del servicio estrella, cubrimos cada necesidad de salud bucal bajo el mismo estándar de calidad y tecnología.</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card">
         <div class="svc-ico">🦷</div>
         <div class="svc-name">Limpiezas y Profilaxis</div>
-        <div class="svc-desc">Limpieza dental profunda, retiro de sarro y placa bacteriana. Recomendada cada 6 meses para mantener encías sanas y prevenir caries.</div>
+        <div class="svc-desc">Limpieza dental profunda y retiro de placa bacteriana cada 6 meses para mantener encías sanas.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">⚡</div>
         <div class="svc-name">Blanqueamiento Dental</div>
-        <div class="svc-desc">Blanqueamiento profesional con luz LED. Hasta 8 tonos más blanco en una sola sesión. Resultados visibles desde el primer día.</div>
+        <div class="svc-desc">Blanqueamiento profesional con luz LED. Resultados visibles desde la primera sesión.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">🔬</div>
         <div class="svc-name">Diagnóstico Digital 3D</div>
-        <div class="svc-desc">Radiografías digitales, fotografías intraorales y escaneo 3D para un diagnóstico preciso y un plan de tratamiento exacto.</div>
+        <div class="svc-desc">Radiografías digitales y escaneo 3D para un plan de tratamiento exacto.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">👶</div>
         <div class="svc-name">Odontopediatría</div>
-        <div class="svc-desc">Atención especializada para niños desde los 2 años. Ambiente amigable y técnicas sin dolor para crear hábitos desde pequeños.</div>
+        <div class="svc-desc">Atención especializada para niños desde los 2 años, en un ambiente amigable.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">🦿</div>
         <div class="svc-name">Coronas y Carillas</div>
-        <div class="svc-desc">Restauraciones estéticas en porcelana y zirconia. Devolvemos la forma, función y apariencia natural a tus dientes dañados.</div>
+        <div class="svc-desc">Restauraciones estéticas en porcelana y zirconia con apariencia natural.</div>
       </div>
       <div class="svc-card">
         <div class="svc-ico">💊</div>
         <div class="svc-name">Endodoncia sin Dolor</div>
-        <div class="svc-desc">Tratamiento de conducto con rotación mecánica y localizador de ápice. Salvamos tu diente evitando la extracción — sin dolor.</div>
+        <div class="svc-desc">Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ POR QUÉ MAPLE (dark) ═══ -->
-<section class="sec sec-dark" id="nosotros" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;top:-120px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(155,28,46,0.10),transparent 70%);pointer-events:none;"></div>
+<section class="sec sec-dark" id="nosotros">
   <div class="container">
     <div class="why-grid">
-      <div class="why-text">
+      <div>
         <div class="kicker light">Por qué elegir Maple</div>
-        <h2>La clínica de <em>referencia</em><br>en la zona sur</h2>
-        <p>En Maple Dental Centre combinamos equipamiento de última generación con especialistas comprometidos con tu bienestar y los resultados que mereces.</p>
+        <h2 class="sh-title-only" style="font-family:var(--font-head);font-size:clamp(26px,6.5vw,44px);font-weight:700;line-height:1.1;color:#fff;margin-bottom:12px;">La clínica de <em style="color:var(--teal-400);">referencia</em> en la zona sur</h2>
+        <p style="font-size:clamp(13.5px,2.6vw,15px);color:rgba(255,255,255,0.45);line-height:1.7;">Combinamos equipamiento de última generación con especialistas comprometidos con tu bienestar y los resultados que mereces.</p>
         <div class="why-list">
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Especialistas certificados</strong> en implantología, ortodoncia, endodoncia y estética dental.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Tecnología digital</strong>: escáner 3D, radiografías digitales y diagnóstico computarizado.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Facilidades de pago</strong>: hasta 18 meses sin intereses y planes personalizados.</div>
-          </div>
-          <div class="why-item">
-            <div class="why-chk">✓</div>
-            <div class="why-item-t"><strong>Ubicación conveniente</strong> en Super Plaza Miramontes, con estacionamiento gratuito.</div>
-          </div>
+          <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Especialistas certificados</strong> en implantología, ortodoncia, endodoncia y estética dental.</div></div>
+          <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Tecnología digital</strong>: escáner 3D, radiografías digitales y diagnóstico computarizado.</div></div>
+          <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Financiamiento flexible</strong> sin comprometer la calidad del tratamiento.</div></div>
+          <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Ubicación conveniente</strong> en Super Plaza Miramontes, con estacionamiento gratuito.</div></div>
         </div>
       </div>
       <div class="why-stats">
-        <div class="why-stat">
-          <div class="why-stat-n">15+</div>
-          <div class="why-stat-l">Años al servicio de la zona sur</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-n">3K+</div>
-          <div class="why-stat-l">Pacientes satisfechos</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-n">8</div>
-          <div class="why-stat-l">Especialidades bajo un mismo techo</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-n">0%</div>
-          <div class="why-stat-l">Intereses hasta 18 meses</div>
-        </div>
+        <div class="why-stat"><div class="why-stat-n">15+</div><div class="why-stat-l">Años al servicio de la zona sur</div></div>
+        <div class="why-stat"><div class="why-stat-n">3K+</div><div class="why-stat-l">Pacientes satisfechos</div></div>
+        <div class="why-stat"><div class="why-stat-n">8</div><div class="why-stat-l">Especialidades bajo un mismo techo</div></div>
+        <div class="why-stat"><div class="why-stat-n">98%</div><div class="why-stat-l">Éxito clínico en implantes</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTACTO ═══ -->
+<!-- ═══ CONTACTO / AGENDAR CITA ═══ -->
 <section class="sec" id="contacto">
   <div class="container">
-    <div class="ct-grid">
-      <div class="ct-info">
-        <div class="kicker">Visítanos</div>
-        <h2>Estamos en el <em>corazón</em><br>de Miramontes</h2>
-        <div class="ct-row">
-          <div class="ct-ico">📍</div>
-          <div>
-            <div class="ct-lbl">Dirección</div>
-            <div class="ct-val">Super Plaza Miramontes #2053, Local C-10<br>Pedregal de Carrasco, CDMX</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">📲</div>
-          <div>
-            <div class="ct-lbl">WhatsApp</div>
-            <div class="ct-val">56 4840 4854</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">📸</div>
-          <div>
-            <div class="ct-lbl">Instagram</div>
-            <div class="ct-val">@mapledcmx</div>
-          </div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-ico">🕐</div>
-          <div>
-            <div class="ct-lbl">Horario</div>
-            <div class="ct-val">Lunes a Viernes · 9:00 – 19:00<br>Sábados · 9:00 – 15:00</div>
-          </div>
-        </div>
-        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita+en+Maple+Dental+Centre" class="wa-btn" target="_blank" rel="noopener">
-          💬 Agendar cita por WhatsApp
+    <div class="sh">
+      <div class="kicker">Agenda tu cita</div>
+      <h2>Da el primer paso hacia <em>tu nueva sonrisa</em></h2>
+      <p>Respondemos por WhatsApp en menos de 24 horas hábiles.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <!-- Tarjeta-enlace completa: cualquier punto de la fila es tocable, no solo el texto -->
+        <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita+en+Maple+Dental+Center" class="contact-card" target="_blank" rel="noopener">
+          <div class="cc-icon">📲</div>
+          <div><div class="cc-label">WhatsApp</div><div class="cc-value">56 4840 4854</div></div>
         </a>
+        <a href="https://maps.google.com/?q=Super+Plaza+Miramontes+2053+CDMX" class="contact-card" target="_blank" rel="noopener">
+          <div class="cc-icon">📍</div>
+          <div><div class="cc-label">Dirección</div><div class="cc-value">Super Plaza Miramontes #2053, Local C-10</div></div>
+        </a>
+        <div class="contact-card" style="pointer-events:none;">
+          <div class="cc-icon">🕐</div>
+          <div><div class="cc-label">Horario</div><div class="cc-value">Lun–Vie 9:00–19:00 · Sáb 9:00–15:00</div></div>
+        </div>
       </div>
-      <div class="map-box">
-        <span>🗺️</span>
-        <div>Super Plaza Miramontes #2053<br>Local C-10 · Pedregal de Carrasco, CDMX</div>
-      </div>
+
+      <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="contact-book-btn" target="_blank" rel="noopener">
+        💬 Agendar cita por WhatsApp
+      </a>
     </div>
   </div>
 </section>
@@ -643,218 +667,184 @@ footer {
   <div class="container">
     <div class="ft-grid">
       <div>
-        <div class="ft-name">🍁 Maple Dental Centre</div>
-        <div class="ft-desc">Especialistas en salud bucal en la zona sur de CDMX. Implantes, ortodoncia y diseño de sonrisa con tecnología de punta.</div>
+        <div class="ft-name">🍁 Maple Dental Center</div>
+        <div class="ft-desc">Implantología avanzada y atención integral en la zona sur de la Ciudad de México.</div>
       </div>
       <div>
-        <div class="ft-col-t">Tratamientos</div>
+        <div class="ft-col-t">Servicios</div>
         <ul class="ft-links">
-          <li><a href="#tratamientos">Implantes dentales</a></li>
-          <li><a href="#tratamientos">Ortodoncia</a></li>
-          <li><a href="#tratamientos">Diseño de sonrisa</a></li>
-          <li><a href="#servicios">Blanqueamiento</a></li>
+          <li><a href="#implantologia">Implantología avanzada</a></li>
+          <li><a href="#implantologia">Ortodoncia</a></li>
+          <li><a href="#implantologia">Diseño de sonrisa</a></li>
+          <li><a href="#servicios">Atención integral</a></li>
         </ul>
       </div>
       <div>
         <div class="ft-col-t">Contacto</div>
         <ul class="ft-links">
-          <li><a href="https://wa.me/5215648404854">📲 56 4840 4854</a></li>
+          <li><a href="https://wa.me/5215648404854" target="_blank" rel="noopener">📲 56 4840 4854</a></li>
           <li><a href="https://instagram.com/mapledcmx" target="_blank" rel="noopener">📸 @mapledcmx</a></li>
           <li><a href="#contacto">📍 Miramontes #2053, C-10</a></li>
         </ul>
       </div>
     </div>
-    <div class="ft-bottom">
-      © 2026 Maple Dental Centre · Super Plaza Miramontes #2053, Local C-10 · Pedregal de Carrasco, CDMX
-    </div>
+    <div class="ft-bottom">© 2026 Maple Dental Center · Super Plaza Miramontes #2053, Local C-10 · CDMX</div>
   </div>
 </footer>
 
-<!-- ═══ WA FLOAT ═══ -->
-<a class="wa-float" href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-
-<!-- ═══ THREE.JS ═══ -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-
-const canvas    = document.getElementById('toothCanvas');
-const container = canvas.parentElement;
-
-// ── Renderer ──────────────────────────────────────────────────────────────
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
-renderer.toneMapping         = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.4;
-
-// ── Scene ─────────────────────────────────────────────────────────────────
-const scene = new THREE.Scene();
-
-const pmrem  = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-// ── Camera ────────────────────────────────────────────────────────────────
-const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-camera.position.set(0, 0.4, 5.5);
-
-// ── Controls ──────────────────────────────────────────────────────────────
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping   = true;
-controls.dampingFactor   = 0.07;
-controls.enableZoom      = false;
-controls.autoRotate      = true;
-controls.autoRotateSpeed = 1.0;
-controls.minPolarAngle   = Math.PI * 0.2;
-controls.maxPolarAngle   = Math.PI * 0.78;
-controls.target.set(0, 0.2, 0);
-
-// ── Tooth ─────────────────────────────────────────────────────────────────
-function buildTooth() {
-  const root = new THREE.Group();
-
-  // Crown + root profile (LatheGeometry rotates around Y axis)
-  // [radius, height] from crown tip → root tip
-  const profile = [
-    [0.00,  1.35],
-    [0.12,  1.22],
-    [0.32,  1.05],
-    [0.47,  0.78],
-    [0.54,  0.48],
-    [0.55,  0.15],
-    [0.48, -0.05],  // neck
-    [0.38, -0.15],
-    [0.28, -0.55],
-    [0.22, -1.05],
-    [0.14, -1.55],
-    [0.06, -1.85],
-    [0.00, -1.95],  // root apex
-  ].map(([r, y]) => new THREE.Vector2(r, y));
-
-  const bodyGeo = new THREE.LatheGeometry(profile, 64);
-
-  const enamelMat = new THREE.MeshPhysicalMaterial({
-    color:               new THREE.Color(0.97, 0.94, 0.90),
-    roughness:           0.07,
-    metalness:           0.0,
-    transmission:        0.10,
-    thickness:           0.8,
-    ior:                 1.55,
-    clearcoat:           1.0,
-    clearcoatRoughness:  0.04,
-    envMapIntensity:     1.0,
-  });
-
-  const body = new THREE.Mesh(bodyGeo, enamelMat);
-  body.castShadow = body.receiveShadow = true;
-  root.add(body);
-
-  // 4 molar cusps on top
-  const cuspMat = new THREE.MeshPhysicalMaterial({
-    color:              new THREE.Color(0.94, 0.91, 0.86),
-    roughness:          0.10,
-    metalness:          0.0,
-    clearcoat:          0.8,
-    clearcoatRoughness: 0.08,
-  });
-  for (const [x, y, z] of [
-    [ 0.21, 0.97,  0.17],
-    [-0.21, 0.97,  0.17],
-    [ 0.21, 0.97, -0.17],
-    [-0.21, 0.97, -0.17],
-  ]) {
-    const c = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 24), cuspMat);
-    c.position.set(x, y, z);
-    c.castShadow = true;
-    root.add(c);
-  }
-
-  // Gum ring at cervix
-  const gumMat = new THREE.MeshStandardMaterial({
-    color:    new THREE.Color(0.88, 0.52, 0.56),
-    roughness: 0.75,
-  });
-  const gum = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.25, 48), gumMat);
-  gum.position.y = -0.18;
-  gum.receiveShadow = true;
-  root.add(gum);
-
-  return root;
-}
-
-const tooth = buildTooth();
-scene.add(tooth);
-
-// ── Particles ─────────────────────────────────────────────────────────────
-const pGeo = new THREE.BufferGeometry();
-const pPos = new Float32Array(140 * 3);
-for (let i = 0; i < 140 * 3; i++) pPos[i] = (Math.random() - 0.5) * 9;
-pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-const particles = new THREE.Points(
-  pGeo,
-  new THREE.PointsMaterial({ color: 0xC8963E, size: 0.028, transparent: true, opacity: 0.45 })
-);
-scene.add(particles);
-
-// ── Lights ────────────────────────────────────────────────────────────────
-scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-
-const key = new THREE.DirectionalLight(0xffffff, 3.0);
-key.position.set(5, 10, 6);
-key.castShadow = true;
-key.shadow.mapSize.set(2048, 2048);
-scene.add(key);
-
-const rim = new THREE.DirectionalLight(0xC8963E, 1.5);
-rim.position.set(-6, 3, -4);
-scene.add(rim);
-
-const fill = new THREE.PointLight(0x9B1C2E, 0.7, 14);
-fill.position.set(3, -3, 5);
-scene.add(fill);
-
-// ── Resize ────────────────────────────────────────────────────────────────
-function onResize() {
-  const w = container.clientWidth;
-  const h = container.clientHeight;
-  renderer.setSize(w, h);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-window.addEventListener('resize', onResize);
-onResize();
-
-// ── Animate ───────────────────────────────────────────────────────────────
-const clock = new THREE.Clock();
-(function loop() {
-  requestAnimationFrame(loop);
-  const t = clock.getElapsedTime();
-  tooth.position.y  = Math.sin(t * 0.7) * 0.10;
-  particles.rotation.y = t * 0.04;
-  controls.update();
-  renderer.render(scene, camera);
-})();
-</script>
+<!-- ═══ CTA STICKY (solo móvil) ═══ -->
+<div class="sticky-cta">
+  <a href="https://wa.me/5215648404854?text=Hola%2C+tengo+una+pregunta" class="sc-wa" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+  <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="sc-book" target="_blank" rel="noopener">Agendar cita</a>
+</div>
 
 <script>
-// Mobile nav toggle
-const toggle = document.getElementById('navToggle');
-const links  = document.getElementById('navLinks');
-toggle.addEventListener('click', () => {
-  const open = links.style.display === 'flex';
-  links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#0d0d0d;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);';
-});
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.style.cssText = ''));
+// ── Menú móvil: overlay de pantalla completa, bloquea el scroll del body
+// mientras está abierto y se cierra con Escape o al tocar un link ──
+const burger = document.getElementById('navBurger');
+const menu   = document.getElementById('mobileMenu');
+function toggleMenu(force) {
+  const open = force ?? !menu.classList.contains('is-open');
+  menu.classList.toggle('is-open', open);
+  burger.classList.toggle('is-active', open);
+  burger.setAttribute('aria-expanded', open);
+  menu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+burger.addEventListener('click', () => toggleMenu());
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+// ── Carga condicional del modelo 3D ──
+// Three.js pesa ~600KB. En móvil ese costo de red + GPU nunca se paga: el
+// fallback CSS (ya pintado) es la experiencia final. Solo en escritorio
+// (≥900px) se importa el módulo de forma dinámica y se reemplaza el fallback.
+const heroVisual   = document.getElementById('heroVisual');
+const heroFallback = document.getElementById('heroFallback');
+const toothCanvas  = document.getElementById('toothCanvas');
+const modelHint    = document.getElementById('modelHint');
+
+if (window.matchMedia('(min-width: 900px)').matches) {
+  Promise.all([
+    import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'),
+    import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js'),
+    import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js'),
+  ]).then(([THREE, { OrbitControls }, { RoomEnvironment }]) => {
+    initTooth(THREE, OrbitControls, RoomEnvironment);
+    toothCanvas.hidden = false;
+    modelHint.hidden = false;
+    heroFallback.style.display = 'none';
+  }).catch(() => { /* si falla la red, el fallback CSS se queda — el hero nunca se rompe */ });
+}
+
+function initTooth(THREE, OrbitControls, RoomEnvironment) {
+  const canvas = toothCanvas;
+  const container = heroVisual;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.4;
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0.4, 5.5);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.07;
+  controls.enableZoom = false;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1.0;
+  controls.minPolarAngle = Math.PI * 0.2;
+  controls.maxPolarAngle = Math.PI * 0.78;
+  controls.target.set(0, 0.2, 0);
+
+  // Diente: LatheGeometry para corona+raíz, 4 cúspides esféricas y anillo de encía
+  function buildTooth() {
+    const root = new THREE.Group();
+    const profile = [
+      [0.00,  1.35], [0.12, 1.22], [0.32, 1.05], [0.47, 0.78], [0.54, 0.48],
+      [0.55,  0.15], [0.48, -0.05], [0.38, -0.15], [0.28, -0.55], [0.22, -1.05],
+      [0.14, -1.55], [0.06, -1.85], [0.00, -1.95],
+    ].map(([r, y]) => new THREE.Vector2(r, y));
+
+    const bodyGeo = new THREE.LatheGeometry(profile, 64);
+    const enamelMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0.97, 0.94, 0.90), roughness: 0.07, metalness: 0.0,
+      transmission: 0.10, thickness: 0.8, ior: 1.55,
+      clearcoat: 1.0, clearcoatRoughness: 0.04, envMapIntensity: 1.0,
+    });
+    const body = new THREE.Mesh(bodyGeo, enamelMat);
+    body.castShadow = body.receiveShadow = true;
+    root.add(body);
+
+    const cuspMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0.94, 0.91, 0.86), roughness: 0.10, metalness: 0.0,
+      clearcoat: 0.8, clearcoatRoughness: 0.08,
+    });
+    for (const [x, y, z] of [[0.21,0.97,0.17],[-0.21,0.97,0.17],[0.21,0.97,-0.17],[-0.21,0.97,-0.17]]) {
+      const c = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 24), cuspMat);
+      c.position.set(x, y, z);
+      c.castShadow = true;
+      root.add(c);
+    }
+
+    const gumMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(0.88, 0.52, 0.56), roughness: 0.75 });
+    const gum = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.25, 48), gumMat);
+    gum.position.y = -0.18;
+    gum.receiveShadow = true;
+    root.add(gum);
+    return root;
+  }
+  const tooth = buildTooth();
+  scene.add(tooth);
+
+  // Partículas con la paleta de marca (teal)
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(140 * 3);
+  for (let i = 0; i < 140 * 3; i++) pPos[i] = (Math.random() - 0.5) * 9;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x2DD4BF, size: 0.028, transparent: true, opacity: 0.45 }));
+  scene.add(particles);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const key = new THREE.DirectionalLight(0xffffff, 3.0);
+  key.position.set(5, 10, 6);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xFF7A33, 1.4); // acento naranja de marca
+  rim.position.set(-6, 3, -4);
+  scene.add(rim);
+  const fill = new THREE.PointLight(0x0F9C8F, 0.8, 14); // acento teal de marca
+  fill.position.set(3, -3, 5);
+  scene.add(fill);
+
+  function onResize() {
+    const w = container.clientWidth, h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', onResize);
+  onResize();
+
+  const clock = new THREE.Clock();
+  (function loop() {
+    requestAnimationFrame(loop);
+    const t = clock.getElapsedTime();
+    tooth.position.y = Math.sin(t * 0.7) * 0.10;
+    particles.rotation.y = t * 0.04;
+    controls.update();
+    renderer.render(scene, camera);
+  })();
+}
 </script>
 </body>
 </html>
