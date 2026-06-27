@@ -66,12 +66,13 @@
     "desc": "We combine cutting-edge technology with a deeply human approach. Our commitment is to provide a stress-free, predictable dental experience with exceptional clinical results."
   },
   "contact": {
-    "title": "Schedule your premium consultation",
+    "title": "Take the first step towards <em>your new smile</em>",
     "desc": "Take the first step towards the smile you deserve. Our team is ready to design a plan tailored to you.",
     "cta": "Book via WhatsApp"
   },
   "footer": {
     "rights": "© 2026 Maple Dental Center. All rights reserved.",
+    "address": "Canal de Miramontes 2053-Third floor, Office 10, Coapa, Girasoles III, Coyoacán, 04890 Mexico City, CDMX",
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions"
   }

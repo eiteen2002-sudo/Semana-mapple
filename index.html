@@ -427,6 +427,7 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .ft-links a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; }
 .ft-links a:hover { color: var(--teal-400); }
+.ft-address { font-size: 11.5px; color: rgba(255,255,255,0.30); line-height: 1.6; text-align: center; margin-bottom: 18px; }
 .ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.14); display: flex; flex-direction: column; gap: 10px; align-items: center; }
 .ft-legal { display: flex; gap: 8px; align-items: center; }
 .ft-legal a { color: rgba(255,255,255,0.32); text-decoration: none; }
@@ -676,7 +677,7 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
   <div class="container">
     <div class="sh">
       <div class="kicker">Agenda tu cita</div>
-      <h2 data-i18n="contact.title">Agenda tu valoración premium</h2>
+      <h2 data-i18n-html="contact.title">Da el primer paso hacia <em>tu nueva sonrisa</em></h2>
       <p data-i18n="contact.desc">Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.</p>
     </div>
 
@@ -730,6 +731,7 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
         </ul>
       </div>
     </div>
+    <div class="ft-address" data-i18n="footer.address">Canal de Miramontes 2053-Tercer piso, Consultorio 10, Coapa, Girasoles III, Coyoacán, 04890 Ciudad de México, CDMX</div>
     <div class="ft-bottom">
       <span data-i18n="footer.rights">© 2026 Maple Dental Center. Todos los derechos reservados.</span>
       <span class="ft-legal">
@@ -816,12 +818,13 @@ const DICTIONARIES = {
       desc: "Combinamos tecnología de vanguardia con un trato profundamente humano. Nuestro compromiso es brindarte una experiencia dental sin estrés, predecible y con resultados clínicos excepcionales.",
     },
     contact: {
-      title: "Agenda tu valoración premium",
+      title: "Da el primer paso hacia <em>tu nueva sonrisa</em>",
       desc: "Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.",
       cta: "Agendar por WhatsApp",
     },
     footer: {
       rights: "© 2026 Maple Dental Center. Todos los derechos reservados.",
+      address: "Canal de Miramontes 2053-Tercer piso, Consultorio 10, Coapa, Girasoles III, Coyoacán, 04890 Ciudad de México, CDMX",
       privacy: "Aviso de Privacidad",
       terms: "Términos y Condiciones",
     },
@@ -885,12 +888,13 @@ const DICTIONARIES = {
       desc: "We combine cutting-edge technology with a deeply human approach. Our commitment is to provide a stress-free, predictable dental experience with exceptional clinical results.",
     },
     contact: {
-      title: "Schedule your premium consultation",
+      title: "Take the first step towards <em>your new smile</em>",
       desc: "Take the first step towards the smile you deserve. Our team is ready to design a plan tailored to you.",
       cta: "Book via WhatsApp",
     },
     footer: {
       rights: "© 2026 Maple Dental Center. All rights reserved.",
+      address: "Canal de Miramontes 2053-Third floor, Office 10, Coapa, Girasoles III, Coyoacán, 04890 Mexico City, CDMX",
       privacy: "Privacy Policy",
       terms: "Terms and Conditions",
     },

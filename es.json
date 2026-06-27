@@ -66,12 +66,13 @@
     "desc": "Combinamos tecnología de vanguardia con un trato profundamente humano. Nuestro compromiso es brindarte una experiencia dental sin estrés, predecible y con resultados clínicos excepcionales."
   },
   "contact": {
-    "title": "Agenda tu valoración premium",
+    "title": "Da el primer paso hacia <em>tu nueva sonrisa</em>",
     "desc": "Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.",
     "cta": "Agendar por WhatsApp"
   },
   "footer": {
     "rights": "© 2026 Maple Dental Center. Todos los derechos reservados.",
+    "address": "Canal de Miramontes 2053-Tercer piso, Consultorio 10, Coapa, Girasoles III, Coyoacán, 04890 Ciudad de México, CDMX",
     "privacy": "Aviso de Privacidad",
     "terms": "Términos y Condiciones"
   }
