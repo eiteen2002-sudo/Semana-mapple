@@ -60,5 +60,19 @@
       { "name": "Coronas y Carillas", "desc": "Restauraciones estéticas en porcelana y zirconia con apariencia natural." },
       { "name": "Endodoncia sin Dolor", "desc": "Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor." }
     ]
+  },
+  "whyMaple": {
+    "title": "¿Por qué elegir Maple Dental Center?",
+    "desc": "Combinamos tecnología de vanguardia con un trato profundamente humano. Nuestro compromiso es brindarte una experiencia dental sin estrés, predecible y con resultados clínicos excepcionales."
+  },
+  "contact": {
+    "title": "Agenda tu valoración premium",
+    "desc": "Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.",
+    "cta": "Agendar por WhatsApp"
+  },
+  "footer": {
+    "rights": "© 2026 Maple Dental Center. Todos los derechos reservados.",
+    "privacy": "Aviso de Privacidad",
+    "terms": "Términos y Condiciones"
   }
 }

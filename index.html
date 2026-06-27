@@ -427,7 +427,11 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
 .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .ft-links a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; }
 .ft-links a:hover { color: var(--teal-400); }
-.ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.14); }
+.ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.14); display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ft-legal { display: flex; gap: 8px; align-items: center; }
+.ft-legal a { color: rgba(255,255,255,0.32); text-decoration: none; }
+.ft-legal a:hover { color: var(--teal-400); }
+@media (min-width: 760px) { .ft-bottom { flex-direction: row; justify-content: space-between; } }
 @media (min-width: 760px) { .ft-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
 
 /* ── CTA STICKY (solo móvil) ──
@@ -648,8 +652,8 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
     <div class="why-grid">
       <div>
         <div class="kicker light">Por qué elegir Maple</div>
-        <h2 class="sh-title-only" style="font-family:var(--font-head);font-size:clamp(26px,6.5vw,44px);font-weight:700;line-height:1.1;color:#fff;margin-bottom:12px;">La clínica de <em style="color:var(--teal-400);">referencia</em> en la zona sur</h2>
-        <p style="font-size:clamp(13.5px,2.6vw,15px);color:rgba(255,255,255,0.45);line-height:1.7;">Combinamos equipamiento de última generación con especialistas comprometidos con tu bienestar y los resultados que mereces.</p>
+        <h2 class="sh-title-only" data-i18n="whyMaple.title" style="font-family:var(--font-head);font-size:clamp(26px,6.5vw,44px);font-weight:700;line-height:1.1;color:#fff;margin-bottom:12px;">¿Por qué elegir Maple Dental Center?</h2>
+        <p data-i18n="whyMaple.desc" style="font-size:clamp(13.5px,2.6vw,15px);color:rgba(255,255,255,0.45);line-height:1.7;">Combinamos tecnología de vanguardia con un trato profundamente humano. Nuestro compromiso es brindarte una experiencia dental sin estrés, predecible y con resultados clínicos excepcionales.</p>
         <div class="why-list">
           <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Especialistas certificados</strong> en implantología, ortodoncia, endodoncia y estética dental.</div></div>
           <div class="why-item"><div class="why-chk">✓</div><div class="why-item-t"><strong>Tecnología digital</strong>: escáner 3D, radiografías digitales y diagnóstico computarizado.</div></div>
@@ -672,8 +676,8 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
   <div class="container">
     <div class="sh">
       <div class="kicker">Agenda tu cita</div>
-      <h2>Da el primer paso hacia <em>tu nueva sonrisa</em></h2>
-      <p>Respondemos por WhatsApp en menos de 24 horas hábiles.</p>
+      <h2 data-i18n="contact.title">Agenda tu valoración premium</h2>
+      <p data-i18n="contact.desc">Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.</p>
     </div>
 
     <div class="contact-grid">
@@ -694,7 +698,7 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
       </div>
 
       <a href="https://wa.me/5215648404854?text=Hola%2C+quiero+agendar+una+cita" class="contact-book-btn" target="_blank" rel="noopener">
-        💬 Agendar cita por WhatsApp
+        💬 <span data-i18n="contact.cta">Agendar por WhatsApp</span>
       </a>
     </div>
   </div>
@@ -726,7 +730,14 @@ footer { background: var(--dark); padding: 48px 0 calc(24px + env(safe-area-inse
         </ul>
       </div>
     </div>
-    <div class="ft-bottom">© 2026 Maple Dental Center · Super Plaza Miramontes #2053, Local C-10 · CDMX</div>
+    <div class="ft-bottom">
+      <span data-i18n="footer.rights">© 2026 Maple Dental Center. Todos los derechos reservados.</span>
+      <span class="ft-legal">
+        <a href="#privacidad" data-i18n="footer.privacy">Aviso de Privacidad</a>
+        <span aria-hidden="true" style="opacity:.4;">·</span>
+        <a href="#terminos" data-i18n="footer.terms">Términos y Condiciones</a>
+      </span>
+    </div>
   </div>
 </footer>
 
@@ -800,6 +811,20 @@ const DICTIONARIES = {
         { name: "Endodoncia sin Dolor", desc: "Tratamiento de conducto con tecnología de punta — salvamos tu diente sin dolor." },
       ],
     },
+    whyMaple: {
+      title: "¿Por qué elegir Maple Dental Center?",
+      desc: "Combinamos tecnología de vanguardia con un trato profundamente humano. Nuestro compromiso es brindarte una experiencia dental sin estrés, predecible y con resultados clínicos excepcionales.",
+    },
+    contact: {
+      title: "Agenda tu valoración premium",
+      desc: "Da el primer paso hacia la sonrisa que mereces. Nuestro equipo está listo para diseñar un plan a tu medida.",
+      cta: "Agendar por WhatsApp",
+    },
+    footer: {
+      rights: "© 2026 Maple Dental Center. Todos los derechos reservados.",
+      privacy: "Aviso de Privacidad",
+      terms: "Términos y Condiciones",
+    },
   },
   en: {
     nav: {
@@ -854,6 +879,20 @@ const DICTIONARIES = {
         { name: "Crowns & Veneers", desc: "Aesthetic restorations in porcelain and zirconia with a natural look." },
         { name: "Pain-Free Root Canals", desc: "Root canal treatment with cutting-edge technology — we save your tooth, pain-free." },
       ],
+    },
+    whyMaple: {
+      title: "Why Choose Maple Dental Center?",
+      desc: "We combine cutting-edge technology with a deeply human approach. Our commitment is to provide a stress-free, predictable dental experience with exceptional clinical results.",
+    },
+    contact: {
+      title: "Schedule your premium consultation",
+      desc: "Take the first step towards the smile you deserve. Our team is ready to design a plan tailored to you.",
+      cta: "Book via WhatsApp",
+    },
+    footer: {
+      rights: "© 2026 Maple Dental Center. All rights reserved.",
+      privacy: "Privacy Policy",
+      terms: "Terms and Conditions",
     },
   },
 };
